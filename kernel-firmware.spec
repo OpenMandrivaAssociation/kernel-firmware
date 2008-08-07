@@ -51,6 +51,7 @@ ExclusiveArch:	%{ix86} x86_64 sparc64
 ExclusiveOS: 	Linux
 URL:            http://www.kernel.org
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{_arch}-buildroot
+BuildRequires: 	gcc module-init-tools >= 0.9.15
 
 ####################################################################
 #
