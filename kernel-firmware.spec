@@ -5,7 +5,7 @@
 %define sublevel	27
 
 # Package version
-%define mnbrel		1
+%define mnbrel		2
 
 # Kernel Makefile extraversion is substituted by kpatch/kgit/kstable which
 # can be:
