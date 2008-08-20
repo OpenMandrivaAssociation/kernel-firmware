@@ -16,7 +16,7 @@
 #	stable release (kstable)
 #
 %define kpatch		rc3
-%define kgit		6
+%define kgit		git6
 %define kstable		0
 
 ### Nothing below this need to be changed !!
