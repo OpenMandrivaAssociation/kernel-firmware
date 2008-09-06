@@ -6,10 +6,11 @@
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
 Version:	2.6.27
-Release:	%manbo_mkrel 1
+Release:	%manbo_mkrel 2
 License:	GPLv2
 Group:  	System/Kernel and hardware
 URL:    	http://www.kernel.org/
+Obsoletes:	korg1212-firmware maestro3-firmware sb16-firmware yamaha-firmware
 # kernel-firmware tarball is generated from the git tree mentioned above, 
 # by simply cloning it, doing a rm -rf linux-firmware-from-kernel/.git/ 
 # and tar -cjvf kernel-firmware-version.tar.bz2 linux-firmware-from-kernel
