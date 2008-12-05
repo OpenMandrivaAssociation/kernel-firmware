@@ -16,6 +16,7 @@ Obsoletes:	korg1212-firmware maestro3-firmware sb16-firmware yamaha-firmware
 # by simply cloning it, doing a rm -rf linux-firmware-from-kernel/.git/ 
 # and tar -cjvf kernel-firmware-version.tar.bz2 linux-firmware-from-kernel
 Source0: 	kernel-firmware-%{version}.tar.bz2
+Suggests:	kernel-firmware-extra
 BuildRoot:      %{_tmppath}/%{name}-%{version}
 BuildArch:	noarch
 
