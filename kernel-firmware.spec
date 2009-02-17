@@ -6,8 +6,8 @@
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20080922
-Release:	%manbo_mkrel 2
+Version:	20090111
+Release:	%manbo_mkrel 1
 License:	GPLv2
 Group:  	System/Kernel and hardware
 URL:    	http://www.kernel.org/
@@ -27,7 +27,7 @@ It is shared by all kernels >= 2.6.27-rc1.
 %setup -q -n linux-firmware-from-kernel
 
 # don't include firmware without an acceptable open source license or
-# without source available to be distributed on kernel-firmware-extra
+# without source available, to be distributed on kernel-firmware-extra
 rm -f korg/k1212.dsp # license unknown
 rm -f ess/{maestro3_assp_kernel,maestro3_assp_minisrc}.fw # license unknown
 rm -f yamaha/{ds1_ctrl,ds1_dsp,ds1e_ctrl}.fw # license unknown
@@ -37,17 +37,23 @@ rm -f ttusb-budget/dspbootcode.bin # license unknown
 rm -f keyspan/*.fw # specific license, see WHENCE
 rm -f emi26/{bitstream,firmware,loader}.fw # specific license, see WHENCE
 rm -f emi62/{bitstream,loader,midi,spdif}.fw # license unknown
-rm -f ti_{3410,5052}.fw # GPLv2+, no source visible
-rm -f whiteheat{,_loader{,_debug}}.fw # GPLv2, no source visible
+rm -f ti_{3410,5052}.fw # GPLv2+, but no source available
+rm -f whiteheat{,_loader{,_debug}}.fw # GPLv2, but no source available
 rm -f intelliport2.bin # license unknown
-rm -f cpia2/stv0672_vp4.bin # GPLv2+, no source visible
+rm -f cpia2/stv0672_vp4.bin # GPLv2+, but no source available
 rm -f dabusb/firmware.fw dabusb/bitstream.bin # distributable license
 rm -f vicam/firmware.fw # license unknown
-rm -f edgeport/boot{,2}.fw edgeport/down{,2}.fw  GPLv2+, no source visible
+rm -f edgeport/boot{,2}.fw edgeport/down{,2}.fw # GPLv2+, but no source visible
 rm -f edgeport/down3.bin # specific license, see WHENCE
-rm -f sb16/*.csp # GPLv2+, no source visible
+rm -f sb16/*.csp # GPLv2+, but no source available
 rm -f sun/cassini.bin # license unknown
 rm -f atmsar11.fw # unknown
+rm -f mts_{cdma,gsm,edge}.fw # distributable license
+rm -f cxgb3/t3{{b,c}_psram-1.1.0,fw-7.0.0}.bin # GPL/BSD, but no source
+rm -f e100/d10{1{m,s},2e}_ucode.bin # license unknown
+rm -f acenic/tg{1,2}.bin # license unknown
+rm -f tigon/tg3{,_tso,_tso5}.bin # distributable license
+rm -f adaptec/starfire_{rx,tx}.bin # GPLv2+, but no source available
 
 # remove empty directories
 for dir in `find . -type d | sed -e 's|^\.||' -e 's|^/||'`; do
