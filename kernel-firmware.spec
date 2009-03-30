@@ -7,7 +7,7 @@
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
 Version:	20090111
-Release:	%manbo_mkrel 2
+Release:	%manbo_mkrel 3
 License:	GPLv2
 Group:  	System/Kernel and hardware
 URL:    	http://www.kernel.org/
@@ -16,6 +16,10 @@ URL:    	http://www.kernel.org/
 # and tar -cjvf kernel-firmware-version.tar.bz2 linux-firmware-from-kernel
 Source0: 	kernel-firmware-%{version}.tar.bz2
 Conflicts:	kernel-firmware-extra <= 20090212-1mnb2
+Obsoletes:	korg1212-firmware
+Obsoletes:	maestro3-firmware
+Obsoletes:	sb16-firmware
+Obsoletes:	yamaha-firmware
 Suggests:	kernel-firmware-extra
 BuildRoot:      %{_tmppath}/%{name}-%{version}
 BuildArch:	noarch
