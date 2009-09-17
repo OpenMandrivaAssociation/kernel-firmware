@@ -7,14 +7,16 @@
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
 Version:	20090604
-Release:	%manbo_mkrel 1
+Release:	%manbo_mkrel 2
 License:	GPLv2
 Group:  	System/Kernel and hardware
 URL:    	http://www.kernel.org/
 # kernel-firmware tarball is generated from the git tree mentioned above, 
 # by simply cloning it, doing a rm -rf linux-firmware-from-kernel/.git/ 
 # and tar -Ycf kernel-firmware-version.tar.lzma linux-firmware-from-kernel
-Source: 	kernel-firmware-%{version}.tar.lzma
+Source0: 	kernel-firmware-%{version}.tar.lzma
+# radeon firmware from drm-next, is needed for kernel-tmb now
+Source1:	radeon-firmware-drm-next.tar.lzma
 Conflicts:	kernel-firmware-extra <= 20090212-1mnb2
 Obsoletes:	korg1212-firmware
 Obsoletes:	maestro3-firmware
@@ -39,6 +41,10 @@ rm -rf %{buildroot}
 mkdir -p %{buildroot}/lib/firmware
 cp -avf * %{buildroot}/lib/firmware
 rm -f %{buildroot}/lib/firmware/WHENCE
+# install radeon firmware
+pushd %{buildroot}/lib/firmware >/dev/null
+tar -xYf %{SOURCE1}
+popd >/dev/null
 
 %clean
 rm -rf %{buildroot}
