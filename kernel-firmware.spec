@@ -1,19 +1,19 @@
 #
 # This rpm is based on the git tree from:
-# git.kernel.org/pub/scm/linux/kernel/git/dwmw2/linux-firmware-from-kernel.git
+# git://git.kernel.org/pub/scm/linux/kernel/git/dwmw2/linux-firmware-from-kernel.git
 # version is date of the younger commit
 #
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20090604
-Release:	%manbo_mkrel 4
+Version:	20100107
+Release:	%manbo_mkrel 1
 License:	GPLv2
 Group:  	System/Kernel and hardware
 URL:    	http://www.kernel.org/
-# kernel-firmware tarball is generated from the git tree mentioned above, 
-# by simply cloning it, doing a rm -rf linux-firmware-from-kernel/.git/ 
-# and tar -Ycf kernel-firmware-version.tar.lzma linux-firmware-from-kernel
+# kernel-firmware tarball is generated from the git tree mentioned
+# above, by simply cloning it, and  doing:
+# tar --exclude-vcs -Ycf kernel-firmware-version.tar.lzma linux-firmware-from-kernel
 Source0: 	kernel-firmware-%{version}.tar.lzma
 # radeon firmware from drm-next, is needed for kernel-tmb now
 Source1:	kernel-firmware-drm-next.tar.lzma
