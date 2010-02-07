@@ -15,8 +15,6 @@ URL:    	http://www.kernel.org/
 # above, by simply cloning it, and  doing:
 # tar --exclude-vcs -Ycf kernel-firmware-version.tar.lzma linux-firmware-from-kernel
 Source0: 	kernel-firmware-%{version}.tar.lzma
-# radeon firmware from drm-next, is needed for kernel-tmb now
-Source1:	kernel-firmware-drm-next.tar.lzma
 Conflicts:	kernel-firmware-extra <= 20090212-1mnb2
 Obsoletes:	korg1212-firmware
 Obsoletes:	maestro3-firmware
