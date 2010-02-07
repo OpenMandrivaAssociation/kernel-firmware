@@ -39,10 +39,6 @@ rm -rf %{buildroot}
 mkdir -p %{buildroot}/lib/firmware
 cp -avf * %{buildroot}/lib/firmware
 rm -f %{buildroot}/lib/firmware/WHENCE
-# install radeon firmware
-pushd %{buildroot}/lib/firmware >/dev/null
-tar -xYf %{SOURCE1}
-popd >/dev/null
 
 %clean
 rm -rf %{buildroot}
