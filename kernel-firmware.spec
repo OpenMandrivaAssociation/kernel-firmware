@@ -6,7 +6,7 @@
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20100107
+Version:	20100217
 Release:	%manbo_mkrel 1
 License:	GPLv2
 Group:  	System/Kernel and hardware
@@ -15,7 +15,7 @@ URL:    	http://www.kernel.org/
 # above, by simply cloning it, and  doing:
 # tar --exclude-vcs -Ycf kernel-firmware-version.tar.lzma linux-firmware-from-kernel
 Source0: 	kernel-firmware-%{version}.tar.lzma
-Conflicts:	kernel-firmware-extra <= 20090212-1mnb2
+Conflicts:	kernel-firmware-extra <= 20100108-1mnb2
 Obsoletes:	korg1212-firmware
 Obsoletes:	maestro3-firmware
 Obsoletes:	sb16-firmware
