@@ -14,7 +14,7 @@ URL:    	http://www.kernel.org/
 # kernel-firmware tarball is generated from the git tree mentioned
 # above, by simply cloning it, and  doing:
 # tar --exclude-vcs -Ycf kernel-firmware-version.tar.lzma linux-firmware-from-kernel
-Source0: 	kernel-firmware-%{version}.tar.lzma
+Source0: 	kernel-firmware-%{version}.tar.xz
 Conflicts:	kernel-firmware-extra <= 20100108-1mnb2
 Obsoletes:	korg1212-firmware
 Obsoletes:	maestro3-firmware
