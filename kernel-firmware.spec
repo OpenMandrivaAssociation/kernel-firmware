@@ -6,16 +6,16 @@
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20100804
+Version:	20101024
 Release:	%manbo_mkrel 1
 License:	GPLv2
 Group:  	System/Kernel and hardware
 URL:    	http://www.kernel.org/
 # kernel-firmware tarball is generated from the git tree mentioned
 # above, by simply cloning it, and  doing:
-# tar --exclude-vcs -Jcf kernel-firmware-version.tar.xza linux-firmware-from-kernel
+# tar --exclude-vcs -Jcf kernel-firmware-version.tar.xz linux-firmware-from-kernel
 Source0: 	kernel-firmware-%{version}.tar.xz
-Conflicts:	kernel-firmware-extra <= 20100429-2mnb2
+Conflicts:	kernel-firmware-extra <= 20100911-1mnb2
 Obsoletes:	korg1212-firmware
 Obsoletes:	maestro3-firmware
 Obsoletes:	sb16-firmware
