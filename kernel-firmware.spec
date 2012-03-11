@@ -1,6 +1,6 @@
 #
 # This rpm is based on the git tree from:
-# git://git.kernel.org/pub/scm/linux/kernel/git/dwmw2/linux-firmware-from-kernel.git
+# git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
 # version is date of the younger commit
 #
 
