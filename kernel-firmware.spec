@@ -13,7 +13,7 @@ Group:  	System/Kernel and hardware
 URL:    	http://www.kernel.org/
 # kernel-firmware tarball is generated from the git tree mentioned
 # above, by simply cloning it, and  doing:
-# tar --exclude-vcs -Jcf kernel-firmware-version.tar.xz linux-firmware-from-kernel
+# git archive --prefix=linux-firmware-from-kernel/ origin/master | xz > linux-firmware-version.tar.xz
 Source0: 	kernel-firmware-%{version}.tar.xz
 Conflicts:	kernel-firmware-extra < 20110310-1
 Obsoletes:	korg1212-firmware
