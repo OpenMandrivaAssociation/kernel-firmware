@@ -6,7 +6,7 @@
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20110904
+Version:	20120218
 Release:	%mkrel 1
 License:	GPLv2
 Group:  	System/Kernel and hardware
