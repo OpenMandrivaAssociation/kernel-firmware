@@ -6,8 +6,8 @@
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20120218
-Release:	%mkrel 2
+Version:	20120502
+Release:	%mkrel 1
 License:	GPLv2
 Group:  	System/Kernel and hardware
 URL:    	http://www.kernel.org/
@@ -29,7 +29,7 @@ This package contains the firmware for in-kernel drivers that was previously
 included in the kernel. It is shared by all kernels >= 2.6.27-rc1.
 
 %prep
-%setup -q -n linux-firmware-from-kernel
+%setup -q -n linux-firmware-375e954
 
 # remove unwanted source files
 rm -f dsp56k/bootstrap.asm keyspan_pda/*.S
