@@ -1,19 +1,19 @@
 #
 # This rpm is based on the git tree from:
-# git://git.kernel.org/pub/scm/linux/kernel/git/dwmw2/linux-firmware-from-kernel.git
+# git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
 # version is date of the younger commit
 #
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20120909
+Version:	20130307
 Release:	1
 License:	GPLv2
 Group:  	System/Kernel and hardware
 URL:    	http://www.kernel.org/
 # kernel-firmware tarball is generated from the git tree mentioned
 # above, by simply cloning it, and  doing:
-# tar --exclude-vcs -Jcf kernel-firmware-version.tar.xz linux-firmware-from-kernel
+# git archive -o kernel-firmware-20130307.tar --prefix=linux-firmware-from-kernel/ master
 Source0: 	linux-firmware-free-%{version}.tar.xz
 Conflicts:	kernel-firmware-extra < %{version}-1
 Obsoletes:	korg1212-firmware
@@ -21,7 +21,6 @@ Obsoletes:	maestro3-firmware
 Obsoletes:	sb16-firmware
 Obsoletes:	yamaha-firmware
 Suggests:	kernel-firmware-extra
-BuildRoot:      %{_tmppath}/%{name}-%{version}
 BuildArch:	noarch
 
 %description
@@ -40,14 +39,10 @@ mkdir -p %{buildroot}/lib/firmware
 cp -avf * %{buildroot}/lib/firmware
 rm -f %{buildroot}/lib/firmware/WHENCE
 
-%clean
-rm -rf %{buildroot}
-
 %files
 %defattr(0644,root,root,0755)
 %doc WHENCE
 /lib/firmware/*
-
 
 %changelog
 * Sun Oct 28 2912 akdengi <akdengi> 20120909-1
