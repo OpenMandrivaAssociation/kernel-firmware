@@ -3,6 +3,7 @@
 # git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
 # version is date of the younger commit
 #
+# When updating this package, make sure you keep kernel-firmware-extra in sync.
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
