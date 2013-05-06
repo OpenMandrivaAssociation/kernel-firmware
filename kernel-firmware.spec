@@ -60,7 +60,7 @@ beginning with 2.6.33 series kernels.
 find . -name "*.asm" -o -name "*.S" -o -name "Makefile*" \
      -o -name "*.c" -o -name "*.h" -o -name "CMakeLists.txt" \
      -o -name "*.cmake" -o -name "*.diff" -o -name "*.sh" \
-     -o -name "*.pl" -o -name "*.lds" -o -name "*.y" \
+     -o -name "*.pl" -o -name "*.bseq" -o -name "*.lds" -o -name "*.y" \
      -o -name "*.l" -o -name "*.gperf" -o -name "Kconfig" \
      -o -name "SHA*SUMS" -o -name "COPYRIGHT" -o -name "GPL" \
      -o -name "README*" -o -name configure \
