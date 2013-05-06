@@ -5,7 +5,7 @@
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20130307
+Version:	20130506
 Release:	1
 License:	GPLv2
 Group:  	System/Kernel and hardware
@@ -33,6 +33,7 @@ Group:		System/Kernel and hardware
 License:	Proprietary
 URL:    	http://www.kernel.org/
 Conflicts:	kernel-firmware < 20120218
+Obsoletes:	rt61-firmware
 
 %description extra
 This package contains extra redistributable etc. firmwares for in-kernel
