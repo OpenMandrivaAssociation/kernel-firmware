@@ -1,4 +1,5 @@
 removed_sources:
   linux-firmware-20130506.tar.xz: d3c2f096ccc2fd1065c5de10fc2f1666bffe1a59
 sources:
+  ivtv-firmware.tar.gz: 6c4ee0fce9882f93fb816d45bd23287244775cea
   linux-firmware-20131015.tar.xz: 42a018a5ae1779eeea68fda0958ac97abf7cd76a

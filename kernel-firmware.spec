@@ -6,7 +6,7 @@
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
 Version:	20131015
-Release:	1
+Release:	2
 License:	GPLv2
 Group:  	System/Kernel and hardware
 URL:    	http://www.kernel.org/
@@ -16,7 +16,10 @@ URL:    	http://www.kernel.org/
 # and  doing:
 # git archive -o linux-firmware-`date +%Y%m%d`.tar --prefix=linux-firmware/ master ; xz -9e linux-firmware-`date +%Y%m%d`.tar
 Source0: 	linux-firmware-%{version}.tar.xz
-Source1:	gen-firmware-lists.sh
+# http://ivtvdriver.org/index.php/Firmware
+# Checked out Sat Nov 2 2013
+Source1:	http://dl.ivtvdriver.org/ivtv/firmware/ivtv-firmware.tar.gz
+Source10:	gen-firmware-lists.sh
 Conflicts:	kernel-firmware-extra < %{version}-1
 Obsoletes:	korg1212-firmware
 Obsoletes:	maestro3-firmware
@@ -78,7 +81,7 @@ done
 # iwlwifi-*-ucode packages
 rm -f iwlwifi* LICEN?E.iwl*
 
-sh %SOURCE1
+sh %SOURCE10
 
 # Symlinks (not mentioned in WHENCE file)
 echo '/lib/firmware/cxgb4/t4fw.bin' >>nonfree.list
@@ -106,6 +109,18 @@ cp -avf * %{buildroot}/lib/firmware
 rm -f %{buildroot}/lib/firmware/WHENCE %buildroot/lib/firmware/LICEN?E.*
 rm -f %buildroot/lib/firmware/GPL-3
 rm -f %buildroot/lib/firmware/*.list
+
+# Additional firmware (ivtv driver)
+mkdir tmp
+cd tmp
+tar xf %{SOURCE1}
+# This one is in linux-firmware git already
+rm v4l-cx25840.fw
+FW="`ls *.fw *.mpg`"
+for i in $FW; do
+	mv $i %{buildroot}/lib/firmware/
+	echo "/lib/firmware/$i" >>../nonfree.list
+done
 
 %files -f free.list
 %defattr(0644,root,root,0755)
