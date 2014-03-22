@@ -5,8 +5,8 @@
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20131015
-Release:	6
+Version:	20140322
+Release:	1
 License:	GPLv2
 Group:  	System/Kernel and hardware
 URL:    	http://www.kernel.org/
@@ -85,6 +85,7 @@ sh %SOURCE10
 
 # Symlinks (not mentioned in WHENCE file)
 echo '/lib/firmware/cxgb4/t4fw.bin' >>nonfree.list
+echo '/lib/firmware/cxgb4/t5fw.bin' >>nonfree.list
 echo '/lib/firmware/libertas/sd8688.bin' >>nonfree.list
 echo '/lib/firmware/libertas/sd8688_helper.bin' >>nonfree.list
 echo '/lib/firmware/rt3070.bin' >>nonfree.list
@@ -93,11 +94,6 @@ echo '/lib/firmware/rt3090.bin' >>nonfree.list
 # Files not directly mentioned in WHENCE file (signatures, etc.)
 echo '/lib/firmware/amd-ucode/microcode_amd.bin.asc' >>nonfree.list
 echo '/lib/firmware/amd-ucode/microcode_amd_fam15h.bin.asc' >>nonfree.list
-echo '/lib/firmware/ct2fw-3.2.1.1.bin' >>nonfree.list
-echo '/lib/firmware/ctfw-3.2.1.1.bin' >>nonfree.list
-echo '/lib/firmware/rtlwifi/rtl8192cufw_A.bin' >>nonfree.list
-echo '/lib/firmware/rtlwifi/rtl8192cufw_B.bin' >>nonfree.list
-echo '/lib/firmware/rtlwifi/rtl8192cufw_TMSC.bin' >>nonfree.list
 echo '/lib/firmware/s2250.fw' >>nonfree.list
 echo '/lib/firmware/s2250_loader.fw' >>nonfree.list
 echo '/lib/firmware/ti-connectivity/wl1271-nvs.bin' >>nonfree.list
