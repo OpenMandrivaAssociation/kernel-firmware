@@ -5,7 +5,7 @@
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20140322
+Version:	20140904
 Release:	1
 License:	GPLv2
 Group:  	System/Kernel and hardware
