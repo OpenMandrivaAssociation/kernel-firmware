@@ -74,7 +74,7 @@ find . -name "*.asm" -o -name "*.S" -o -name "Makefile*" \
 # (repeatedly to also cover directories that contained only
 # directories containing source files)
 for i in `seq 1 10`; do
-	find . -type d |grep -v '^.$' |xargs rmdir --ignore-fail-on-non-empty
+	find . -type d |grep -v '^.$' |xargs -r0 rmdir --ignore-fail-on-non-empty
 done
 
 # Remove iwlwifi for now, we have a slew of separate
