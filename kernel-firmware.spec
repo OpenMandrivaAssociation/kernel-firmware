@@ -6,7 +6,7 @@
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
 Version:	20140909
-Release:	1
+Release:	2
 License:	GPLv2
 Group:  	System/Kernel and hardware
 URL:    	http://www.kernel.org/
@@ -19,6 +19,9 @@ Source0: 	linux-firmware-%{version}.tar.xz
 # http://ivtvdriver.org/index.php/Firmware
 # Checked out Sat Nov 2 2013
 Source1:	http://dl.ivtvdriver.org/ivtv/firmware/ivtv-firmware.tar.gz
+# (tpg) https://issues.openmandriva.org/show_bug.cgi?id=918
+# looks like kernel-firmware git is not so up to date
+Source2:	ath3k-1.fw
 Source10:	gen-firmware-lists.sh
 Conflicts:	kernel-firmware-extra < %{version}-1
 Obsoletes:	korg1212-firmware
@@ -106,6 +109,9 @@ cp -avf * %{buildroot}/lib/firmware
 rm -f %{buildroot}/lib/firmware/WHENCE %buildroot/lib/firmware/LICEN?E.*
 rm -f %buildroot/lib/firmware/GPL-3
 rm -f %buildroot/lib/firmware/*.list
+
+# (tpg) fix for https://issues.openmandriva.org/show_bug.cgi?id=918
+cp -f %{SOURCE2} %{buildroot}/lib/firmwareath3k-1.fw
 
 # Additional firmware (ivtv driver)
 mkdir tmp
