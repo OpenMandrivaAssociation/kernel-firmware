@@ -111,7 +111,7 @@ rm -f %buildroot/lib/firmware/GPL-3
 rm -f %buildroot/lib/firmware/*.list
 
 # (tpg) fix for https://issues.openmandriva.org/show_bug.cgi?id=918
-cp -f %{SOURCE2} %{buildroot}/lib/firmwareath3k-1.fw
+cp -f %{SOURCE2} %{buildroot}/lib/firmware/ath3k-1.fw
 
 # Additional firmware (ivtv driver)
 mkdir tmp
