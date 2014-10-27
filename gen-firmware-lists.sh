@@ -33,6 +33,8 @@ cat WHENCE | while read line; do
 	"------"*)
 		if echo $files |grep -q radeon; then
 			LIST=radeon
+		elif echo $files | grep -qe iwlwifi -qe ibt-hw; then
+			LIST=iwlwifi
 		elif [ -n "$free" ]; then
 			LIST=free
 		else

@@ -5,8 +5,8 @@
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20140909
-Release:	2
+Version:	20141027
+Release:	1
 License:	GPLv2
 Group:  	System/Kernel and hardware
 URL:    	http://www.kernel.org/
@@ -60,6 +60,27 @@ This is Ati Radeon R600/R700/Evergreen (HD5xxx)/Fusion firmware needed
 for IRQ handling. It's needed for R600/R700/Evergreen/Fusion KMS support
 beginning with 2.6.33 series kernels.
 
+%package -n iwlwifi-agn-ucode
+Summary:	Nonfree iwlwifi firmware files for the Linux kernel
+Obsoletes:	iwlwifi-100-ucode
+Obsoletes:	iwlwifi-105-ucode
+Obsoletes:	iwlwifi-135-ucode
+Obsoletes:	iwlwifi-1000-ucode
+Obsoletes:	iwlwifi-2000-ucode
+Obsoletes:	iwlwifi-2030-ucode
+Obsoletes:	iwlwifi-5000-ucode
+Obsoletes:	iwlwifi-5150-ucode
+Obsoletes:	iwlwifi-6000-ucode
+Obsoletes:	iwlwifi-6005-ucode
+Obsoletes:	iwlwifi-6030-ucode
+Obsoletes:	iwlwifi-6050-ucode
+Conflicts:      kernel-firmware-extra < 20130624-1
+Conflicts:      kernel-firmware-nonfree < 20130624-1
+
+%description -n iwlwifi-agn-ucode
+This package contains all the iwlwifi wireless firmware files
+supported by the iwlwifi kernel driver. That means all of:
+iwlwifi-1xx/1000/2xxx/5xxx/6xxx*.ucode firmwares.
 
 %prep
 %setup -q -n linux-firmware
@@ -68,7 +89,7 @@ beginning with 2.6.33 series kernels.
 find . -name "*.asm" -o -name "*.S" -o -name "Makefile*" \
      -o -name "*.c" -o -name "*.h" -o -name "CMakeLists.txt" \
      -o -name "*.cmake" -o -name "*.diff" -o -name "*.sh" \
-     -o -name "*.pl" -o -name "*.bseq" -o -name "*.lds" -o -name "*.y" \
+     -o -name "*.pl" -o -name "*.lds" -o -name "*.y" \
      -o -name "*.l" -o -name "*.gperf" -o -name "Kconfig" \
      -o -name "SHA*SUMS" -o -name "COPYRIGHT" -o -name "GPL" \
      -o -name "README*" -o -name configure \
@@ -79,10 +100,6 @@ find . -name "*.asm" -o -name "*.S" -o -name "Makefile*" \
 for i in `seq 1 10`; do
 	find . -type d |grep -v '^.$' |xargs -r rmdir --ignore-fail-on-non-empty
 done
-
-# Remove iwlwifi for now, we have a slew of separate
-# iwlwifi-*-ucode packages
-rm -f iwlwifi* LICEN?E.iwl*
 
 pwd
 sh %SOURCE10
@@ -142,3 +159,6 @@ done
 %files -n radeon-firmware -f radeon.list
 %defattr(0644,root,root,0755)
 %doc LICENSE.radeon
+
+%files -n iwlwifi-agn-ucode -f iwlwifi.list
+%doc LICENCE.iwlwifi_firmware LICENCE.ibt_firmware

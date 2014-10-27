@@ -1,4 +1,6 @@
+removed_sources:
+  linux-firmware-20140909.tar.xz: faa0a8350501c861fb23a5ccc47a001f81608733
 sources:
   ath3k-1.fw: 3c5b921c6399d4d396268fbc9a0c521d0df5f898
   ivtv-firmware.tar.gz: 6c4ee0fce9882f93fb816d45bd23287244775cea
-  linux-firmware-20140909.tar.xz: faa0a8350501c861fb23a5ccc47a001f81608733
+  linux-firmware-20141027.tar.xz: 44e2340fa503532aa03bb6b674da7a487d812176
