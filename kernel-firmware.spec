@@ -6,7 +6,7 @@
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
 Version:	20141027
-Release:	2
+Release:	3
 License:	GPLv2
 Group:  	System/Kernel and hardware
 URL:    	http://www.kernel.org/
@@ -53,6 +53,8 @@ Group:		System/Kernel and hardware
 License:	Proprietary
 Url:		http://ati.amd.com/
 Obsoletes:	radeon-rlc-firmware
+Obsoletes:	radeon-firmware <= 20110310-5
+Conflicts:	radeon-firmware <= 20110310-5
 Conflicts:	kernel-firmware-extra < 20110310-1
 
 %description -n radeon-firmware
