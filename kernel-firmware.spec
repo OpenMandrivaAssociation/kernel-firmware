@@ -157,6 +157,7 @@ done
 %doc LICENCE.mwl8335 LICENCE.OLPC LICENCE.phanfw
 %doc LICENCE.ralink-firmware.txt LICENCE.rtlwifi_firmware.txt
 %doc LICENCE.tda7706-firmware.txt LICENCE.ti-connectivity LICENCE.xc5000
+%doc LICENCE.siano LICENSE.amd-ucode
 
 %files -n radeon-firmware -f radeon.list
 %defattr(0644,root,root,0755)
