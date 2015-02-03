@@ -117,6 +117,7 @@ echo '/lib/firmware/rt3090.bin' >>nonfree.list
 # Files not directly mentioned in WHENCE file (signatures, etc.)
 echo '/lib/firmware/amd-ucode/microcode_amd.bin.asc' >>nonfree.list
 echo '/lib/firmware/amd-ucode/microcode_amd_fam15h.bin.asc' >>nonfree.list
+echo '/lib/firmware/amd-ucode/microcode_amd_fam16h.bin.asc' >>nonfree.list
 echo '/lib/firmware/s2250.fw' >>nonfree.list
 echo '/lib/firmware/s2250_loader.fw' >>nonfree.list
 echo '/lib/firmware/ti-connectivity/wl1271-nvs.bin' >>nonfree.list
