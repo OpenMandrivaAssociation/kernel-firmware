@@ -23,7 +23,7 @@ Source1:	http://dl.ivtvdriver.org/ivtv/firmware/ivtv-firmware.tar.gz
 # looks like kernel-firmware git is not so up to date
 Source2:	ath3k-1.fw
 Source10:	gen-firmware-lists.sh
-Conflicts:	kernel-firmware-extra < %{version}-1
+Conflicts:	kernel-firmware-extra < %{version}-0.1
 Obsoletes:	korg1212-firmware
 Obsoletes:	maestro3-firmware
 Obsoletes:	sb16-firmware
