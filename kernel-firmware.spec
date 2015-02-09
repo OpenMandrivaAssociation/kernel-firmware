@@ -5,7 +5,7 @@
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20150203
+Version:	20150209
 Release:	0.1
 License:	GPLv2
 Group:  	System/Kernel and hardware
@@ -104,6 +104,7 @@ for i in `seq 1 10`; do
 done
 
 pwd
+echo "--------------" >> WHENCE
 sh %SOURCE10
 
 # Symlinks (not mentioned in WHENCE file)
@@ -117,6 +118,7 @@ echo '/lib/firmware/rt3090.bin' >>nonfree.list
 # Files not directly mentioned in WHENCE file (signatures, etc.)
 echo '/lib/firmware/amd-ucode/microcode_amd.bin.asc' >>nonfree.list
 echo '/lib/firmware/amd-ucode/microcode_amd_fam15h.bin.asc' >>nonfree.list
+echo '/lib/firmware/amd-ucode/microcode_amd_fam16h.bin.asc' >>nonfree.list
 echo '/lib/firmware/s2250.fw' >>nonfree.list
 echo '/lib/firmware/s2250_loader.fw' >>nonfree.list
 echo '/lib/firmware/ti-connectivity/wl1271-nvs.bin' >>nonfree.list
@@ -157,6 +159,7 @@ done
 %doc LICENCE.mwl8335 LICENCE.OLPC LICENCE.phanfw
 %doc LICENCE.ralink-firmware.txt LICENCE.rtlwifi_firmware.txt
 %doc LICENCE.tda7706-firmware.txt LICENCE.ti-connectivity LICENCE.xc5000
+%doc LICENCE.siano LICENSE.amd-ucode
 
 %files -n radeon-firmware -f radeon.list
 %defattr(0644,root,root,0755)
