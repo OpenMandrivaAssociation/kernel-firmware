@@ -5,7 +5,7 @@
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20150203
+Version:	20150209
 Release:	1
 License:	GPLv2
 Group:  	System/Kernel and hardware
@@ -104,6 +104,7 @@ for i in `seq 1 10`; do
 done
 
 pwd
+echo "--------------" >> WHENCE
 sh %SOURCE10
 
 # Symlinks (not mentioned in WHENCE file)
