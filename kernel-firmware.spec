@@ -5,8 +5,8 @@
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20150506
-Release:	2
+Version:	20150907
+Release:	1
 License:	GPLv2
 Group:  	System/Kernel and hardware
 URL:    	http://www.kernel.org/
@@ -94,7 +94,7 @@ find . -name "*.asm" -o -name "*.S" -o -name "Makefile*" \
      -o -name "*.pl" -o -name "*.lds" -o -name "*.y" \
      -o -name "*.l" -o -name "*.gperf" -o -name "Kconfig" \
      -o -name "SHA*SUMS" -o -name "COPYRIGHT" -o -name "GPL" \
-     -o -name "README*" -o -name configure \
+     -o -name "README*" -o -name configure -o -name ChangeLog \
      |xargs rm
 # And directories that contained only source files
 # (repeatedly to also cover directories that contained only
@@ -124,6 +124,7 @@ echo '/lib/firmware/s2250_loader.fw' >>nonfree.list
 echo '/lib/firmware/ti-connectivity/wl1271-nvs.bin' >>nonfree.list
 echo '/lib/firmware/ti-connectivity/wl12xx-nvs.bin' >>nonfree.list
 echo '/lib/firmware/ath10k/QCA988X/hw2.0/notice_ath10k_firmware-4.txt' >> nonfree.list
+echo '/lib/firmware/qca/NOTICE.txt' >> nonfree.list
 
 %install
 mkdir -p %{buildroot}/lib/firmware
