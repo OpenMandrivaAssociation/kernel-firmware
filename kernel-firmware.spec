@@ -42,8 +42,8 @@ License:	Proprietary
 URL:    	http://www.kernel.org/
 Conflicts:	kernel-firmware < 20120218
 Obsoletes:	rt61-firmware
-Obsoletes:	ueagle-firmware < 1.1-9
-Provides:	ueagle-firmware = 1.1-9
+Obsoletes:	ueagle-firmware < 1.1-12
+Provides:	ueagle-firmware = 1.1-12
 
 %description extra
 This package contains extra redistributable etc. firmwares for in-kernel
