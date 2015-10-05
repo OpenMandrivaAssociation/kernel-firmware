@@ -6,7 +6,7 @@
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
 Version:	20150907
-Release:	1
+Release:	2
 License:	GPLv2
 Group:  	System/Kernel and hardware
 URL:    	http://www.kernel.org/
@@ -42,6 +42,8 @@ License:	Proprietary
 URL:    	http://www.kernel.org/
 Conflicts:	kernel-firmware < 20120218
 Obsoletes:	rt61-firmware
+Obsoletes:	ueagle-firmware < 1.1-9
+Provides:	ueagle-firmware = 1.1-9
 
 %description extra
 This package contains extra redistributable etc. firmwares for in-kernel
