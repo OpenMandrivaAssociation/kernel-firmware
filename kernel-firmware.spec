@@ -5,8 +5,8 @@
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20150907
-Release:	0.2
+Version:	20160106
+Release:	0.1
 License:	GPLv2
 Group:  	System/Kernel and hardware
 URL:    	http://www.kernel.org/
@@ -126,6 +126,10 @@ echo '/lib/firmware/s2250_loader.fw' >>nonfree.list
 echo '/lib/firmware/ti-connectivity/wl1271-nvs.bin' >>nonfree.list
 echo '/lib/firmware/ti-connectivity/wl12xx-nvs.bin' >>nonfree.list
 echo '/lib/firmware/ath10k/QCA988X/hw2.0/notice_ath10k_firmware-4.txt' >> nonfree.list
+echo '/lib/firmware/ath10k/QCA6174/hw2.1/notice_ath10k_firmware-5.txt' >> nonfree.list
+echo '/lib/firmware/ath10k/QCA6174/hw3.0/notice_ath10k_firmware-4.txt' >> nonfree.list
+echo '/lib/firmware/ath10k/QCA988X/hw2.0/notice_ath10k_firmware-5.txt' >> nonfree.list
+echo '/lib/firmware/ath10k/QCA99X0/hw2.0/notice_ath10k_firmware-5.txt' >> nonfree.list
 echo '/lib/firmware/qca/NOTICE.txt' >> nonfree.list
 
 %install
