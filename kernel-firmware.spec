@@ -5,7 +5,7 @@
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20160106
+Version:	20160303
 Release:	1
 License:	GPLv2
 Group:  	System/Kernel and hardware
@@ -153,6 +153,16 @@ for i in $FW; do
 	mv $i %{buildroot}/lib/firmware/
 	echo "/lib/firmware/$i" >>../nonfree.list
 done
+cd ..
+# Intel versioned files have the same license as their unlicensed counterparts
+echo '/lib/firmware/intel/dsp_fw_release_v*.bin' >>nonfree.list
+echo '/lib/firmware/qat_mmp.bin' >>nonfree.list
+
+# rpm doesn't like dupes, but the WHENCE file contains some
+cat free.list |sort |uniq >free.list.new
+mv -f free.list.new free.list
+cat nonfree.list |sort |uniq >nonfree.list.new
+mv -f nonfree.list.new nonfree.list
 
 %files -f free.list
 %defattr(0644,root,root,0755)
