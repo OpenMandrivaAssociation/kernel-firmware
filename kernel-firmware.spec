@@ -5,7 +5,7 @@
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20160303
+Version:	20160330
 Release:	1
 License:	GPLv2
 Group:  	System/Kernel and hardware
@@ -22,6 +22,8 @@ Source1:	http://dl.ivtvdriver.org/ivtv/firmware/ivtv-firmware.tar.gz
 # (tpg) https://issues.openmandriva.org/show_bug.cgi?id=918
 # looks like kernel-firmware git is not so up to date
 Source2:	ath3k-1.fw
+# Extra piece of firmware needed for ATH10K
+Source3:	board-2.bin
 Source10:	gen-firmware-lists.sh
 Conflicts:	kernel-firmware-extra < %{version}-1
 Obsoletes:	korg1212-firmware
@@ -127,6 +129,7 @@ echo '/lib/firmware/ti-connectivity/wl1271-nvs.bin' >>nonfree.list
 echo '/lib/firmware/ti-connectivity/wl12xx-nvs.bin' >>nonfree.list
 echo '/lib/firmware/ath10k/QCA988X/hw2.0/notice_ath10k_firmware-4.txt' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA6174/hw2.1/notice_ath10k_firmware-5.txt' >> nonfree.list
+echo '/lib/firmware/ath10k/QCA6174/hw3.0/board-2.bin' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA6174/hw3.0/notice_ath10k_firmware-4.txt' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA988X/hw2.0/notice_ath10k_firmware-5.txt' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA99X0/hw2.0/notice_ath10k_firmware-5.txt' >> nonfree.list
@@ -141,6 +144,9 @@ rm -f %buildroot/lib/firmware/*.list
 
 # (tpg) fix for https://issues.openmandriva.org/show_bug.cgi?id=918
 cp -f %{SOURCE2} %{buildroot}/lib/firmware/ath3k-1.fw
+
+# Fix WiFi on Acer Predator notebooks
+cp -f %{SOURCE3} %{buildroot}/lib/firmware/ath10k/QCA6174/hw3.0/board-2.bin
 
 # Additional firmware (ivtv driver)
 mkdir tmp
