@@ -1,5 +1,5 @@
 sources:
   ath3k-1.fw: 3c5b921c6399d4d396268fbc9a0c521d0df5f898
   ivtv-firmware.tar.gz: 6c4ee0fce9882f93fb816d45bd23287244775cea
-  linux-firmware-20160330.tar.xz: e657b49a93efa51394420936bc4d0f13c36333fa
   board-2.bin: eb48f45aa50cc71a2c9837cdddcae4cff4c122ea
+  linux-firmware-20160528.tar.xz: 3be384ab9f73e3b4fd1adb681dbd97bc5e737e46

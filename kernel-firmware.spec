@@ -5,7 +5,7 @@
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20160330
+Version:	20160528
 Release:	1
 License:	GPLv2
 Group:  	System/Kernel and hardware
@@ -133,6 +133,7 @@ echo '/lib/firmware/ath10k/QCA6174/hw3.0/board-2.bin' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA6174/hw3.0/notice_ath10k_firmware-4.txt' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA988X/hw2.0/notice_ath10k_firmware-5.txt' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA99X0/hw2.0/notice_ath10k_firmware-5.txt' >> nonfree.list
+echo "/lib/firmware/ath10k/QCA9377/hw1.0/notice_ath10k_firmware-5.txt" >> nonfree.list
 echo '/lib/firmware/qca/NOTICE.txt' >> nonfree.list
 
 %install
