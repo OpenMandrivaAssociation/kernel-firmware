@@ -5,7 +5,7 @@
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20160528
+Version:	20160614
 Release:	1
 License:	GPLv2
 Group:  	System/Kernel and hardware
@@ -163,6 +163,7 @@ done
 cd ..
 # Intel versioned files have the same license as their unlicensed counterparts
 echo '/lib/firmware/intel/dsp_fw_release_v*.bin' >>nonfree.list
+echo '/lib/firmware/intel/dsp_fw_bxtn*.bin' >>nonfree.list
 echo '/lib/firmware/qat_mmp.bin' >>nonfree.list
 
 # rpm doesn't like dupes, but the WHENCE file contains some
@@ -170,6 +171,15 @@ cat free.list |sort |uniq >free.list.new
 mv -f free.list.new free.list
 cat nonfree.list |sort |uniq >nonfree.list.new
 mv -f nonfree.list.new nonfree.list
+
+# radeon list
+echo '/lib/firmware/radeon/bonaire_k_smc.bin' >>radeon.list
+echo '/lib/firmware/radeon/hainan_k_smc.bin' >>radeon.list
+echo '/lib/firmware/radeon/hawaii_k_smc.bin' >>radeon.list
+echo '/lib/firmware/radeon/oland_k_smc.bin' >>radeon.list
+echo '/lib/firmware/radeon/pitcairn_k_smc.bin' >>radeon.list
+echo '/lib/firmware/radeon/tahiti_k_smc.bin' >>radeon.list
+echo '/lib/firmware/radeon/verde_k_smc.bin' >>radeon.list
 
 %files -f free.list
 %defattr(0644,root,root,0755)
