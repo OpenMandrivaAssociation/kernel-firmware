@@ -25,7 +25,7 @@ Source2:	ath3k-1.fw
 # Extra piece of firmware needed for ATH10K
 Source3:	board-2.bin
 Source10:	gen-firmware-lists.sh
-Conflicts:	kernel-firmware-extra < %{version}-1
+Conflicts:	kernel-firmware-extra < %{version}-0.1
 Obsoletes:	korg1212-firmware
 Obsoletes:	maestro3-firmware
 Obsoletes:	sb16-firmware
