@@ -5,8 +5,8 @@
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20160106
-Release:	0.1
+Version:	20160614
+Release:	1
 License:	GPLv2
 Group:  	System/Kernel and hardware
 URL:    	http://www.kernel.org/
@@ -22,6 +22,8 @@ Source1:	http://dl.ivtvdriver.org/ivtv/firmware/ivtv-firmware.tar.gz
 # (tpg) https://issues.openmandriva.org/show_bug.cgi?id=918
 # looks like kernel-firmware git is not so up to date
 Source2:	ath3k-1.fw
+# Extra piece of firmware needed for ATH10K
+Source3:	board-2.bin
 Source10:	gen-firmware-lists.sh
 Conflicts:	kernel-firmware-extra < %{version}-0.1
 Obsoletes:	korg1212-firmware
@@ -127,9 +129,11 @@ echo '/lib/firmware/ti-connectivity/wl1271-nvs.bin' >>nonfree.list
 echo '/lib/firmware/ti-connectivity/wl12xx-nvs.bin' >>nonfree.list
 echo '/lib/firmware/ath10k/QCA988X/hw2.0/notice_ath10k_firmware-4.txt' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA6174/hw2.1/notice_ath10k_firmware-5.txt' >> nonfree.list
+echo '/lib/firmware/ath10k/QCA6174/hw3.0/board-2.bin' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA6174/hw3.0/notice_ath10k_firmware-4.txt' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA988X/hw2.0/notice_ath10k_firmware-5.txt' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA99X0/hw2.0/notice_ath10k_firmware-5.txt' >> nonfree.list
+echo "/lib/firmware/ath10k/QCA9377/hw1.0/notice_ath10k_firmware-5.txt" >> nonfree.list
 echo '/lib/firmware/qca/NOTICE.txt' >> nonfree.list
 
 %install
@@ -142,6 +146,9 @@ rm -f %buildroot/lib/firmware/*.list
 # (tpg) fix for https://issues.openmandriva.org/show_bug.cgi?id=918
 cp -f %{SOURCE2} %{buildroot}/lib/firmware/ath3k-1.fw
 
+# Fix WiFi on Acer Predator notebooks
+cp -f %{SOURCE3} %{buildroot}/lib/firmware/ath10k/QCA6174/hw3.0/board-2.bin
+
 # Additional firmware (ivtv driver)
 mkdir tmp
 cd tmp
@@ -153,6 +160,26 @@ for i in $FW; do
 	mv $i %{buildroot}/lib/firmware/
 	echo "/lib/firmware/$i" >>../nonfree.list
 done
+cd ..
+# Intel versioned files have the same license as their unlicensed counterparts
+echo '/lib/firmware/intel/dsp_fw_release_v*.bin' >>nonfree.list
+echo '/lib/firmware/intel/dsp_fw_bxtn*.bin' >>nonfree.list
+echo '/lib/firmware/qat_mmp.bin' >>nonfree.list
+
+# rpm doesn't like dupes, but the WHENCE file contains some
+cat free.list |sort |uniq >free.list.new
+mv -f free.list.new free.list
+cat nonfree.list |sort |uniq >nonfree.list.new
+mv -f nonfree.list.new nonfree.list
+
+# radeon list
+echo '/lib/firmware/radeon/bonaire_k_smc.bin' >>radeon.list
+echo '/lib/firmware/radeon/hainan_k_smc.bin' >>radeon.list
+echo '/lib/firmware/radeon/hawaii_k_smc.bin' >>radeon.list
+echo '/lib/firmware/radeon/oland_k_smc.bin' >>radeon.list
+echo '/lib/firmware/radeon/pitcairn_k_smc.bin' >>radeon.list
+echo '/lib/firmware/radeon/tahiti_k_smc.bin' >>radeon.list
+echo '/lib/firmware/radeon/verde_k_smc.bin' >>radeon.list
 
 %files -f free.list
 %defattr(0644,root,root,0755)
