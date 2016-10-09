@@ -104,7 +104,7 @@ find . -name "*.asm" -o -name "*.S" -o -name "Makefile*" \
 # (repeatedly to also cover directories that contained only
 # directories containing source files)
 for i in `seq 1 10`; do
-	find . -type d |grep -v '^.$' |xargs -r rmdir --ignore-fail-on-non-empty
+    find . -type d |grep -v '^.$' |xargs -r rmdir --ignore-fail-on-non-empty
 done
 
 pwd
@@ -168,8 +168,6 @@ for i in $FW; do
 done
 cd ..
 # Intel versioned files have the same license as their unlicensed counterparts
-echo '/lib/firmware/intel/dsp_fw_release_v*.bin' >>nonfree.list
-echo '/lib/firmware/intel/dsp_fw_bxtn*.bin' >>nonfree.list
 echo '/lib/firmware/intel/dsp_fw_kbl.bin' >>nonfree.list
 echo '/lib/firmware/intel/dsp_fw_release.bin' >>nonfree.list
 echo '/lib/firmware/qat_mmp.bin' >>nonfree.list
@@ -179,15 +177,6 @@ cat free.list |sort |uniq >free.list.new
 mv -f free.list.new free.list
 cat nonfree.list |sort |uniq >nonfree.list.new
 mv -f nonfree.list.new nonfree.list
-
-# radeon list
-echo '/lib/firmware/radeon/bonaire_k_smc.bin' >>radeon.list
-echo '/lib/firmware/radeon/hainan_k_smc.bin' >>radeon.list
-echo '/lib/firmware/radeon/hawaii_k_smc.bin' >>radeon.list
-echo '/lib/firmware/radeon/oland_k_smc.bin' >>radeon.list
-echo '/lib/firmware/radeon/pitcairn_k_smc.bin' >>radeon.list
-echo '/lib/firmware/radeon/tahiti_k_smc.bin' >>radeon.list
-echo '/lib/firmware/radeon/verde_k_smc.bin' >>radeon.list
 
 %files -f free.list
 %defattr(0644,root,root,0755)
