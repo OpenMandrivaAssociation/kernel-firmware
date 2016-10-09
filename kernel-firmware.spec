@@ -170,6 +170,7 @@ cd ..
 # Intel versioned files have the same license as their unlicensed counterparts
 echo '/lib/firmware/intel/dsp_fw_kbl.bin' >>nonfree.list
 echo '/lib/firmware/intel/dsp_fw_release.bin' >>nonfree.list
+echo '/lib/firmware/intel/dsp_fw_bxtn.bin' >>nonfree.list
 echo '/lib/firmware/qat_mmp.bin' >>nonfree.list
 
 # rpm doesn't like dupes, but the WHENCE file contains some
