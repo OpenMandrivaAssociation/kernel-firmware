@@ -133,11 +133,11 @@ echo '/lib/firmware/ath10k/QCA6174/hw3.0/board-2.bin' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA6174/hw3.0/notice_ath10k_firmware-4.txt' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA988X/hw2.0/notice_ath10k_firmware-5.txt' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA99X0/hw2.0/notice_ath10k_firmware-5.txt' >> nonfree.list
-echo "/lib/firmware/ath10k/QCA9377/hw1.0/notice_ath10k_firmware-5.txt" >> nonfree.list
-echo "/lib/firmware/ath10k/QCA4019/hw1.0/notice_ath10k_firmware-5.txt" >> nonfree.list
-echo "/lib/firmware/ath10k/QCA9887/hw1.0/notice_ath10k_firmware-5.txt" >> nonfree.list
-echo "/lib/firmware/ath10k/QCA9888/hw2.0/notice_ath10k_firmware-5.txt" >> nonfree.list
-echo "/lib/firmware/ath10k/QCA9984/hw1.0/notice_ath10k_firmware-5.txt" >> nonfree.list
+echo '/lib/firmware/ath10k/QCA9377/hw1.0/notice_ath10k_firmware-5.txt' >> nonfree.list
+echo '/lib/firmware/ath10k/QCA4019/hw1.0/notice_ath10k_firmware-5.txt' >> nonfree.list
+echo '/lib/firmware/ath10k/QCA9887/hw1.0/notice_ath10k_firmware-5.txt' >> nonfree.list
+echo '/lib/firmware/ath10k/QCA9888/hw2.0/notice_ath10k_firmware-5.txt' >> nonfree.list
+echo '/lib/firmware/ath10k/QCA9984/hw1.0/notice_ath10k_firmware-5.txt' >> nonfree.list
 echo '/lib/firmware/qca/NOTICE.txt' >> nonfree.list
 
 %install
@@ -173,6 +173,17 @@ echo '/lib/firmware/intel/dsp_fw_release.bin' >>nonfree.list
 echo '/lib/firmware/intel/dsp_fw_bxtn.bin' >>nonfree.list
 echo '/lib/firmware/qat_mmp.bin' >>nonfree.list
 
+# (tpg) fix it
+sed -i -e 's#^/lib/firmware/isci/$##' free.list
+sed -i -e 's#^/lib/firmware/cis/$##' free.list
+echo '/lib/firmware/cis/src/DP83903.cis' >>free.list
+echo '/lib/firmware/cis/src/LA-PCM.cis' >>free.list
+echo '/lib/firmware/cis/src/NE2K.cis' >>free.list
+echo '/lib/firmware/cis/src/PCMLM28.cis' >>free.list
+echo '/lib/firmware/cis/src/PE-200.cis' >>free.list
+echo '/lib/firmware/cis/src/PE520.cis' >>free.list
+echo '/lib/firmware/cis/src/tamarack.cis' >>free.list
+
 # rpm doesn't like dupes, but the WHENCE file contains some
 cat free.list |sort |uniq >free.list.new
 mv -f free.list.new free.list
@@ -189,7 +200,7 @@ mv -f nonfree.list.new nonfree.list
 %defattr(0644,root,root,0755)
 %doc LICENCE.Marvell LICENCE.agere LICENCE.atheros_firmware
 %doc LICENCE.broadcom_bcm43xx LICENCE.chelsio_firmware LICENCE.i2400m
-%doc LICENCE.mwl8335 LICENCE.OLPC LICENCE.phanfw
+%doc LICENCE.OLPC LICENCE.phanfw
 %doc LICENCE.ralink-firmware.txt LICENCE.rtlwifi_firmware.txt
 %doc LICENCE.tda7706-firmware.txt LICENCE.ti-connectivity LICENCE.xc5000
 %doc LICENCE.siano LICENSE.amd-ucode
