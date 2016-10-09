@@ -134,14 +134,20 @@ echo '/lib/firmware/ath10k/QCA6174/hw3.0/notice_ath10k_firmware-4.txt' >> nonfre
 echo '/lib/firmware/ath10k/QCA988X/hw2.0/notice_ath10k_firmware-5.txt' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA99X0/hw2.0/notice_ath10k_firmware-5.txt' >> nonfree.list
 echo "/lib/firmware/ath10k/QCA9377/hw1.0/notice_ath10k_firmware-5.txt" >> nonfree.list
+echo "/lib/firmware/ath10k/QCA4019/hw1.0/notice_ath10k_firmware-5.txt" >> nonfree.list
+echo "/lib/firmware/ath10k/QCA9887/hw1.0/notice_ath10k_firmware-5.txt" >> nonfree.list
+echo "/lib/firmware/ath10k/QCA9888/hw2.0/notice_ath10k_firmware-5.txt" >> nonfree.list
+echo "/lib/firmware/ath10k/QCA9984/hw1.0/notice_ath10k_firmware-5.txt" >> nonfree.list
 echo '/lib/firmware/qca/NOTICE.txt' >> nonfree.list
 
 %install
 mkdir -p %{buildroot}/lib/firmware
 cp -avf * %{buildroot}/lib/firmware
-rm -f %{buildroot}/lib/firmware/WHENCE %buildroot/lib/firmware/LICEN?E.*
-rm -f %buildroot/lib/firmware/GPL-3
-rm -f %buildroot/lib/firmware/*.list
+rm -f %{buildroot}/lib/firmware/WHENCE %{buildroot}/lib/firmware/LICEN?E.*
+rm -f %{buildroot}/lib/firmware/GPL-3
+rm -f %{buildroot}/lib/firmware/GPL-2
+rm -f %{buildroot}/lib/firmware/*.list
+rm -f %{buildroot}/lib/firmware/check_whence.py
 
 # (tpg) fix for https://issues.openmandriva.org/show_bug.cgi?id=918
 cp -f %{SOURCE2} %{buildroot}/lib/firmware/ath3k-1.fw
@@ -157,13 +163,15 @@ tar xf %{SOURCE1}
 rm v4l-cx25840.fw
 FW="`ls *.fw *.mpg`"
 for i in $FW; do
-	mv $i %{buildroot}/lib/firmware/
-	echo "/lib/firmware/$i" >>../nonfree.list
+    mv $i %{buildroot}/lib/firmware/
+    echo "/lib/firmware/$i" >>../nonfree.list
 done
 cd ..
 # Intel versioned files have the same license as their unlicensed counterparts
 echo '/lib/firmware/intel/dsp_fw_release_v*.bin' >>nonfree.list
 echo '/lib/firmware/intel/dsp_fw_bxtn*.bin' >>nonfree.list
+echo '/lib/firmware/intel/dsp_fw_kbl.bin' >>nonfree.list
+echo '/lib/firmware/intel/dsp_fw_release.bin' >>nonfree.list
 echo '/lib/firmware/qat_mmp.bin' >>nonfree.list
 
 # rpm doesn't like dupes, but the WHENCE file contains some
