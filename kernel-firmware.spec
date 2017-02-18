@@ -5,7 +5,7 @@
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20161225
+Version:	20170218
 Release:	1
 License:	GPLv2
 Group:  	System/Kernel and hardware
@@ -15,7 +15,7 @@ URL:    	http://www.kernel.org/
 # git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
 # and  doing:
 # git archive -o linux-firmware-`date +%Y%m%d`.tar --prefix=linux-firmware/ master ; xz -9e linux-firmware-`date +%Y%m%d`.tar
-Source0: 	linux-firmware-%{version}.tar.xz
+Source0: 	kernel-firmware-%{version}.tar.xz
 # http://ivtvdriver.org/index.php/Firmware
 # Checked out Sat Nov 2 2013
 Source1:	http://dl.ivtvdriver.org/ivtv/firmware/ivtv-firmware.tar.gz
@@ -89,7 +89,7 @@ supported by the iwlwifi kernel driver. That means all of:
 iwlwifi-1xx/1000/2xxx/5xxx/6xxx*.ucode firmwares.
 
 %prep
-%setup -q -n linux-firmware
+%setup -q
 
 # remove source files we don't need to package
 find . -name "*.asm" -o -name "*.S" -o -name "Makefile*" \
@@ -111,9 +111,14 @@ pwd
 echo "--------------" >> WHENCE
 sh %SOURCE10
 
+# radeon
+echo '/lib/firmware/radeon/banks_k_2_smc.bin' >>radeon.list
+echo '/lib/firmware/radeon/si58_mc.bin' >>radeon.list
+
 # Symlinks (not mentioned in WHENCE file)
 echo '/lib/firmware/cxgb4/t4fw.bin' >>nonfree.list
 echo '/lib/firmware/cxgb4/t5fw.bin' >>nonfree.list
+echo '/lib/firmware/cxgb4/t6fw.bin' >>nonfree.list
 echo '/lib/firmware/libertas/sd8688.bin' >>nonfree.list
 echo '/lib/firmware/libertas/sd8688_helper.bin' >>nonfree.list
 echo '/lib/firmware/rt3070.bin' >>nonfree.list
