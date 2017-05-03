@@ -5,7 +5,7 @@
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20170218
+Version:	20170422
 Release:	1
 License:	GPLv2
 Group:  	System/Kernel and hardware
@@ -176,6 +176,7 @@ cd ..
 echo '/lib/firmware/intel/dsp_fw_kbl.bin' >>nonfree.list
 echo '/lib/firmware/intel/dsp_fw_release.bin' >>nonfree.list
 echo '/lib/firmware/intel/dsp_fw_bxtn.bin' >>nonfree.list
+echo '/lib/firmware/intel/dsp_fw_glk.bin' >>nonfree.list
 echo '/lib/firmware/qat_mmp.bin' >>nonfree.list
 
 # (tpg) fix it
