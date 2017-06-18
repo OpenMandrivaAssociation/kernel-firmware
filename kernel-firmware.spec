@@ -5,7 +5,7 @@
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20170422
+Version:	20170618
 Release:	1
 License:	GPLv2
 Group:  	System/Kernel and hardware
@@ -23,7 +23,9 @@ Source1:	http://dl.ivtvdriver.org/ivtv/firmware/ivtv-firmware.tar.gz
 # looks like kernel-firmware git is not so up to date
 Source2:	ath3k-1.fw
 # Extra piece of firmware needed for ATH10K
-Source3:	board-2.bin
+Source3:	https://github.com/kvalo/ath10k-firmware/raw/master/QCA6174/hw3.0/board-2.bin
+# Adreno firmware, from OQ820 BSP 3.2
+Source4:	adreno-fw-820BSP3.2.tar.xz
 Source10:	gen-firmware-lists.sh
 Conflicts:	kernel-firmware-extra < %{version}-1
 Obsoletes:	korg1212-firmware
@@ -65,6 +67,16 @@ Conflicts:	kernel-firmware-extra < 20110310-1
 This is Ati Radeon R600/R700/Evergreen (HD5xxx)/Fusion firmware needed
 for IRQ handling. It's needed for R600/R700/Evergreen/Fusion KMS support
 beginning with 2.6.33 series kernels.
+
+%package -n adreno-firmware
+Summary:	Adreno firmware
+Group:		System/Kernel and hardware
+License:	Proprietary
+Url:		https://github.com/freedreno
+
+%description -n adreno-firmware
+This is Adreno firmware needed for accelerated graphics on Adreno
+graphics chipsets.
 
 %package -n iwlwifi-agn-ucode
 Summary:	Nonfree iwlwifi firmware files for the Linux kernel
@@ -160,9 +172,10 @@ cp -f %{SOURCE2} %{buildroot}/lib/firmware/ath3k-1.fw
 # Fix WiFi on Acer Predator notebooks
 cp -f %{SOURCE3} %{buildroot}/lib/firmware/ath10k/QCA6174/hw3.0/board-2.bin
 
-# Additional firmware (ivtv driver)
+# Additional firmware
 mkdir tmp
 cd tmp
+# ivtv
 tar xf %{SOURCE1}
 # This one is in linux-firmware git already
 rm v4l-cx25840.fw
@@ -172,6 +185,20 @@ for i in $FW; do
     echo "/lib/firmware/$i" >>../nonfree.list
 done
 cd ..
+
+# Adreno
+rm -rf tmp
+mkdir tmp
+cd tmp
+tar xf %{SOURCE4}
+FW="`ls`"
+for i in $FW; do
+    mv $i %{buildroot}/lib/firmware/
+    echo "/lib/firmware/$i" >>../adreno.list
+done
+cd ..
+
+
 # Intel versioned files have the same license as their unlicensed counterparts
 echo '/lib/firmware/intel/dsp_fw_kbl.bin' >>nonfree.list
 echo '/lib/firmware/intel/dsp_fw_release.bin' >>nonfree.list
@@ -210,10 +237,16 @@ mv -f nonfree.list.new nonfree.list
 %doc LICENCE.ralink-firmware.txt LICENCE.rtlwifi_firmware.txt
 %doc LICENCE.tda7706-firmware.txt LICENCE.ti-connectivity LICENCE.xc5000
 %doc LICENCE.siano LICENSE.amd-ucode
+/lib/firmware/qcom/NOTICE.txt
+/lib/firmware/mellanox/mlxsw_spectrum-13.1420.122.mfa2
+/lib/firmware/qed/qed_init_values_zipped-8.20.0.0.bin
 
 %files -n radeon-firmware -f radeon.list
 %defattr(0644,root,root,0755)
 %doc LICENSE.radeon
+
+%files -n adreno-firmware -f adreno.list
+%defattr(0644,root,root,0755)
 
 %files -n iwlwifi-agn-ucode -f iwlwifi.list
 %doc LICENCE.iwlwifi_firmware LICENCE.ibt_firmware

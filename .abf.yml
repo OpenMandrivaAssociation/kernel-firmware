@@ -1,5 +1,6 @@
 sources:
   ath3k-1.fw: 3c5b921c6399d4d396268fbc9a0c521d0df5f898
   ivtv-firmware.tar.gz: 6c4ee0fce9882f93fb816d45bd23287244775cea
-  board-2.bin: eb48f45aa50cc71a2c9837cdddcae4cff4c122ea
-  kernel-firmware-20170422.tar.xz: d499b3fe920b387394b9ab5e9840a999e33d7966
+  board-2.bin: f10528bd2b263646e9d81f0b6805af23b2010809
+  adreno-fw-820BSP3.2.tar.xz: 680dc9d27723cbcf2d63375c25bc1a36e8267448
+  kernel-firmware-20170618.tar.xz: 809f161eeb73410e559db8a0c89bf92b55a3f8f1
