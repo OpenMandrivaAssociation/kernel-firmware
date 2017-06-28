@@ -5,7 +5,7 @@
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20170618
+Version:	20170629
 Release:	1
 License:	GPLv2
 Group:  	System/Kernel and hardware
@@ -19,13 +19,11 @@ Source0: 	kernel-firmware-%{version}.tar.xz
 # http://ivtvdriver.org/index.php/Firmware
 # Checked out Sat Nov 2 2013
 Source1:	http://dl.ivtvdriver.org/ivtv/firmware/ivtv-firmware.tar.gz
-# (tpg) https://issues.openmandriva.org/show_bug.cgi?id=918
-# looks like kernel-firmware git is not so up to date
-Source2:	ath3k-1.fw
-# Extra piece of firmware needed for ATH10K
-Source3:	https://github.com/kvalo/ath10k-firmware/raw/master/QCA6174/hw3.0/board-2.bin
 # Adreno firmware, from OQ820 BSP 3.2
 Source4:	adreno-fw-820BSP3.2.tar.xz
+# Firmware for Hauppauge HVR-1975
+# see http://www.hauppauge.com/site/support/linux.html
+Source5:	https://s3.amazonaws.com/hauppauge/linux/linux-ubuntu-14-04-2.tar.xz
 Source10:	gen-firmware-lists.sh
 Conflicts:	kernel-firmware-extra < %{version}-1
 Obsoletes:	korg1212-firmware
@@ -155,6 +153,7 @@ echo '/lib/firmware/ath10k/QCA4019/hw1.0/notice_ath10k_firmware-5.txt' >> nonfre
 echo '/lib/firmware/ath10k/QCA9887/hw1.0/notice_ath10k_firmware-5.txt' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA9888/hw2.0/notice_ath10k_firmware-5.txt' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA9984/hw1.0/notice_ath10k_firmware-5.txt' >> nonfree.list
+echo '/lib/firmware/ath10k/QCA6174/hw3.0/notice_ath10k_firmware-6.txt' >> nonfree.list
 echo '/lib/firmware/qca/NOTICE.txt' >> nonfree.list
 
 %install
@@ -165,12 +164,6 @@ rm -f %{buildroot}/lib/firmware/GPL-3
 rm -f %{buildroot}/lib/firmware/GPL-2
 rm -f %{buildroot}/lib/firmware/*.list
 rm -f %{buildroot}/lib/firmware/check_whence.py
-
-# (tpg) fix for https://issues.openmandriva.org/show_bug.cgi?id=918
-cp -f %{SOURCE2} %{buildroot}/lib/firmware/ath3k-1.fw
-
-# Fix WiFi on Acer Predator notebooks
-cp -f %{SOURCE3} %{buildroot}/lib/firmware/ath10k/QCA6174/hw3.0/board-2.bin
 
 # Additional firmware
 mkdir tmp
@@ -198,6 +191,24 @@ for i in $FW; do
 done
 cd ..
 
+# Hauppauge
+rm -rf tmp
+mkdir tmp
+cd tmp
+tar xf %{SOURCE5}
+if [ -e %{buildroot}/lib/firmware/v4l-pvrusb2-160xxx-01.fw ]; then
+	echo "pvrusb2-160xxx firmware has been merged upstream, please remove it here"
+	exit 1
+fi
+if [ -e %{buildroot}/lib/firmware/NXP7164-2010-04-01.1.fw ]; then
+	echo "NXP7164 firmware has been merged upstream, please remove it here"
+	exit 1
+fi
+cp "Linux-Ubuntu-14-04-2/firmware/HVR 19x5/v4l-pvrusb2-160xxx-01.fw" %{buildroot}/lib/firmware/
+cp "Linux-Ubuntu-14-04-2/firmware/HVR 22x5/NXP7164-2010-04-01.1.fw" %{buildroot}/lib/firmware/
+cd ..
+echo '/lib/firmware/v4l-pvrusb2-160xxx-01.fw' >>nonfree.list
+echo '/lib/firmware/NXP7164-2010-04-01.1.fw' >>nonfree.list
 
 # Intel versioned files have the same license as their unlicensed counterparts
 echo '/lib/firmware/intel/dsp_fw_kbl.bin' >>nonfree.list
