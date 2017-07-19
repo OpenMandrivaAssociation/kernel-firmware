@@ -6,7 +6,7 @@
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
 Version:	20170629
-Release:	1
+Release:	2
 License:	GPLv2
 Group:  	System/Kernel and hardware
 URL:    	http://www.kernel.org/
@@ -24,7 +24,9 @@ Source4:	adreno-fw-820BSP3.2.tar.xz
 # Firmware for Hauppauge HVR-1975
 # see http://www.hauppauge.com/site/support/linux.html
 Source5:	https://s3.amazonaws.com/hauppauge/linux/linux-ubuntu-14-04-2.tar.xz
-Source10:	gen-firmware-lists.sh
+# Firmware for various DVB receivers
+Source6:	https://github.com/OpenELEC/dvb-firmware/archive/master.tar.gz
+Source100:	gen-firmware-lists.sh
 Conflicts:	kernel-firmware-extra < %{version}-1
 Obsoletes:	korg1212-firmware
 Obsoletes:	maestro3-firmware
@@ -119,7 +121,7 @@ done
 
 pwd
 echo "--------------" >> WHENCE
-sh %SOURCE10
+sh %SOURCE100
 
 # radeon
 echo '/lib/firmware/radeon/banks_k_2_smc.bin' >>radeon.list
@@ -209,6 +211,62 @@ cp "Linux-Ubuntu-14-04-2/firmware/HVR 22x5/NXP7164-2010-04-01.1.fw" %{buildroot}
 cd ..
 echo '/lib/firmware/v4l-pvrusb2-160xxx-01.fw' >>nonfree.list
 echo '/lib/firmware/NXP7164-2010-04-01.1.fw' >>nonfree.list
+
+# Assorted DVB
+rm -rf tmp
+mkdir tmp
+cd tmp
+tar xf %{SOURCE6}
+cd dvb-firmware-master/firmware
+# Already added upstream
+rm -rf	go7007 \
+	ttusb-budget \
+	s2250.fw \
+	NXP7164-2010-04-01.1.fw \
+	dvb-fe-xc4000-1.4.1.fw \
+	dvb-fe-xc5000-1.6.114.fw \
+	dvb-fe-xc5000c-4.1.30.7.fw \
+	dvb-usb-dib0700-1.20.fw \
+	dvb-usb-it9135-01.fw \
+	dvb-usb-it9135-02.fw \
+	dvb-usb-terratec-h5-drxk.fw \
+	lgs8g75.fw \
+	s2250_loader.fw \
+	sms1xxx-hcw-55xxx-dvbt-02.fw \
+	sms1xxx-hcw-55xxx-isdbt-02.fw \
+	sms1xxx-nova-a-dvbt-01.fw \
+	sms1xxx-nova-b-dvbt-01.fw \
+	sms1xxx-stellar-dvbt-01.fw \
+	v4l-cx231xx-avcore-01.fw \
+	v4l-cx23418-apu.fw \
+	v4l-cx23418-cpu.fw \
+	v4l-cx23418-dig.fw \
+	v4l-cx2341x-dec.fw \
+	v4l-cx2341x-enc.fw \
+	v4l-cx23885-avcore-01.fw \
+	v4l-cx25840.fw \
+	v4l-pvrusb2-24xxx-01.fw \
+	v4l-pvrusb2-29xxx-01.fw \
+	as102_data1_st.hex \
+	as102_data2_st.hex \
+	tlg2300_firmware.bin \
+	cmmb_vega_12mhz.inp \
+	cmmb_venice_12mhz.inp \
+	dvb_nova_12mhz.inp \
+	dvb_nova_12mhz_b0.inp \
+	isdbt_nova_12mhz.inp \
+	isdbt_nova_12mhz_b0.inp \
+	isdbt_rio.inp \
+	tdmb_nova_12mhz.inp
+for i in *.fw* *.bin *.inp *.mc; do
+	if [ -e %{buildroot}/lib/firmware/$i ]; then
+		echo "******* Please remove $i from DVB firmware, it's upstream *******"
+		exit 1
+	fi
+	cp $i %{buildroot}/lib/firmware/
+	echo "/lib/firmware/$i" >>../../../nonfree.list
+done
+cd ../../..
 
 # Intel versioned files have the same license as their unlicensed counterparts
 echo '/lib/firmware/intel/dsp_fw_kbl.bin' >>nonfree.list
