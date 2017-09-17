@@ -274,6 +274,7 @@ echo '/lib/firmware/intel/dsp_fw_release.bin' >>nonfree.list
 echo '/lib/firmware/intel/dsp_fw_bxtn.bin' >>nonfree.list
 echo '/lib/firmware/intel/dsp_fw_glk.bin' >>nonfree.list
 echo '/lib/firmware/qat_mmp.bin' >>nonfree.list
+echo '/lib/firmware/intel/ipu3-fw.bin' >>nonfree.list
 
 # (tpg) fix it
 sed -i -e 's#^/lib/firmware/isci/$##' free.list
@@ -285,6 +286,9 @@ echo '/lib/firmware/cis/src/PCMLM28.cis' >>free.list
 echo '/lib/firmware/cis/src/PE-200.cis' >>free.list
 echo '/lib/firmware/cis/src/PE520.cis' >>free.list
 echo '/lib/firmware/cis/src/tamarack.cis' >>free.list
+
+# (tpg) package iwlwifi
+echo '/lib/firmware/iwlwifi-8265-31.ucode' >>iwlwifi.list
 
 # rpm doesn't like dupes, but the WHENCE file contains some
 cat free.list |sort |uniq >free.list.new
