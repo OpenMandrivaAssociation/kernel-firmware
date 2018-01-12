@@ -5,7 +5,7 @@
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20170917
+Version:	20180112
 Release:	1
 License:	GPLv2
 Group:  	System/Kernel and hardware
@@ -14,7 +14,7 @@ URL:    	http://www.kernel.org/
 # above, by simply cloning it from
 # git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
 # and  doing:
-# git archive -o linux-firmware-`date +%Y%m%d`.tar --prefix=linux-firmware/ master ; xz -9e linux-firmware-`date +%Y%m%d`.tar
+# git archive -o kernel-firmware-`date +%Y%m%d`.tar --prefix=kernel-firmware-`date +%Y%m%d`/ master ; xz -9e kernel-firmware-`date +%Y%m%d`.tar
 Source0: 	kernel-firmware-%{version}.tar.xz
 # http://ivtvdriver.org/index.php/Firmware
 # Checked out Sat Nov 2 2013
@@ -26,6 +26,9 @@ Source4:	adreno-fw-820BSP3.2.tar.xz
 Source5:	https://s3.amazonaws.com/hauppauge/linux/linux-ubuntu-14-04-2.tar.xz
 # Firmware for various DVB receivers
 Source6:	https://github.com/OpenELEC/dvb-firmware/archive/master.tar.gz
+# AMD Microcode update, taken from OpenSUSE's package
+# https://software.opensuse.org/package/kernel-firmware
+Source7:	microcode_amd_fam17h.bin
 Source100:	gen-firmware-lists.sh
 Conflicts:	kernel-firmware-extra < %{version}-1
 Obsoletes:	korg1212-firmware
@@ -122,10 +125,6 @@ done
 pwd
 echo "--------------" >> WHENCE
 sh %SOURCE100
-
-# radeon
-echo '/lib/firmware/radeon/banks_k_2_smc.bin' >>radeon.list
-echo '/lib/firmware/radeon/si58_mc.bin' >>radeon.list
 
 # Symlinks (not mentioned in WHENCE file)
 echo '/lib/firmware/cxgb4/t4fw.bin' >>nonfree.list
@@ -268,6 +267,15 @@ for i in *.fw* *.bin *.inp *.mc; do
 done
 cd ../../..
 
+# AMD fam17h Microcode is assumed to be licensed the same
+# way as its fam16h counterpart
+if [ -e %{buildroot}/lib/firmware/amd-ucode/microcode_amd_fam17h.bin ]; then
+	echo "******* Please remove custom AMD 17h firmware, it's upstream *******"
+	exit 1
+fi
+cp %{SOURCE7} %{buildroot}/lib/firmware/amd-ucode/
+echo '/lib/firmware/amd-ucode/microcode_amd_fam17h.bin' >>nonfree.list
+
 # Intel versioned files have the same license as their unlicensed counterparts
 echo '/lib/firmware/intel/dsp_fw_kbl.bin' >>nonfree.list
 echo '/lib/firmware/intel/dsp_fw_release.bin' >>nonfree.list
@@ -286,9 +294,6 @@ echo '/lib/firmware/cis/src/PCMLM28.cis' >>free.list
 echo '/lib/firmware/cis/src/PE-200.cis' >>free.list
 echo '/lib/firmware/cis/src/PE520.cis' >>free.list
 echo '/lib/firmware/cis/src/tamarack.cis' >>free.list
-
-# (tpg) package iwlwifi
-echo '/lib/firmware/iwlwifi-8265-31.ucode' >>iwlwifi.list
 
 # rpm doesn't like dupes, but the WHENCE file contains some
 cat free.list |sort |uniq >free.list.new
@@ -311,8 +316,6 @@ mv -f nonfree.list.new nonfree.list
 %doc LICENCE.tda7706-firmware.txt LICENCE.ti-connectivity LICENCE.xc5000
 %doc LICENCE.siano LICENSE.amd-ucode
 /lib/firmware/qcom/NOTICE.txt
-/lib/firmware/mellanox/mlxsw_spectrum-13.1420.122.mfa2
-/lib/firmware/qed/qed_init_values_zipped-8.20.0.0.bin
 
 %files -n radeon-firmware -f radeon.list
 %defattr(0644,root,root,0755)
