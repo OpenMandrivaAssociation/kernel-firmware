@@ -3,9 +3,12 @@
 # git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
 # version is date of the younger commit
 
+# False positive -- some firmware bits are mistaken for host binaries
+%define _binaries_in_noarch_packages_terminate_build 0
+
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20180112
+Version:	20180531
 Release:	1
 License:	GPLv2
 Group:  	System/Kernel and hardware
@@ -26,9 +29,6 @@ Source4:	adreno-fw-820BSP3.2.tar.xz
 Source5:	https://s3.amazonaws.com/hauppauge/linux/linux-ubuntu-14-04-2.tar.xz
 # Firmware for various DVB receivers
 Source6:	https://github.com/OpenELEC/dvb-firmware/archive/master.tar.gz
-# AMD Microcode update, taken from OpenSUSE's package
-# https://software.opensuse.org/package/kernel-firmware
-Source7:	microcode_amd_fam17h.bin
 Source100:	gen-firmware-lists.sh
 Conflicts:	kernel-firmware-extra < %{version}-1
 Obsoletes:	korg1212-firmware
@@ -139,6 +139,7 @@ echo '/lib/firmware/rt3090.bin' >>nonfree.list
 echo '/lib/firmware/amd-ucode/microcode_amd.bin.asc' >>nonfree.list
 echo '/lib/firmware/amd-ucode/microcode_amd_fam15h.bin.asc' >>nonfree.list
 echo '/lib/firmware/amd-ucode/microcode_amd_fam16h.bin.asc' >>nonfree.list
+echo '/lib/firmware/amd-ucode/microcode_amd_fam17h.bin.asc' >>nonfree.list
 echo '/lib/firmware/s2250.fw' >>nonfree.list
 echo '/lib/firmware/s2250_loader.fw' >>nonfree.list
 echo '/lib/firmware/ti-connectivity/wl1271-nvs.bin' >>nonfree.list
@@ -267,15 +268,6 @@ for i in *.fw* *.bin *.inp *.mc; do
 done
 cd ../../..
 
-# AMD fam17h Microcode is assumed to be licensed the same
-# way as its fam16h counterpart
-if [ -e %{buildroot}/lib/firmware/amd-ucode/microcode_amd_fam17h.bin ]; then
-	echo "******* Please remove custom AMD 17h firmware, it's upstream *******"
-	exit 1
-fi
-cp %{SOURCE7} %{buildroot}/lib/firmware/amd-ucode/
-echo '/lib/firmware/amd-ucode/microcode_amd_fam17h.bin' >>nonfree.list
-
 # Intel versioned files have the same license as their unlicensed counterparts
 echo '/lib/firmware/intel/dsp_fw_kbl.bin' >>nonfree.list
 echo '/lib/firmware/intel/dsp_fw_release.bin' >>nonfree.list
@@ -316,6 +308,7 @@ mv -f nonfree.list.new nonfree.list
 %doc LICENCE.tda7706-firmware.txt LICENCE.ti-connectivity LICENCE.xc5000
 %doc LICENCE.siano LICENSE.amd-ucode
 /lib/firmware/qcom/NOTICE.txt
+/lib/firmware/netronome
 
 %files -n radeon-firmware -f radeon.list
 %defattr(0644,root,root,0755)
