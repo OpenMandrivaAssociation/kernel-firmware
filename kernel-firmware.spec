@@ -276,6 +276,31 @@ echo '/lib/firmware/intel/dsp_fw_glk.bin' >>nonfree.list
 echo '/lib/firmware/qat_mmp.bin' >>nonfree.list
 echo '/lib/firmware/intel/ipu3-fw.bin' >>nonfree.list
 
+cat >>nonfree.list <<EOF
+/lib/firmware/netronome/flower/nic_AMDA0081-0001_1x40.nffw
+/lib/firmware/netronome/flower/nic_AMDA0081-0001_4x10.nffw
+/lib/firmware/netronome/flower/nic_AMDA0081.nffw
+/lib/firmware/netronome/flower/nic_AMDA0096-0001_2x10.nffw
+/lib/firmware/netronome/flower/nic_AMDA0097-0001_2x40.nffw
+/lib/firmware/netronome/flower/nic_AMDA0097-0001_4x10_1x40.nffw
+/lib/firmware/netronome/flower/nic_AMDA0097-0001_8x10.nffw
+/lib/firmware/netronome/flower/nic_AMDA0099-0001_1x10_1x25.nffw
+/lib/firmware/netronome/flower/nic_AMDA0099-0001_2x10.nffw
+/lib/firmware/netronome/flower/nic_AMDA0099-0001_2x25.nffw
+/lib/firmware/netronome/nic_AMDA0058-0011_2x40.nffw
+/lib/firmware/netronome/nic_AMDA0058-0012_2x40.nffw
+/lib/firmware/netronome/nic_AMDA0078-0011_1x100.nffw
+/lib/firmware/netronome/nic_AMDA0081-0001_1x40.nffw
+/lib/firmware/netronome/nic_AMDA0081-0001_4x10.nffw
+/lib/firmware/netronome/nic_AMDA0096-0001_2x10.nffw
+/lib/firmware/netronome/nic_AMDA0097-0001_2x40.nffw
+/lib/firmware/netronome/nic_AMDA0097-0001_4x10_1x40.nffw
+/lib/firmware/netronome/nic_AMDA0097-0001_8x10.nffw
+/lib/firmware/netronome/nic_AMDA0099-0001_1x10_1x25.nffw
+/lib/firmware/netronome/nic_AMDA0099-0001_2x10.nffw
+/lib/firmware/netronome/nic_AMDA0099-0001_2x25.nffw
+EOF
+
 # (tpg) fix it
 sed -i -e 's#^/lib/firmware/isci/$##' free.list
 sed -i -e 's#^/lib/firmware/cis/$##' free.list
@@ -308,7 +333,6 @@ mv -f nonfree.list.new nonfree.list
 %doc LICENCE.tda7706-firmware.txt LICENCE.ti-connectivity LICENCE.xc5000
 %doc LICENCE.siano LICENSE.amd-ucode
 /lib/firmware/qcom/NOTICE.txt
-/lib/firmware/netronome
 
 %files -n radeon-firmware -f radeon.list
 %defattr(0644,root,root,0755)
