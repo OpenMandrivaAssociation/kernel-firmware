@@ -8,7 +8,7 @@
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20180531
+Version:	20180704
 Release:	1
 License:	GPLv2
 Group:  	System/Kernel and hardware
@@ -35,6 +35,7 @@ Obsoletes:	korg1212-firmware
 Obsoletes:	maestro3-firmware
 Obsoletes:	sb16-firmware
 Obsoletes:	yamaha-firmware
+Obsoletes:	alsa-firmware
 Suggests:	kernel-firmware-extra
 BuildArch:	noarch
 
