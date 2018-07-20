@@ -36,7 +36,7 @@ Obsoletes:	maestro3-firmware
 Obsoletes:	sb16-firmware
 Obsoletes:	yamaha-firmware
 Obsoletes:	alsa-firmware < 1.0.29-5
-Provides:	alsa-firmware < 1.0.29-5
+Provides:	alsa-firmware = 1.0.29-5
 Suggests:	kernel-firmware-extra
 BuildArch:	noarch
 
