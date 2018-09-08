@@ -9,7 +9,7 @@
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
 Version:	20180903
-Release:	1
+Release:	2
 License:	GPLv2
 Group:  	System/Kernel and hardware
 URL:    	http://www.kernel.org/
@@ -53,7 +53,6 @@ Conflicts:	kernel-firmware < 20120218
 Obsoletes:	rt61-firmware
 Obsoletes:	ueagle-firmware < 1.1-12
 Provides:	ueagle-firmware = 1.1-12
-Suggests:	kmod
 
 %description extra
 This package contains extra redistributable etc. firmwares for in-kernel
@@ -296,12 +295,6 @@ mv -f free.list.new free.list
 cat nonfree.list |sort |uniq >nonfree.list.new
 mv -f nonfree.list.new nonfree.list
 
-# (tpg) fix bug https://issues.openmandriva.org/show_bug.cgi?id=2075
-mkdir -p %{buildroot}%{_sysconfdir}/modprobe.d/
-cat > %{buildroot}%{_sysconfdir}/modprobe.d/rtl8723be.conf << EOF
-options rtl8723be ant_sel=1
-EOF
-
 %files -f free.list
 %defattr(0644,root,root,0755)
 %doc WHENCE GPL-3 LICENCE.ene_firmware LICENCE.myri10ge_firmware
@@ -316,7 +309,6 @@ EOF
 %doc LICENCE.ralink-firmware.txt LICENCE.rtlwifi_firmware.txt
 %doc LICENCE.tda7706-firmware.txt LICENCE.ti-connectivity LICENCE.xc5000
 %doc LICENCE.siano LICENSE.amd-ucode
-%{_sysconfdir}/modprobe.d/rtl8723be.conf
 /lib/firmware/qcom/NOTICE.txt
 /lib/firmware/netronome
 
