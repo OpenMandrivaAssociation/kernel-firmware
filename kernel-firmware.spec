@@ -160,7 +160,7 @@ echo '/lib/firmware/brcm/brcmfmac43340-sdio.meegopad-t08.txt' >> nonfree.list
 echo '/lib/firmware/brcm/brcmfmac43362-sdio.cubietech,cubietruck.txt' >> nonfree.list
 echo '/lib/firmware/brcm/brcmfmac43362-sdio.lemaker,bananapro.txt' >> nonfree.list
 echo '/lib/firmware/brcm/brcmfmac43430a0-sdio.jumper-ezpad-mini3.txt' >> nonfree.list
-echo '/lib/firmware/brcm/brcmfmac43430a0-sdio.ONDA-V80 PLUS.txt' >> nonfree.list
+echo '"/lib/firmware/brcm/brcmfmac43430a0-sdio.ONDA-V80 PLUS.txt"' >> nonfree.list
 echo '/lib/firmware/brcm/brcmfmac43430-sdio.AP6212.txt' >> nonfree.list
 echo '/lib/firmware/brcm/brcmfmac43430-sdio.Hampoo-D2D3_Vi8A1.txt' >> nonfree.list
 echo '/lib/firmware/brcm/brcmfmac43430-sdio.MUR1DX.txt' >> nonfree.list
