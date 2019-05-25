@@ -8,7 +8,7 @@
 
 Summary:	Linux kernel firmware files
 Name:   	kernel-firmware
-Version:	20190520
+Version:	20190526
 Release:	1
 License:	GPLv2
 Group:  	System/Kernel and hardware
