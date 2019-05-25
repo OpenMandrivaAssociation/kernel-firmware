@@ -301,6 +301,10 @@ echo '/lib/firmware/cis/src/PCMLM28.cis' >>free.list
 echo '/lib/firmware/cis/src/PE-200.cis' >>free.list
 echo '/lib/firmware/cis/src/PE520.cis' >>free.list
 echo '/lib/firmware/cis/src/tamarack.cis' >>free.list
+echo '/lib/firmware/intel/ibt-20-0-3.ddc' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-20-0-3.sfi' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-20-1-3.ddc' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-20-1-3.sfi' >>iwlwifi.list
 
 # rpm doesn't like dupes, but the WHENCE file contains some
 cat free.list |sort |uniq >free.list.new
