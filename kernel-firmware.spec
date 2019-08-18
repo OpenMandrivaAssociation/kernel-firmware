@@ -7,18 +7,18 @@
 %define _binaries_in_noarch_packages_terminate_build 0
 
 Summary:	Linux kernel firmware files
-Name:   	kernel-firmware
-Version:	20190526
+Name:		kernel-firmware
+Version:	20190818
 Release:	1
 License:	GPLv2
-Group:  	System/Kernel and hardware
-URL:    	http://www.kernel.org/
+Group:		System/Kernel and hardware
+URL:		http://www.kernel.org/
 # kernel-firmware tarball is generated from the git tree mentioned
 # above, by simply cloning it from
 # git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
 # and  doing:
 # git archive -o kernel-firmware-`date +%Y%m%d`.tar --prefix=kernel-firmware-`date +%Y%m%d`/ master ; xz -9e kernel-firmware-`date +%Y%m%d`.tar
-Source0: 	kernel-firmware-%{version}.tar.xz
+Source0:	kernel-firmware-%{version}.tar.xz
 # http://ivtvdriver.org/index.php/Firmware
 # Checked out Sat Nov 2 2013
 Source1:	http://dl.ivtvdriver.org/ivtv/firmware/ivtv-firmware.tar.gz
@@ -48,7 +48,7 @@ included in the kernel. It is shared by all kernels >= 2.6.27-rc1.
 Summary:	Extra linux kernel firmware files
 Group:		System/Kernel and hardware
 License:	Proprietary
-URL:    	http://www.kernel.org/
+URL:		http://www.kernel.org/
 Conflicts:	kernel-firmware < 20120218
 Obsoletes:	rt61-firmware
 Obsoletes:	ueagle-firmware < 1.1-12
@@ -97,8 +97,8 @@ Obsoletes:	iwlwifi-6000-ucode
 Obsoletes:	iwlwifi-6005-ucode
 Obsoletes:	iwlwifi-6030-ucode
 Obsoletes:	iwlwifi-6050-ucode
-Conflicts:      kernel-firmware-extra < 20130624-1
-Conflicts:      kernel-firmware-nonfree < 20130624-1
+Conflicts:	kernel-firmware-extra < 20130624-1
+Conflicts:	kernel-firmware-nonfree < 20130624-1
 
 %description -n iwlwifi-agn-ucode
 This package contains all the iwlwifi wireless firmware files
