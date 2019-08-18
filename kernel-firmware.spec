@@ -305,6 +305,20 @@ echo '/lib/firmware/intel/ibt-20-0-3.ddc' >>iwlwifi.list
 echo '/lib/firmware/intel/ibt-20-0-3.sfi' >>iwlwifi.list
 echo '/lib/firmware/intel/ibt-20-1-3.ddc' >>iwlwifi.list
 echo '/lib/firmware/intel/ibt-20-1-3.sfi' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-19-0-0.ddc' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-19-0-0.sfi' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-19-0-1.ddc' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-19-0-1.sfi' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-19-0-4.ddc' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-19-0-4.sfi' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-19-16-4.ddc' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-19-16-4.sfi' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-19-32-0.ddc' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-19-32-0.sfi' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-19-32-1.ddc' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-19-32-1.sfi' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-20-1-4.ddc' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-20-1-4.sfi' >>iwlwifi.list
 
 # rpm doesn't like dupes, but the WHENCE file contains some
 cat free.list |sort |uniq >free.list.new
@@ -327,7 +341,6 @@ mv -f nonfree.list.new nonfree.list
 %doc LICENCE.tda7706-firmware.txt LICENCE.ti-connectivity LICENCE.xc5000
 %doc LICENCE.siano LICENSE.amd-ucode
 /lib/firmware/qcom/NOTICE.txt
-/lib/firmware/netronome
 
 %files -n radeon-firmware -f radeon.list
 %defattr(0644,root,root,0755)
