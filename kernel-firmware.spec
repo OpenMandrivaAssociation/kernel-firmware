@@ -189,7 +189,7 @@ cd tmp
 tar xf %{SOURCE1}
 # This one is in linux-firmware git already
 rm v4l-cx25840.fw
-FW="`ls *.fw *.mpg`"
+FW="$(ls *.fw *.mpg)"
 for i in $FW; do
     mv $i %{buildroot}/lib/firmware/
     echo "/lib/firmware/$i" >>../nonfree.list
@@ -201,7 +201,7 @@ rm -rf tmp
 mkdir tmp
 cd tmp
 tar xf %{SOURCE4}
-FW="`ls`"
+FW="$(ls)"
 for i in $FW; do
     mv $i %{buildroot}/lib/firmware/
     echo "/lib/firmware/$i" >>../adreno.list
@@ -341,6 +341,8 @@ mv -f nonfree.list.new nonfree.list
 %doc LICENCE.tda7706-firmware.txt LICENCE.ti-connectivity LICENCE.xc5000
 %doc LICENCE.siano LICENSE.amd-ucode
 /lib/firmware/qcom/NOTICE.txt
+/lib/firmware/netronome/flower/*.nffw
+/lib/firmware/netronome/*.nffw
 
 %files -n radeon-firmware -f radeon.list
 %defattr(0644,root,root,0755)
