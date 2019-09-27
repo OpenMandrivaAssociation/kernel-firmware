@@ -8,7 +8,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20190818
+Version:	20190925
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -331,6 +331,11 @@ mv -f nonfree.list.new nonfree.list
 %doc WHENCE GPL-3 LICENCE.ene_firmware LICENCE.myri10ge_firmware
 %doc LICENCE.qla2xxx LICENCE.ueagle-atm4-firmware LICENCE.via_vt6656
 %doc LICENSE.dib0700
+/lib/firmware/brcm/brcmfmac43340-sdio.pov-tab-p1006w-data.txt
+/lib/firmware/brcm/brcmfmac43455-sdio.MINIX-NEO*
+/lib/firmware/cxgb4/t4-config.txt
+/lib/firmware/cxgb4/t5-config.txt
+/lib/firmware/cxgb4/t6-config.txt
 
 %files extra -f nonfree.list
 %defattr(0644,root,root,0755)
@@ -343,6 +348,7 @@ mv -f nonfree.list.new nonfree.list
 /lib/firmware/qcom/NOTICE.txt
 /lib/firmware/netronome/flower/*.nffw
 /lib/firmware/netronome/*.nffw
+/lib/firmware/nvidia
 
 %files -n radeon-firmware -f radeon.list
 %defattr(0644,root,root,0755)
@@ -353,3 +359,5 @@ mv -f nonfree.list.new nonfree.list
 
 %files -n iwlwifi-agn-ucode -f iwlwifi.list
 %doc LICENCE.iwlwifi_firmware LICENCE.ibt_firmware
+/lib/firmware/intel/ibt-19-32-4.ddc
+/lib/firmware/intel/ibt-19-32-4.sfi
