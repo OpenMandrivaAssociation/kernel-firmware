@@ -8,7 +8,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20190925
+Version:	20200213
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -17,8 +17,8 @@ URL:		http://www.kernel.org/
 # above, by simply cloning it from
 # git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
 # and  doing:
-# git archive -o kernel-firmware-`date +%Y%m%d`.tar --prefix=kernel-firmware-`date +%Y%m%d`/ master ; xz -9e kernel-firmware-`date +%Y%m%d`.tar
-Source0:	kernel-firmware-%{version}.tar.xz
+# git archive -o kernel-firmware-`date +%Y%m%d`.tar --prefix=kernel-firmware-`date +%Y%m%d`/ master ; zstd -19 --rm kernel-firmware-`date +%Y%m%d`.tar
+Source0:	kernel-firmware-%{version}.tar.zst
 # http://ivtvdriver.org/index.php/Firmware
 # Checked out Sat Nov 2 2013
 Source1:	http://dl.ivtvdriver.org/ivtv/firmware/ivtv-firmware.tar.gz
@@ -28,7 +28,7 @@ Source4:	adreno-fw-820BSP3.2.tar.xz
 # see http://www.hauppauge.com/site/support/linux.html
 Source5:	https://s3.amazonaws.com/hauppauge/linux/linux-ubuntu-14-04-2.tar.xz
 # Firmware for various DVB receivers
-Source6:	https://github.com/OpenELEC/dvb-firmware/archive/master.tar.gz
+Source6:	https://github.com/OpenELEC/dvb-firmware/archive/master/dvb-firmware-%{version}.tar.gz
 Source100:	gen-firmware-lists.sh
 Conflicts:	kernel-firmware-extra < %{version}-1
 Obsoletes:	korg1212-firmware
@@ -128,15 +128,6 @@ pwd
 echo "--------------" >> WHENCE
 sh %SOURCE100
 
-# Symlinks (not mentioned in WHENCE file)
-echo '/lib/firmware/cxgb4/t4fw.bin' >>nonfree.list
-echo '/lib/firmware/cxgb4/t5fw.bin' >>nonfree.list
-echo '/lib/firmware/cxgb4/t6fw.bin' >>nonfree.list
-echo '/lib/firmware/libertas/sd8688.bin' >>nonfree.list
-echo '/lib/firmware/libertas/sd8688_helper.bin' >>nonfree.list
-echo '/lib/firmware/rt3070.bin' >>nonfree.list
-echo '/lib/firmware/rt3090.bin' >>nonfree.list
-
 # Files not directly mentioned in WHENCE file (signatures, etc.)
 echo '/lib/firmware/amd-ucode/microcode_amd.bin.asc' >>nonfree.list
 echo '/lib/firmware/amd-ucode/microcode_amd_fam15h.bin.asc' >>nonfree.list
@@ -155,6 +146,7 @@ echo '/lib/firmware/ath10k/QCA988X/hw2.0/notice_ath10k_firmware-4.txt' >> nonfre
 echo '/lib/firmware/ath10k/QCA988X/hw2.0/notice_ath10k_firmware-5.txt' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA9984/hw1.0/notice_ath10k_firmware-5.txt' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA99X0/hw2.0/notice_ath10k_firmware-5.txt' >> nonfree.list
+echo '/lib/firmware/ath10k/WCN3990/hw1.0/notice.txt_wlanmdsp' >>nonfree.list
 echo '/lib/firmware/brcm/brcmfmac4330-sdio.Prowise-PT301.txt' >> nonfree.list
 echo '/lib/firmware/brcm/brcmfmac43340-sdio.meegopad-t08.txt' >> nonfree.list
 echo '/lib/firmware/brcm/brcmfmac43362-sdio.cubietech,cubietruck.txt' >> nonfree.list
@@ -166,12 +158,9 @@ echo '/lib/firmware/brcm/brcmfmac43430-sdio.Hampoo-D2D3_Vi8A1.txt' >> nonfree.li
 echo '/lib/firmware/brcm/brcmfmac43430-sdio.MUR1DX.txt' >> nonfree.list
 echo '/lib/firmware/brcm/brcmfmac43430-sdio.raspberrypi,3-model-b.txt' >> nonfree.list
 echo '/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,3-model-b-plus.txt' >> nonfree.list
+echo '/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,4-model-b.txt' >>nonfree.list
 echo '/lib/firmware/brcm/brcmfmac4356-pcie.gpd-win-pocket.txt' >> nonfree.list
 echo '/lib/firmware/qca/NOTICE.txt' >> nonfree.list
-echo '/lib/firmware/s2250.fw' >>nonfree.list
-echo '/lib/firmware/s2250_loader.fw' >>nonfree.list
-echo '/lib/firmware/ti-connectivity/wl1271-nvs.bin' >>nonfree.list
-echo '/lib/firmware/ti-connectivity/wl12xx-nvs.bin' >>nonfree.list
 
 %install
 mkdir -p %{buildroot}/lib/firmware
@@ -283,14 +272,6 @@ for i in *.fw* *.bin *.inp *.mc; do
 done
 cd ../../..
 
-# Intel versioned files have the same license as their unlicensed counterparts
-echo '/lib/firmware/intel/dsp_fw_kbl.bin' >>nonfree.list
-echo '/lib/firmware/intel/dsp_fw_release.bin' >>nonfree.list
-echo '/lib/firmware/intel/dsp_fw_bxtn.bin' >>nonfree.list
-echo '/lib/firmware/intel/dsp_fw_glk.bin' >>nonfree.list
-echo '/lib/firmware/qat_mmp.bin' >>nonfree.list
-echo '/lib/firmware/intel/ipu3-fw.bin' >>nonfree.list
-
 # (tpg) fix it
 sed -i -e 's#^/lib/firmware/isci/$##' free.list
 sed -i -e 's#^/lib/firmware/cis/$##' free.list
@@ -317,6 +298,10 @@ echo '/lib/firmware/intel/ibt-19-32-0.ddc' >>iwlwifi.list
 echo '/lib/firmware/intel/ibt-19-32-0.sfi' >>iwlwifi.list
 echo '/lib/firmware/intel/ibt-19-32-1.ddc' >>iwlwifi.list
 echo '/lib/firmware/intel/ibt-19-32-1.sfi' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-19-240-1.ddc' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-19-240-1.sfi' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-19-240-4.ddc' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-19-240-4.sfi' >>iwlwifi.list
 echo '/lib/firmware/intel/ibt-20-1-4.ddc' >>iwlwifi.list
 echo '/lib/firmware/intel/ibt-20-1-4.sfi' >>iwlwifi.list
 
@@ -333,9 +318,6 @@ mv -f nonfree.list.new nonfree.list
 %doc LICENSE.dib0700
 /lib/firmware/brcm/brcmfmac43340-sdio.pov-tab-p1006w-data.txt
 /lib/firmware/brcm/brcmfmac43455-sdio.MINIX-NEO*
-/lib/firmware/cxgb4/t4-config.txt
-/lib/firmware/cxgb4/t5-config.txt
-/lib/firmware/cxgb4/t6-config.txt
 
 %files extra -f nonfree.list
 %defattr(0644,root,root,0755)
@@ -347,7 +329,6 @@ mv -f nonfree.list.new nonfree.list
 %doc LICENCE.siano LICENSE.amd-ucode
 /lib/firmware/qcom/NOTICE.txt
 /lib/firmware/netronome/flower/*.nffw
-/lib/firmware/netronome/*.nffw
 /lib/firmware/nvidia
 
 %files -n radeon-firmware -f radeon.list
