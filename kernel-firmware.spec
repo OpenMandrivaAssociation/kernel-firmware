@@ -21,7 +21,8 @@ URL:		http://www.kernel.org/
 Source0:	kernel-firmware-%{version}.tar.zst
 # http://ivtvdriver.org/index.php/Firmware
 # Checked out Sat Nov 2 2013
-Source1:	https://src.fedoraproject.org/repo/pkgs/ivtv-firmware/ivtv-firmware-20080701.tar.gz/# Adreno firmware, from OQ820 BSP 3.2
+Source1:	http://pkgs.fedoraproject.org/repo/pkgs/ivtv-firmware/ivtv-firmware-20080701.tar.gz/b9a871f1c569025be9c48a77b3515faf/ivtv-firmware-20080701.tar.gz
+# Adreno firmware, from OQ820 BSP 3.2
 Source4:	adreno-fw-820BSP3.2.tar.xz
 # Firmware for Hauppauge HVR-1975
 # see http://www.hauppauge.com/site/support/linux.html
