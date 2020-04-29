@@ -8,7 +8,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20200213
+Version:	20200429
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -17,7 +17,7 @@ URL:		http://www.kernel.org/
 # above, by simply cloning it from
 # git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
 # and  doing:
-# git archive -o kernel-firmware-`date +%Y%m%d`.tar --prefix=kernel-firmware-`date +%Y%m%d`/ master ; zstd -19 --rm kernel-firmware-`date +%Y%m%d`.tar
+# git archive -o kernel-firmware-`date +%Y%m%d`.tar --prefix=kernel-firmware-`date +%Y%m%d`/ master ; zstd --ultra -22 --rm kernel-firmware-`date +%Y%m%d`.tar
 Source0:	kernel-firmware-%{version}.tar.zst
 # http://ivtvdriver.org/index.php/Firmware
 # Checked out Sat Nov 2 2013
@@ -150,7 +150,6 @@ echo '/lib/firmware/ath10k/WCN3990/hw1.0/notice.txt_wlanmdsp' >>nonfree.list
 echo '/lib/firmware/brcm/brcmfmac4330-sdio.Prowise-PT301.txt' >> nonfree.list
 echo '/lib/firmware/brcm/brcmfmac43340-sdio.meegopad-t08.txt' >> nonfree.list
 echo '/lib/firmware/brcm/brcmfmac43362-sdio.cubietech,cubietruck.txt' >> nonfree.list
-echo '/lib/firmware/brcm/brcmfmac43362-sdio.lemaker,bananapro.txt' >> nonfree.list
 echo '/lib/firmware/brcm/brcmfmac43430a0-sdio.jumper-ezpad-mini3.txt' >> nonfree.list
 echo '"/lib/firmware/brcm/brcmfmac43430a0-sdio.ONDA-V80 PLUS.txt"' >> nonfree.list
 echo '/lib/firmware/brcm/brcmfmac43430-sdio.AP6212.txt' >> nonfree.list

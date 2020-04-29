@@ -2,5 +2,5 @@ sources:
   ivtv-firmware.tar.gz: 6c4ee0fce9882f93fb816d45bd23287244775cea
   adreno-fw-820BSP3.2.tar.xz: 680dc9d27723cbcf2d63375c25bc1a36e8267448
   linux-ubuntu-14-04-2.tar.xz: 6d984ef753e72dd4cd5fa85df59abe3b6a7270fe
-  kernel-firmware-20200213.tar.zst: 762b9d87c61575f66f98b27c75906249b09fa1d8
-  dvb-firmware-20200213.tar.gz: 62a371d0f5ec5c24240f1aa01ea881550a8ed0ac
+  dvb-firmware-20200429.tar.gz: 62a371d0f5ec5c24240f1aa01ea881550a8ed0ac
+  kernel-firmware-20200429.tar.zst: 2913c4fecc6fde39e27076147274a6bdb928b051
