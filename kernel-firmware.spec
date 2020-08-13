@@ -8,7 +8,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20200429
+Version:	20200813
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -19,9 +19,6 @@ URL:		http://www.kernel.org/
 # and  doing:
 # git archive -o kernel-firmware-`date +%Y%m%d`.tar --prefix=kernel-firmware-`date +%Y%m%d`/ master ; zstd --ultra -22 --rm kernel-firmware-`date +%Y%m%d`.tar
 Source0:	kernel-firmware-%{version}.tar.zst
-# http://ivtvdriver.org/index.php/Firmware
-# Checked out Sat Nov 2 2013
-Source1:	http://pkgs.fedoraproject.org/repo/pkgs/ivtv-firmware/ivtv-firmware-20080701.tar.gz/b9a871f1c569025be9c48a77b3515faf/ivtv-firmware-20080701.tar.gz
 # Adreno firmware, from OQ820 BSP 3.2
 Source4:	adreno-fw-820BSP3.2.tar.xz
 # Firmware for Hauppauge HVR-1975
@@ -170,20 +167,6 @@ rm -f %{buildroot}/lib/firmware/GPL-2
 rm -f %{buildroot}/lib/firmware/*.list
 rm -f %{buildroot}/lib/firmware/check_whence.py
 
-# Additional firmware
-mkdir tmp
-cd tmp
-# ivtv
-tar xf %{SOURCE1}
-# This one is in linux-firmware git already
-rm v4l-cx25840.fw
-FW="$(ls *.fw *.mpg)"
-for i in $FW; do
-    mv $i %{buildroot}/lib/firmware/
-    echo "/lib/firmware/$i" >>../nonfree.list
-done
-cd ..
-
 # Adreno
 rm -rf tmp
 mkdir tmp
@@ -191,10 +174,69 @@ cd tmp
 tar xf %{SOURCE4}
 FW="$(ls)"
 for i in $FW; do
-    mv $i %{buildroot}/lib/firmware/
-    echo "/lib/firmware/$i" >>../adreno.list
+	if ! [ -e %{buildroot}/lib/firmware/$i ] && ! [ -e %{buildroot}/lib/firmware/qcom/$i ]; then
+		mv $i %{buildroot}/lib/firmware/qcom/
+		echo "/lib/firmware/qcom/$i" >>../adreno.list
+	fi
 done
 cd ..
+
+# Assorted DVB
+rm -rf tmp
+mkdir tmp
+cd tmp
+tar xf %{SOURCE6}
+cd dvb-firmware-master/firmware
+# Already added upstream
+rm -rf	dvb-fe-xc4000-1.4.1.fw \
+	dvb-fe-xc5000-1.6.114.fw \
+	dvb-fe-xc5000c-4.1.30.7.fw \
+	dvb-usb-dib0700-1.20.fw \
+	dvb-usb-it9135-01.fw \
+	dvb-usb-it9135-02.fw \
+	dvb-usb-terratec-h5-drxk.fw \
+	lgs8g75.fw \
+	sms1xxx-hcw-55xxx-dvbt-02.fw \
+	sms1xxx-hcw-55xxx-isdbt-02.fw \
+	sms1xxx-nova-a-dvbt-01.fw \
+	sms1xxx-nova-b-dvbt-01.fw \
+	sms1xxx-stellar-dvbt-01.fw \
+	v4l-cx231xx-avcore-01.fw \
+	v4l-cx23418-apu.fw \
+	v4l-cx23418-cpu.fw \
+	v4l-cx23418-dig.fw \
+	v4l-cx23885-avcore-01.fw \
+	v4l-cx25840.fw \
+	tlg2300_firmware.bin \
+	cmmb_vega_12mhz.inp \
+	cmmb_venice_12mhz.inp \
+	dvb_nova_12mhz.inp \
+	dvb_nova_12mhz_b0.inp \
+	isdbt_nova_12mhz_b0.inp \
+	isdbt_nova_12mhz.inp \
+	isdbt_rio.inp \
+	tdmb_nova_12mhz.inp \
+	go7007/go7007fw.bin \
+	go7007/go7007tv.bin \
+	go7007/lr192.fw \
+	go7007/px-m402u.fw \
+	go7007/px-tv402u.fw \
+	go7007/s2250-1.fw \
+	go7007/s2250-2.fw \
+	go7007/wis-startrek.fw \
+	s2250_loader.fw \
+	s2250.fw \
+	ttusb-budget/dspbootcode.bin
+
+for i in *.fw* *.bin *.inp *.mc *.mpg; do
+	if [ -e %{buildroot}/lib/firmware/$i ]; then
+		echo "******* Please remove $i from DVB firmware, it's upstream *******"
+		exit 1
+	fi
+	cp $i %{buildroot}/lib/firmware/
+	echo "/lib/firmware/$i" >>../../../nonfree.list
+done
+cd ../../..
 
 # Hauppauge
 rm -rf tmp
@@ -205,71 +247,9 @@ if [ -e %{buildroot}/lib/firmware/v4l-pvrusb2-160xxx-01.fw ]; then
 	echo "pvrusb2-160xxx firmware has been merged upstream, please remove it here"
 	exit 1
 fi
-if [ -e %{buildroot}/lib/firmware/NXP7164-2010-04-01.1.fw ]; then
-	echo "NXP7164 firmware has been merged upstream, please remove it here"
-	exit 1
-fi
 cp "Linux-Ubuntu-14-04-2/firmware/HVR 19x5/v4l-pvrusb2-160xxx-01.fw" %{buildroot}/lib/firmware/
-cp "Linux-Ubuntu-14-04-2/firmware/HVR 22x5/NXP7164-2010-04-01.1.fw" %{buildroot}/lib/firmware/
 cd ..
 echo '/lib/firmware/v4l-pvrusb2-160xxx-01.fw' >>nonfree.list
-echo '/lib/firmware/NXP7164-2010-04-01.1.fw' >>nonfree.list
-
-# Assorted DVB
-rm -rf tmp
-mkdir tmp
-cd tmp
-tar xf %{SOURCE6}
-cd dvb-firmware-master/firmware
-# Already added upstream
-rm -rf	go7007 \
-	ttusb-budget \
-	s2250.fw \
-	NXP7164-2010-04-01.1.fw \
-	dvb-fe-xc4000-1.4.1.fw \
-	dvb-fe-xc5000-1.6.114.fw \
-	dvb-fe-xc5000c-4.1.30.7.fw \
-	dvb-usb-dib0700-1.20.fw \
-	dvb-usb-it9135-01.fw \
-	dvb-usb-it9135-02.fw \
-	dvb-usb-terratec-h5-drxk.fw \
-	lgs8g75.fw \
-	s2250_loader.fw \
-	sms1xxx-hcw-55xxx-dvbt-02.fw \
-	sms1xxx-hcw-55xxx-isdbt-02.fw \
-	sms1xxx-nova-a-dvbt-01.fw \
-	sms1xxx-nova-b-dvbt-01.fw \
-	sms1xxx-stellar-dvbt-01.fw \
-	v4l-cx231xx-avcore-01.fw \
-	v4l-cx23418-apu.fw \
-	v4l-cx23418-cpu.fw \
-	v4l-cx23418-dig.fw \
-	v4l-cx2341x-dec.fw \
-	v4l-cx2341x-enc.fw \
-	v4l-cx23885-avcore-01.fw \
-	v4l-cx25840.fw \
-	v4l-pvrusb2-24xxx-01.fw \
-	v4l-pvrusb2-29xxx-01.fw \
-	as102_data1_st.hex \
-	as102_data2_st.hex \
-	tlg2300_firmware.bin \
-	cmmb_vega_12mhz.inp \
-	cmmb_venice_12mhz.inp \
-	dvb_nova_12mhz.inp \
-	dvb_nova_12mhz_b0.inp \
-	isdbt_nova_12mhz.inp \
-	isdbt_nova_12mhz_b0.inp \
-	isdbt_rio.inp \
-	tdmb_nova_12mhz.inp
-for i in *.fw* *.bin *.inp *.mc; do
-	if [ -e %{buildroot}/lib/firmware/$i ]; then
-		echo "******* Please remove $i from DVB firmware, it's upstream *******"
-		exit 1
-	fi
-	cp $i %{buildroot}/lib/firmware/
-	echo "/lib/firmware/$i" >>../../../nonfree.list
-done
-cd ../../..
 
 # (tpg) fix it
 sed -i -e 's#^/lib/firmware/isci/$##' free.list
