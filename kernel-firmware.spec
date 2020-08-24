@@ -8,7 +8,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20200813
+Version:	20200825
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -19,6 +19,8 @@ URL:		http://www.kernel.org/
 # and  doing:
 # git archive -o kernel-firmware-`date +%Y%m%d`.tar --prefix=kernel-firmware-`date +%Y%m%d`/ master ; zstd --ultra -22 --rm kernel-firmware-`date +%Y%m%d`.tar
 Source0:	kernel-firmware-%{version}.tar.zst
+# RTL8723 Bluetooth firmware, needed e.g. on PinePhone
+Source1:	https://github.com/anarsoul/rtl8723bt-firmware/archive/master/rtl8723bt-firmware.tar.gz
 # Adreno firmware, from OQ820 BSP 3.2
 Source4:	adreno-fw-820BSP3.2.tar.xz
 # Firmware for Hauppauge HVR-1975
@@ -166,6 +168,22 @@ rm -f %{buildroot}/lib/firmware/GPL-3
 rm -f %{buildroot}/lib/firmware/GPL-2
 rm -f %{buildroot}/lib/firmware/*.list
 rm -f %{buildroot}/lib/firmware/check_whence.py
+
+# RTL8723BT
+rm -rf tmp
+mkdir tmp
+cd tmp
+tar xf %{S:1}
+cd rtl8723bt-firmware-master/rtl_bt
+for i in *; do
+	if [ -e %{buildroot}/lib/firmware/rtl_bt/$i ]; then
+		echo "$i has been added upstream, please remove"
+		exit 1
+	fi
+	mv $i %{buildroot}/lib/firmware/rtl_bt/
+	echo "/lib/firmware/rtl_bt/$i" >>../../../nonfree.list
+done
+cd ../../..
 
 # Adreno
 rm -rf tmp
