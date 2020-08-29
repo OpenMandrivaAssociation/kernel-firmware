@@ -8,7 +8,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20200825
+Version:	20200829
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -19,8 +19,9 @@ URL:		http://www.kernel.org/
 # and  doing:
 # git archive -o kernel-firmware-`date +%Y%m%d`.tar --prefix=kernel-firmware-`date +%Y%m%d`/ master ; zstd --ultra -22 --rm kernel-firmware-`date +%Y%m%d`.tar
 Source0:	kernel-firmware-%{version}.tar.zst
-# RTL8723 Bluetooth firmware, needed e.g. on PinePhone
-Source1:	https://github.com/anarsoul/rtl8723bt-firmware/archive/master/rtl8723bt-firmware.tar.gz
+# Firmware for various components of PinePhone, PineBook and Orange Pi
+# https://megous.com/git/linux-firmware
+Source1:	linux-firmware-pine64-20200829.tar.zst
 # Adreno firmware, from OQ820 BSP 3.2
 Source4:	adreno-fw-820BSP3.2.tar.xz
 # Firmware for Hauppauge HVR-1975
@@ -169,21 +170,27 @@ rm -f %{buildroot}/lib/firmware/GPL-2
 rm -f %{buildroot}/lib/firmware/*.list
 rm -f %{buildroot}/lib/firmware/check_whence.py
 
-# RTL8723BT
+# Pine64 devices
 rm -rf tmp
 mkdir tmp
 cd tmp
 tar xf %{S:1}
-cd rtl8723bt-firmware-master/rtl_bt
-for i in *; do
-	if [ -e %{buildroot}/lib/firmware/rtl_bt/$i ]; then
+cd linux-firmware-pine64
+# Already in upstream firmware
+rm brcm/brcmfmac43362-sdio.bin \
+	rtlwifi/rtl8188eufw.bin
+# Duplicate from wireless-regdb
+rm regulatory.db regulatory.db.p7s
+rmdir rtlwifi
+for i in *.bin brcm/* rtl_bt/*; do
+	if [ -e %{buildroot}/lib/firmware/$i ]; then
 		echo "$i has been added upstream, please remove"
 		exit 1
 	fi
-	mv $i %{buildroot}/lib/firmware/rtl_bt/
-	echo "/lib/firmware/rtl_bt/$i" >>../../../nonfree.list
+	mv $i %{buildroot}/lib/firmware/$i
+	echo "/lib/firmware/$i" >>../../nonfree.list
 done
-cd ../../..
+cd ../..
 
 # Adreno
 rm -rf tmp
