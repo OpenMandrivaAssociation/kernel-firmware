@@ -354,6 +354,7 @@ mv -f nonfree.list.new nonfree.list
 /lib/firmware/intel/ibt-19-32-4.ddc
 /lib/firmware/intel/ibt-19-32-4.sfi
 
+%ifarch %{aarch64}
 %files pinephone
 %dir /lib/firmware
 /lib/firmware/anx7688-fw.bin
@@ -372,3 +373,4 @@ mv -f nonfree.list.new nonfree.list
 /lib/firmware/rtl_bt/rtl8723cs_xx_fw.bin
 %dir /lib/firmware/rtlwifi
 /lib/firmware/rtlwifi/rtl8188eufw.bin
+%endif
