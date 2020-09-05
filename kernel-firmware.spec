@@ -8,7 +8,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20200829
+Version:	20200905
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -104,6 +104,13 @@ Conflicts:	kernel-firmware-nonfree < 20130624-1
 This package contains all the iwlwifi wireless firmware files
 supported by the iwlwifi kernel driver. That means all of:
 iwlwifi-1xx/1000/2xxx/5xxx/6xxx*.ucode firmwares.
+
+%package pinephone
+Summary:	Firmware files needed to drive components of the PinePhone
+Group:		System/Kernel and hardware
+
+%description pinephone
+Firmware files needed to drive components of the PinePhone
 
 %prep
 %setup -q
@@ -346,3 +353,22 @@ mv -f nonfree.list.new nonfree.list
 %doc LICENCE.iwlwifi_firmware LICENCE.ibt_firmware
 /lib/firmware/intel/ibt-19-32-4.ddc
 /lib/firmware/intel/ibt-19-32-4.sfi
+
+%files pinephone
+%dir /lib/firmware
+/lib/firmware/anx7688-fw.bin
+/lib/firmware/hm5065-af.bin
+/lib/firmware/hm5065-init.bin
+%dir /lib/firmware/brcm
+/lib/firmware/brcm/BCM20702A1.hcd
+/lib/firmware/brcm/BCM4345C5.hcd
+/lib/firmware/brcm/brcmfmac43362-sdio.bin
+/lib/firmware/brcm/brcmfmac43362-sdio.txt
+/lib/firmware/brcm/brcmfmac43456-sdio.bin
+/lib/firmware/brcm/brcmfmac43456-sdio.txt
+%dir /lib/firmware/rtl_bt
+/lib/firmware/rtl_bt/rtl8723bs_config-pine64.bin
+/lib/firmware/rtl_bt/rtl8723cs_xx_config-pinephone.bin
+/lib/firmware/rtl_bt/rtl8723cs_xx_fw.bin
+%dir /lib/firmware/rtlwifi
+/lib/firmware/rtlwifi/rtl8188eufw.bin
