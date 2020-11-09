@@ -8,7 +8,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20200905
+Version:	20201109
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -16,12 +16,12 @@ URL:		http://www.kernel.org/
 # kernel-firmware tarball is generated from the git tree mentioned
 # above, by simply cloning it from
 # git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
-# and  doing:
+# and doing:
 # git archive -o kernel-firmware-`date +%Y%m%d`.tar --prefix=kernel-firmware-`date +%Y%m%d`/ master ; zstd --ultra -22 --rm kernel-firmware-`date +%Y%m%d`.tar
 Source0:	kernel-firmware-%{version}.tar.zst
 # Firmware for various components of PinePhone, PineBook and Orange Pi
 # https://megous.com/git/linux-firmware
-Source1:	linux-firmware-pine64-20200829.tar.zst
+Source1:	linux-firmware-pine64-20201109.tar.zst
 # Adreno firmware, from OQ820 BSP 3.2
 Source4:	adreno-fw-820BSP3.2.tar.xz
 # Firmware for Hauppauge HVR-1975
@@ -142,6 +142,7 @@ echo '/lib/firmware/amd-ucode/microcode_amd_fam16h.bin.asc' >>nonfree.list
 echo '/lib/firmware/amd-ucode/microcode_amd_fam17h.bin.asc' >>nonfree.list
 echo '/lib/firmware/ath10k/QCA4019/hw1.0/notice_ath10k_firmware-5.txt' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA6174/hw2.1/notice_ath10k_firmware-5.txt' >> nonfree.list
+echo '/lib/firmware/ath10k/QCA9377/hw1.0/notice_ath10k_firmware-sdio-5.txt' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA6174/hw3.0/board-2.bin' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA6174/hw3.0/notice_ath10k_firmware-4.txt' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA6174/hw3.0/notice_ath10k_firmware-6.txt' >> nonfree.list
@@ -354,12 +355,16 @@ mv -f nonfree.list.new nonfree.list
 /lib/firmware/intel/ibt-19-32-4.ddc
 /lib/firmware/intel/ibt-19-32-4.sfi
 
-%ifarch %{aarch64}
+# This should be ifarch %{aarch64}, but since this is a noarch
+# package, that can't be detected. So let's create a superfluous
+# package on other arches rather than omitting an important
+# package for aarch64
 %files pinephone
 %dir /lib/firmware
 /lib/firmware/anx7688-fw.bin
 /lib/firmware/hm5065-af.bin
 /lib/firmware/hm5065-init.bin
+/lib/firmware/ov5640_af.bin
 %dir /lib/firmware/brcm
 /lib/firmware/brcm/BCM20702A1.hcd
 /lib/firmware/brcm/BCM4345C5.hcd
@@ -373,4 +378,3 @@ mv -f nonfree.list.new nonfree.list
 /lib/firmware/rtl_bt/rtl8723cs_xx_fw.bin
 %dir /lib/firmware/rtlwifi
 /lib/firmware/rtlwifi/rtl8188eufw.bin
-%endif
