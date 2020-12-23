@@ -3,4 +3,4 @@ sources:
   linux-ubuntu-14-04-2.tar.xz: 6d984ef753e72dd4cd5fa85df59abe3b6a7270fe
   linux-firmware-pine64-20201109.tar.zst: 9e187891280201e3577336815384c18c8a05cbc5
   kernel-firmware-20201223.tar.zst: a96dc6e5a6a9153d3c2c36003b451697070247e8
-  dvb-firmware-20201109.tar.gz: 62a371d0f5ec5c24240f1aa01ea881550a8ed0ac
+  dvb-firmware-20201223.tar.gz: 62a371d0f5ec5c24240f1aa01ea881550a8ed0ac
