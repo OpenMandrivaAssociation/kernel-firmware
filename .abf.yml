@@ -2,5 +2,12 @@ sources:
   adreno-fw-820BSP3.2.tar.xz: 680dc9d27723cbcf2d63375c25bc1a36e8267448
   linux-ubuntu-14-04-2.tar.xz: 6d984ef753e72dd4cd5fa85df59abe3b6a7270fe
   linux-firmware-pine64-20201109.tar.zst: 9e187891280201e3577336815384c18c8a05cbc5
-  kernel-firmware-20201109.tar.zst: cb0f7348963ab2eab790269652ce84317381dbd9
-  dvb-firmware-20201109.tar.gz: 62a371d0f5ec5c24240f1aa01ea881550a8ed0ac
+  kernel-firmware-20210212.tar.zst: f7e16d18a35860098b3c9bfc1e4c2b4ef216312b
+  dvb-firmware-20210212.tar.gz: 62a371d0f5ec5c24240f1aa01ea881550a8ed0ac
+  brcmfmac43455-sdio.bin: e9df15d10d712e5b674844928e4a38f234ce97e7
+  brcmfmac43455-sdio.txt: e1db6a597d00a2e8cf608af82dfaeca07f29c5af
+  brcmfmac43456-sdio.bin: b1f9554e2b748aa22ca75830facb42f79d583f73
+  brcmfmac43456-sdio.clm_blob: 0faafcdcadc5e0a9bb3e86dbb119356e7c3f448e
+  brcmfmac43456-sdio.txt: 20cc0cb05d088f7b3a4cd70faa7a46c2ef46503a
+  BCM43430A1.hcd: 27a2e1d5fd5c8f29225c6b9cd3486bae7111271f
+  BCM4345C0.hcd: 6adcb9aebc3a823cde6e0d1dca9032f5e6f62e81
