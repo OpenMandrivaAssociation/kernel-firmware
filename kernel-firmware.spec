@@ -143,6 +143,10 @@ echo '/lib/firmware/amd-ucode/microcode_amd_fam17h.bin.asc' >>nonfree.list
 echo '/lib/firmware/ath10k/QCA4019/hw1.0/notice_ath10k_firmware-5.txt' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA6174/hw2.1/notice_ath10k_firmware-5.txt' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA9377/hw1.0/notice_ath10k_firmware-sdio-5.txt' >> nonfree.list
+echo '/lib/firmware/ath10k/QCA6174/hw3.0/notice_ath10k_firmware-sdio-6.txt' >> nonfree.list
+echo '/lib/firmware/ath11k/IPQ6018/hw1.0/Notice.txt' >> nonfree.list
+echo '/lib/firmware/ath11k/IPQ8074/hw2.0/Notice.txt' >> nonfree.list
+echo '/lib/firmware/ath11k/QCA6390/hw2.0/Notice.txt' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA6174/hw3.0/board-2.bin' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA6174/hw3.0/notice_ath10k_firmware-4.txt' >> nonfree.list
 echo '/lib/firmware/ath10k/QCA6174/hw3.0/notice_ath10k_firmware-6.txt' >> nonfree.list
@@ -204,7 +208,7 @@ cd ../..
 rm -rf tmp
 mkdir tmp
 cd tmp
-tar xf %{SOURCE4}
+tar xf %{SOURCE2}
 FW="$(ls)"
 for i in $FW; do
 	if ! [ -e %{buildroot}/lib/firmware/$i ] && ! [ -e %{buildroot}/lib/firmware/qcom/$i ]; then
@@ -218,7 +222,7 @@ cd ..
 rm -rf tmp
 mkdir tmp
 cd tmp
-tar xf %{SOURCE6}
+tar xf %{SOURCE4}
 cd dvb-firmware-master/firmware
 # Already added upstream
 rm -rf	dvb-fe-xc4000-1.4.1.fw \
@@ -275,7 +279,7 @@ cd ../../..
 rm -rf tmp
 mkdir tmp
 cd tmp
-tar xf %{SOURCE5}
+tar xf %{SOURCE3}
 if [ -e %{buildroot}/lib/firmware/v4l-pvrusb2-160xxx-01.fw ]; then
 	echo "pvrusb2-160xxx firmware has been merged upstream, please remove it here"
 	exit 1
@@ -283,6 +287,32 @@ fi
 cp "Linux-Ubuntu-14-04-2/firmware/HVR 19x5/v4l-pvrusb2-160xxx-01.fw" %{buildroot}/lib/firmware/
 cd ..
 echo '/lib/firmware/v4l-pvrusb2-160xxx-01.fw' >>nonfree.list
+
+# Raspberry Pi (and potentially others)
+if [ -e %{buildroot}/lib/firmware/brcm/brcmfmac43456-sdio.raspberrypi,400.txt ]; then
+	echo "Looks like Raspberry Pi 400 firmware has been merged,"
+	echo "please check if the updates (Sources 5 to 10) can be removed."
+	exit 1
+fi
+cp -f %{S:5} %{S:6} %{S:7} %{S:8} %{S:9} %{buildroot}/lib/firmware/brcm/
+if [ -n "$(find %{buildroot} -name BCM43430A1.hcd)" ]; then
+	echo "Broadcom bluetooth firmware has been merged upstream, please remove"
+	exit 1
+fi
+cp -f %{S:11} %{S:12} %{buildroot}/lib/firmware/
+ln -sf brcmfmac43456-sdio.clm_blob %{buildroot}/lib/firmware/brcm/brcmfmac43455-sdio.clm_blob
+ln -sf brcmfmac43456-sdio.txt %{buildroot}/lib/firmware/brcm/brcmfmac43456-sdio.raspberrypi,400.txt
+ln -sf brcmfmac43456-sdio.txt %{buildroot}/lib/firmware/brcm/brcmfmac43456-sdio.raspberrypi,4-compute-module.txt
+cat >>nonfree.list <<EOF
+/lib/firmware/brcm/brcmfmac43456-sdio.bin
+/lib/firmware/brcm/brcmfmac43456-sdio.clm_blob
+/lib/firmware/brcm/brcmfmac43456-sdio*.txt
+/lib/firmware/brcm/brcmfmac43455-sdio.bin
+/lib/firmware/brcm/brcmfmac43455-sdio.clm_blob
+/lib/firmware/brcm/brcmfmac43455-sdio.txt
+/lib/firmware/BCM43430A1.hcd
+/lib/firmware/BCM4345C0.hcd
+EOF
 
 # (tpg) fix it
 sed -i -e 's#^/lib/firmware/isci/$##' free.list
@@ -316,6 +346,8 @@ echo '/lib/firmware/intel/ibt-19-240-4.ddc' >>iwlwifi.list
 echo '/lib/firmware/intel/ibt-19-240-4.sfi' >>iwlwifi.list
 echo '/lib/firmware/intel/ibt-20-1-4.ddc' >>iwlwifi.list
 echo '/lib/firmware/intel/ibt-20-1-4.sfi' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-0041-0041.ddc' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-0041-0041.sfi' >>iwlwifi.list
 
 # rpm doesn't like dupes, but the WHENCE file contains some
 cat free.list |sort |uniq >free.list.new
@@ -368,7 +400,6 @@ mv -f nonfree.list.new nonfree.list
 %dir /lib/firmware/brcm
 /lib/firmware/brcm/BCM20702A1.hcd
 /lib/firmware/brcm/BCM4345C5.hcd
-/lib/firmware/brcm/brcmfmac43362-sdio.bin
 /lib/firmware/brcm/brcmfmac43362-sdio.txt
 /lib/firmware/brcm/brcmfmac43456-sdio.bin
 /lib/firmware/brcm/brcmfmac43456-sdio.txt
