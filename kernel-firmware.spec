@@ -8,7 +8,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20201223
+Version:	20210212
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -23,27 +23,27 @@ Source0:	kernel-firmware-%{version}.tar.zst
 # https://megous.com/git/linux-firmware
 Source1:	linux-firmware-pine64-20201109.tar.zst
 # Adreno firmware, from OQ820 BSP 3.2
-Source4:	adreno-fw-820BSP3.2.tar.xz
+Source2:	adreno-fw-820BSP3.2.tar.xz
 # Firmware for Hauppauge HVR-1975
 # see http://www.hauppauge.com/site/support/linux.html
-Source5:	https://s3.amazonaws.com/hauppauge/linux/linux-ubuntu-14-04-2.tar.xz
+Source3:	https://s3.amazonaws.com/hauppauge/linux/linux-ubuntu-14-04-2.tar.xz
 # Firmware for various DVB receivers
-Source6:	https://github.com/OpenELEC/dvb-firmware/archive/master/dvb-firmware-%{version}.tar.gz
+Source4:	https://github.com/OpenELEC/dvb-firmware/archive/master/dvb-firmware-%{version}.tar.gz
+# Broadcom firmware for Raspberry Pi 400
+Source5:	https://raw.githubusercontent.com/RPi-Distro/firmware-nonfree/master/brcm/brcmfmac43456-sdio.bin
+Source6:	https://raw.githubusercontent.com/RPi-Distro/firmware-nonfree/master/brcm/brcmfmac43456-sdio.clm_blob
+Source7:	https://raw.githubusercontent.com/RPi-Distro/firmware-nonfree/master/brcm/brcmfmac43456-sdio.txt
+# Those exist in upstream kernel-firmware, but RPi has newer versions
+Source8:	https://raw.githubusercontent.com/RPi-Distro/firmware-nonfree/master/brcm/brcmfmac43455-sdio.bin
+Source9:	https://raw.githubusercontent.com/RPi-Distro/firmware-nonfree/master/brcm/brcmfmac43455-sdio.txt
+# RPi bluetooth firmware
+Source11:	https://github.com/RPi-Distro/bluez-firmware/raw/master/broadcom/BCM43430A1.hcd
+Source12:	https://github.com/RPi-Distro/bluez-firmware/raw/master/broadcom/BCM4345C0.hcd
 Source100:	gen-firmware-lists.sh
 Conflicts:	kernel-firmware-extra < %{version}-1
 Obsoletes:	korg1212-firmware
 Obsoletes:	maestro3-firmware
 Obsoletes:	sb16-firmware
-Obsoletes:	yamaha-firmware
-Obsoletes:	alsa-firmware < 1.0.29-5
-Provides:	alsa-firmware = 1.0.29-5
-Suggests:	kernel-firmware-extra
-BuildArch:	noarch
-
-%description
-This package contains the firmware for in-kernel drivers that was previously
-included in the kernel. It is shared by all kernels >= 2.6.27-rc1.
-
 %package extra
 Summary:	Extra linux kernel firmware files
 Group:		System/Kernel and hardware
