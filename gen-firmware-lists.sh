@@ -27,6 +27,9 @@ cat WHENCE | while read line; do
 			;;
 		esac
 		;;
+ 	*"Advanced Micro Devices, Inc.")
+ 	        free=1
+	        ;;
 	"Original licence information: None")
 		free=
 		;;
