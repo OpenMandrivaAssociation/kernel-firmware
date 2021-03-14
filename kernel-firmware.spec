@@ -8,7 +8,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20210212
+Version:	20210314
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -381,6 +381,7 @@ mv -f nonfree.list.new nonfree.list
 %doc LICENCE.ralink-firmware.txt LICENCE.rtlwifi_firmware.txt
 %doc LICENCE.tda7706-firmware.txt LICENCE.ti-connectivity LICENCE.xc5000
 %doc LICENCE.siano LICENSE.amd-ucode
+/lib/firmware/silabs/LICENCE.wf200
 /lib/firmware/qcom/NOTICE.txt
 /lib/firmware/netronome/flower/*.nffw
 /lib/firmware/nvidia
