@@ -9,5 +9,5 @@ sources:
   brcmfmac43456-sdio.txt: 20cc0cb05d088f7b3a4cd70faa7a46c2ef46503a
   BCM43430A1.hcd: 27a2e1d5fd5c8f29225c6b9cd3486bae7111271f
   BCM4345C0.hcd: 6adcb9aebc3a823cde6e0d1dca9032f5e6f62e81
-  kernel-firmware-20210314.tar.zst: efbdba80b50ee84f5fbfdad274b4eb708b812fd2
-  dvb-firmware-20210314.tar.gz: 62a371d0f5ec5c24240f1aa01ea881550a8ed0ac
+  kernel-firmware-20210331.tar.zst: 4a295fc1f3635bf1c9152c519fbd09fce0541659
+  dvb-firmware-20210331.tar.gz: 62a371d0f5ec5c24240f1aa01ea881550a8ed0ac
