@@ -1,14 +1,14 @@
 #
 # This rpm is based on the git tree from:
 # git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
-# version is date of the younger commit
+# version is date of the youngest commit
 
 # False positive -- some firmware bits are mistaken for host binaries
 %define _binaries_in_noarch_packages_terminate_build 0
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20210331
+Version:	20210423
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -171,9 +171,11 @@ echo '/lib/firmware/ath10k/QCA99X0/hw2.0/notice_ath10k_firmware-5.txt' >> nonfre
 echo '/lib/firmware/ath10k/WCN3990/hw1.0/notice.txt_wlanmdsp' >>nonfree.list
 echo '/lib/firmware/brcm/brcmfmac4330-sdio.Prowise-PT301.txt' >> nonfree.list
 echo '/lib/firmware/brcm/brcmfmac43340-sdio.meegopad-t08.txt' >> nonfree.list
+echo '/lib/firmware/brcm/brcmfmac43340-sdio.predia-basic.txt' >> nonfree.list
 echo '/lib/firmware/brcm/brcmfmac43362-sdio.cubietech,cubietruck.txt' >> nonfree.list
 echo '/lib/firmware/brcm/brcmfmac43430a0-sdio.jumper-ezpad-mini3.txt' >> nonfree.list
 echo '"/lib/firmware/brcm/brcmfmac43430a0-sdio.ONDA-V80 PLUS.txt"' >> nonfree.list
+echo '/lib/firmware/brcm/brcmfmac43430a0-sdio.ilife-S806.txt' >> nonfree.list
 echo '/lib/firmware/brcm/brcmfmac43430-sdio.AP6212.txt' >> nonfree.list
 echo '/lib/firmware/brcm/brcmfmac43430-sdio.Hampoo-D2D3_Vi8A1.txt' >> nonfree.list
 echo '/lib/firmware/brcm/brcmfmac43430-sdio.MUR1DX.txt' >> nonfree.list
