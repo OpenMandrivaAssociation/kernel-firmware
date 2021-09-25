@@ -8,7 +8,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20210423
+Version:	20210925
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -17,7 +17,7 @@ URL:		http://www.kernel.org/
 # above, by simply cloning it from
 # git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
 # and doing:
-# git archive -o kernel-firmware-`date +%Y%m%d`.tar --prefix=kernel-firmware-`date +%Y%m%d`/ master ; zstd --ultra -22 --rm kernel-firmware-`date +%Y%m%d`.tar
+# git archive -o kernel-firmware-`date +%Y%m%d`.tar --prefix=kernel-firmware-`date +%Y%m%d`/ main ; zstd --ultra -22 --rm kernel-firmware-`date +%Y%m%d`.tar
 Source0:	kernel-firmware-%{version}.tar.zst
 # Firmware for various components of PinePhone, PineBook and Orange Pi
 # https://megous.com/git/linux-firmware
@@ -387,6 +387,12 @@ mv -f nonfree.list.new nonfree.list
 /lib/firmware/qcom/NOTICE.txt
 /lib/firmware/netronome/flower/*.nffw
 /lib/firmware/nvidia
+%dir /lib/firmware/qca
+/lib/firmware/qca/crbtfw21.tlv
+/lib/firmware/qca/crbtfw32.tlv
+/lib/firmware/qca/crnv21.bin
+/lib/firmware/qca/crnv32.bin
+/lib/firmware/qca/crnv32u.bin
 
 %files -n radeon-firmware -f radeon.list
 %defattr(0644,root,root,0755)
@@ -399,6 +405,18 @@ mv -f nonfree.list.new nonfree.list
 %doc LICENCE.iwlwifi_firmware LICENCE.ibt_firmware
 /lib/firmware/intel/ibt-19-32-4.ddc
 /lib/firmware/intel/ibt-19-32-4.sfi
+/lib/firmware/intel/ibt-0040-0041.ddc
+/lib/firmware/intel/ibt-0040-0041.sfi
+/lib/firmware/intel/ibt-0040-2120.ddc
+/lib/firmware/intel/ibt-0040-2120.sfi
+/lib/firmware/intel/ibt-0040-4150.ddc
+/lib/firmware/intel/ibt-0040-4150.sfi
+/lib/firmware/intel/ibt-1040-0041.ddc
+/lib/firmware/intel/ibt-1040-0041.sfi
+/lib/firmware/intel/ibt-1040-2120.ddc
+/lib/firmware/intel/ibt-1040-2120.sfi
+/lib/firmware/intel/ibt-1040-4150.ddc
+/lib/firmware/intel/ibt-1040-4150.sfi
 
 # This should be ifarch %{aarch64}, but since this is a noarch
 # package, that can't be detected. So let's create a superfluous
