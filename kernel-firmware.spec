@@ -8,7 +8,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20210925
+Version:	20211223
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -17,11 +17,11 @@ URL:		http://www.kernel.org/
 # above, by simply cloning it from
 # git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
 # and doing:
-# git archive -o kernel-firmware-`date +%Y%m%d`.tar --prefix=kernel-firmware-`date +%Y%m%d`/ main ; zstd --ultra -22 --rm kernel-firmware-`date +%Y%m%d`.tar
+# git archive -o kernel-firmware-`date +%Y%m%d`.tar --prefix=kernel-firmware-`date +%Y%m%d`/ origin/main ; zstd --ultra -22 --rm kernel-firmware-`date +%Y%m%d`.tar
 Source0:	kernel-firmware-%{version}.tar.zst
 # Firmware for various components of PinePhone, PineBook and Orange Pi
 # https://megous.com/git/linux-firmware
-Source1:	linux-firmware-pine64-20201109.tar.zst
+Source1:	linux-firmware-pine64-20211223.tar.zst
 # Adreno firmware, from OQ820 BSP 3.2
 Source2:	adreno-fw-820BSP3.2.tar.xz
 # Firmware for Hauppauge HVR-1975
@@ -39,6 +39,8 @@ Source9:	https://raw.githubusercontent.com/RPi-Distro/firmware-nonfree/master/br
 # RPi bluetooth firmware
 Source11:	https://github.com/RPi-Distro/bluez-firmware/raw/master/broadcom/BCM43430A1.hcd
 Source12:	https://github.com/RPi-Distro/bluez-firmware/raw/master/broadcom/BCM4345C0.hcd
+# Additional Hauppauge TV receivers
+Source13:	https://www.hauppauge.com/linux/firmware_1900.fw
 Source100:	gen-firmware-lists.sh
 Conflicts:	kernel-firmware-extra < %{version}-1
 Obsoletes:	korg1212-firmware
@@ -236,6 +238,12 @@ mkdir tmp
 cd tmp
 tar xf %{SOURCE4}
 cd dvb-firmware-master/firmware
+# Not yet there
+if [ -e firmware_1900.fw ]; then
+	echo firmware_1900 has been added to OpenELEC - remove from spec
+	exit 1
+fi
+cp %{S:13} .
 # Already added upstream
 rm -rf	dvb-fe-xc4000-1.4.1.fw \
 	dvb-fe-xc5000-1.6.114.fw \
@@ -322,6 +330,7 @@ cat >>nonfree.list <<EOF
 /lib/firmware/brcm/brcmfmac43455-sdio.bin
 /lib/firmware/brcm/brcmfmac43455-sdio.clm_blob
 /lib/firmware/brcm/brcmfmac43455-sdio.txt
+/lib/firmware/brcm/brcmfmac43455-sdio.acepc-t8.txt
 /lib/firmware/BCM43430A1.hcd
 /lib/firmware/BCM4345C0.hcd
 EOF
@@ -336,6 +345,7 @@ echo '/lib/firmware/cis/src/PCMLM28.cis' >>free.list
 echo '/lib/firmware/cis/src/PE-200.cis' >>free.list
 echo '/lib/firmware/cis/src/PE520.cis' >>free.list
 echo '/lib/firmware/cis/src/tamarack.cis' >>free.list
+
 echo '/lib/firmware/intel/ibt-20-0-3.ddc' >>iwlwifi.list
 echo '/lib/firmware/intel/ibt-20-0-3.sfi' >>iwlwifi.list
 echo '/lib/firmware/intel/ibt-20-1-3.ddc' >>iwlwifi.list
@@ -360,6 +370,12 @@ echo '/lib/firmware/intel/ibt-20-1-4.ddc' >>iwlwifi.list
 echo '/lib/firmware/intel/ibt-20-1-4.sfi' >>iwlwifi.list
 echo '/lib/firmware/intel/ibt-0041-0041.ddc' >>iwlwifi.list
 echo '/lib/firmware/intel/ibt-0041-0041.sfi' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-0040-1020.ddc' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-0040-1020.sfi' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-1040-1020.ddc' >>iwlwifi.list
+echo '/lib/firmware/intel/ibt-1040-1020.sfi' >>iwlwifi.list
+
+echo '/lib/firmware/amd-ucode/microcode_amd_fam19h.bin.asc' >>nonfree.list
 
 # rpm doesn't like dupes, but the WHENCE file contains some
 cat free.list |sort |uniq >free.list.new
@@ -436,7 +452,7 @@ mv -f nonfree.list.new nonfree.list
 /lib/firmware/brcm/brcmfmac43456-sdio.txt
 %dir /lib/firmware/rtl_bt
 /lib/firmware/rtl_bt/rtl8723bs_config-pine64.bin
-/lib/firmware/rtl_bt/rtl8723cs_xx_config-pinephone.bin
+/lib/firmware/rtl_bt/rtl8723cs_xx_config.bin
 /lib/firmware/rtl_bt/rtl8723cs_xx_fw.bin
 %dir /lib/firmware/rtlwifi
 /lib/firmware/rtlwifi/rtl8188eufw.bin
