@@ -384,7 +384,7 @@ echo '/lib/firmware/intel/ibt-1040-1020.ddc' >>iwlwifi.list
 echo '/lib/firmware/intel/ibt-1040-1020.sfi' >>iwlwifi.list
 
 # Take care of the iwlwifi-agn-ucode-new split
-sed -i -e '/cc-a0-6[4-9]/d' iwlwifi.list
+sed -i -e '/cc-a0-6[7-9]/d' iwlwifi.list
 
 echo '/lib/firmware/amd-ucode/microcode_amd_fam19h.bin.asc' >>nonfree.list
 
@@ -446,7 +446,7 @@ mv -f nonfree.list.new nonfree.list
 /lib/firmware/intel/ibt-1040-4150.sfi
 
 %files -n iwlwifi-agn-ucode-new
-/lib/firmware/iwlwifi-cc-a0-6[4-9].ucode
+/lib/firmware/iwlwifi-cc-a0-6[7-9].ucode
 
 # This should be ifarch %{aarch64}, but since this is a noarch
 # package, that can't be detected. So let's create a superfluous
