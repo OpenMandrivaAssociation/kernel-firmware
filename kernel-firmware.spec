@@ -8,7 +8,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20220110
+Version:	20220112
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -116,6 +116,14 @@ Conflicts:	kernel-firmware-nonfree < 20130624-1
 This package contains all the iwlwifi wireless firmware files
 supported by the iwlwifi kernel driver. That means all of:
 iwlwifi-1xx/1000/2xxx/5xxx/6xxx*.ucode firmwares.
+
+%package -n iwlwifi-agn-ucode-new
+Summary:	Newer nonfree iwlwifi firmware files for the Linux kernel
+
+%description -n iwlwifi-agn-ucode-new
+This package contains newer iwlwifi firmware code drops that may be
+required for some newer chips to work, but that are known to break
+WiFi on some boards (ASRock X570).
 
 %package pinephone
 Summary:	Firmware files needed to drive components of the PinePhone
@@ -375,6 +383,9 @@ echo '/lib/firmware/intel/ibt-0040-1020.sfi' >>iwlwifi.list
 echo '/lib/firmware/intel/ibt-1040-1020.ddc' >>iwlwifi.list
 echo '/lib/firmware/intel/ibt-1040-1020.sfi' >>iwlwifi.list
 
+# Take care of the iwlwifi-agn-ucode-new split
+sed -i -e '/cc-a0-6[4-9]/d' iwlwifi.list
+
 echo '/lib/firmware/amd-ucode/microcode_amd_fam19h.bin.asc' >>nonfree.list
 
 # rpm doesn't like dupes, but the WHENCE file contains some
@@ -433,6 +444,9 @@ mv -f nonfree.list.new nonfree.list
 /lib/firmware/intel/ibt-1040-2120.sfi
 /lib/firmware/intel/ibt-1040-4150.ddc
 /lib/firmware/intel/ibt-1040-4150.sfi
+
+%files -n iwlwifi-agn-ucode-new
+/lib/firmware/iwlwifi-cc-a0-6[4-9].ucode
 
 # This should be ifarch %{aarch64}, but since this is a noarch
 # package, that can't be detected. So let's create a superfluous
