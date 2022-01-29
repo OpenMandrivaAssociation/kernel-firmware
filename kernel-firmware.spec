@@ -8,7 +8,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20220112
+Version:	20220129
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -132,8 +132,30 @@ Group:		System/Kernel and hardware
 %description pinephone
 Firmware files needed to drive components of the PinePhone
 
+%package mellanox
+Summary:	Firmware files needed to drive Mellanox network cards
+Group:		System/Kernel and hardware
+
+%description mellanox
+Firmware files needed to drive Mellanox network cards
+
+Netronome cards are ultra high end server equipment unlikely
+to show up in consumer grade hardware. If you don't know what
+it is, you don't need to install this package.
+
+%package netronome
+Summary:	Firmware files needed to drive Netronome network cards
+Group:		System/Kernel and hardware
+
+%description netronome
+Firmware files needed to drive Netronome network cards
+
+Netronome cards are ultra high end server equipment unlikely
+to show up in consumer grade hardware. If you don't know what
+it is, you don't need to install this package.
+
 %prep
-%setup -q
+%autosetup -p1
 
 # remove source files we don't need to package
 find . -name "*.asm" -o -name "*.S" -o -name "Makefile*" \
@@ -388,6 +410,14 @@ sed -i -e '/cc-a0-6[7-9]/d' iwlwifi.list
 
 echo '/lib/firmware/amd-ucode/microcode_amd_fam19h.bin.asc' >>nonfree.list
 
+# Split some not HUGE, but not common in standard hardware,
+# bits and pieces into separate packages
+sed -i \
+	-e '/\/lib\/firmware\/mellanox/d' \
+	-e '/\/lib\/firmware\/netronome/d' \
+	-e '/\/lib\/firmware\/qcom/d' \
+	nonfree.list
+
 # rpm doesn't like dupes, but the WHENCE file contains some
 cat free.list |sort |uniq >free.list.new
 mv -f free.list.new free.list
@@ -411,8 +441,6 @@ mv -f nonfree.list.new nonfree.list
 %doc LICENCE.tda7706-firmware.txt LICENCE.ti-connectivity LICENCE.xc5000
 %doc LICENCE.siano LICENSE.amd-ucode
 /lib/firmware/silabs/LICENCE.wf200
-/lib/firmware/qcom/NOTICE.txt
-/lib/firmware/netronome/flower/*.nffw
 /lib/firmware/nvidia
 %dir /lib/firmware/qca
 /lib/firmware/qca/crbtfw21.tlv
@@ -423,10 +451,11 @@ mv -f nonfree.list.new nonfree.list
 
 %files -n radeon-firmware -f radeon.list
 %defattr(0644,root,root,0755)
-%doc LICENSE.radeon
+%license LICENSE.radeon
 
-%files -n adreno-firmware -f adreno.list
+%files -n adreno-firmware
 %defattr(0644,root,root,0755)
+/lib/firmware/qcom
 
 %files -n iwlwifi-agn-ucode -f iwlwifi.list
 %doc LICENCE.iwlwifi_firmware LICENCE.ibt_firmware
@@ -447,6 +476,13 @@ mv -f nonfree.list.new nonfree.list
 
 %files -n iwlwifi-agn-ucode-new
 /lib/firmware/iwlwifi-cc-a0-6[7-9].ucode
+
+%files mellanox
+/lib/firmware/mellanox
+
+%files netronome
+%license LICENCE.Netronome
+/lib/firmware/netronome
 
 # This should be ifarch %{aarch64}, but since this is a noarch
 # package, that can't be detected. So let's create a superfluous
