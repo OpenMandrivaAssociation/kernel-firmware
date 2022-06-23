@@ -6,10 +6,12 @@
 # False positive -- some firmware bits are mistaken for host binaries
 %define _binaries_in_noarch_packages_terminate_build 0
 
+%global _firmwaredir %{_prefix}/lib/firmware
+
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
 Version:	20220129
-Release:	2
+Release:	3
 License:	GPLv2
 Group:		System/Kernel and hardware
 URL:		http://www.kernel.org/
@@ -170,53 +172,53 @@ echo "--------------" >> WHENCE
 sh %SOURCE100
 
 # Files not directly mentioned in WHENCE file (signatures, etc.)
-echo '/lib/firmware/amd-ucode/microcode_amd.bin.asc' >>nonfree.list
-echo '/lib/firmware/amd-ucode/microcode_amd_fam15h.bin.asc' >>nonfree.list
-echo '/lib/firmware/amd-ucode/microcode_amd_fam16h.bin.asc' >>nonfree.list
-echo '/lib/firmware/amd-ucode/microcode_amd_fam17h.bin.asc' >>nonfree.list
-echo '/lib/firmware/ath10k/QCA4019/hw1.0/notice_ath10k_firmware-5.txt' >> nonfree.list
-echo '/lib/firmware/ath10k/QCA6174/hw2.1/notice_ath10k_firmware-5.txt' >> nonfree.list
-echo '/lib/firmware/ath10k/QCA9377/hw1.0/notice_ath10k_firmware-sdio-5.txt' >> nonfree.list
-echo '/lib/firmware/ath10k/QCA6174/hw3.0/notice_ath10k_firmware-sdio-6.txt' >> nonfree.list
-echo '/lib/firmware/ath11k/IPQ6018/hw1.0/Notice.txt' >> nonfree.list
-echo '/lib/firmware/ath11k/IPQ8074/hw2.0/Notice.txt' >> nonfree.list
-echo '/lib/firmware/ath11k/QCA6390/hw2.0/Notice.txt' >> nonfree.list
-echo '/lib/firmware/ath10k/QCA6174/hw3.0/board-2.bin' >> nonfree.list
-echo '/lib/firmware/ath10k/QCA6174/hw3.0/notice_ath10k_firmware-4.txt' >> nonfree.list
-echo '/lib/firmware/ath10k/QCA6174/hw3.0/notice_ath10k_firmware-6.txt' >> nonfree.list
-echo '/lib/firmware/ath10k/QCA9377/hw1.0/notice_ath10k_firmware-5.txt' >> nonfree.list
-echo '/lib/firmware/ath10k/QCA9377/hw1.0/notice_ath10k_firmware-6.txt' >> nonfree.list
-echo '/lib/firmware/ath10k/QCA9887/hw1.0/notice_ath10k_firmware-5.txt' >> nonfree.list
-echo '/lib/firmware/ath10k/QCA9888/hw2.0/notice_ath10k_firmware-5.txt' >> nonfree.list
-echo '/lib/firmware/ath10k/QCA988X/hw2.0/notice_ath10k_firmware-4.txt' >> nonfree.list
-echo '/lib/firmware/ath10k/QCA988X/hw2.0/notice_ath10k_firmware-5.txt' >> nonfree.list
-echo '/lib/firmware/ath10k/QCA9984/hw1.0/notice_ath10k_firmware-5.txt' >> nonfree.list
-echo '/lib/firmware/ath10k/QCA99X0/hw2.0/notice_ath10k_firmware-5.txt' >> nonfree.list
-echo '/lib/firmware/ath10k/WCN3990/hw1.0/notice.txt_wlanmdsp' >>nonfree.list
-echo '/lib/firmware/brcm/brcmfmac4330-sdio.Prowise-PT301.txt' >> nonfree.list
-echo '/lib/firmware/brcm/brcmfmac43340-sdio.meegopad-t08.txt' >> nonfree.list
-echo '/lib/firmware/brcm/brcmfmac43340-sdio.predia-basic.txt' >> nonfree.list
-echo '/lib/firmware/brcm/brcmfmac43362-sdio.cubietech,cubietruck.txt' >> nonfree.list
-echo '/lib/firmware/brcm/brcmfmac43430a0-sdio.jumper-ezpad-mini3.txt' >> nonfree.list
-echo '"/lib/firmware/brcm/brcmfmac43430a0-sdio.ONDA-V80 PLUS.txt"' >> nonfree.list
-echo '/lib/firmware/brcm/brcmfmac43430a0-sdio.ilife-S806.txt' >> nonfree.list
-echo '/lib/firmware/brcm/brcmfmac43430-sdio.AP6212.txt' >> nonfree.list
-echo '/lib/firmware/brcm/brcmfmac43430-sdio.Hampoo-D2D3_Vi8A1.txt' >> nonfree.list
-echo '/lib/firmware/brcm/brcmfmac43430-sdio.MUR1DX.txt' >> nonfree.list
-echo '/lib/firmware/brcm/brcmfmac43430-sdio.raspberrypi,3-model-b.txt' >> nonfree.list
-echo '/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,3-model-b-plus.txt' >> nonfree.list
-echo '/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,4-model-b.txt' >>nonfree.list
-echo '/lib/firmware/brcm/brcmfmac4356-pcie.gpd-win-pocket.txt' >> nonfree.list
-echo '/lib/firmware/qca/NOTICE.txt' >> nonfree.list
+echo '%{_firmwaredir}/amd-ucode/microcode_amd.bin.asc' >>nonfree.list
+echo '%{_firmwaredir}/amd-ucode/microcode_amd_fam15h.bin.asc' >>nonfree.list
+echo '%{_firmwaredir}/amd-ucode/microcode_amd_fam16h.bin.asc' >>nonfree.list
+echo '%{_firmwaredir}/amd-ucode/microcode_amd_fam17h.bin.asc' >>nonfree.list
+echo '%{_firmwaredir}/ath10k/QCA4019/hw1.0/notice_ath10k_firmware-5.txt' >> nonfree.list
+echo '%{_firmwaredir}/ath10k/QCA6174/hw2.1/notice_ath10k_firmware-5.txt' >> nonfree.list
+echo '%{_firmwaredir}/ath10k/QCA9377/hw1.0/notice_ath10k_firmware-sdio-5.txt' >> nonfree.list
+echo '%{_firmwaredir}/ath10k/QCA6174/hw3.0/notice_ath10k_firmware-sdio-6.txt' >> nonfree.list
+echo '%{_firmwaredir}/ath11k/IPQ6018/hw1.0/Notice.txt' >> nonfree.list
+echo '%{_firmwaredir}/ath11k/IPQ8074/hw2.0/Notice.txt' >> nonfree.list
+echo '%{_firmwaredir}/ath11k/QCA6390/hw2.0/Notice.txt' >> nonfree.list
+echo '%{_firmwaredir}/ath10k/QCA6174/hw3.0/board-2.bin' >> nonfree.list
+echo '%{_firmwaredir}/ath10k/QCA6174/hw3.0/notice_ath10k_firmware-4.txt' >> nonfree.list
+echo '%{_firmwaredir}/ath10k/QCA6174/hw3.0/notice_ath10k_firmware-6.txt' >> nonfree.list
+echo '%{_firmwaredir}/ath10k/QCA9377/hw1.0/notice_ath10k_firmware-5.txt' >> nonfree.list
+echo '%{_firmwaredir}/ath10k/QCA9377/hw1.0/notice_ath10k_firmware-6.txt' >> nonfree.list
+echo '%{_firmwaredir}/ath10k/QCA9887/hw1.0/notice_ath10k_firmware-5.txt' >> nonfree.list
+echo '%{_firmwaredir}/ath10k/QCA9888/hw2.0/notice_ath10k_firmware-5.txt' >> nonfree.list
+echo '%{_firmwaredir}/ath10k/QCA988X/hw2.0/notice_ath10k_firmware-4.txt' >> nonfree.list
+echo '%{_firmwaredir}/ath10k/QCA988X/hw2.0/notice_ath10k_firmware-5.txt' >> nonfree.list
+echo '%{_firmwaredir}/ath10k/QCA9984/hw1.0/notice_ath10k_firmware-5.txt' >> nonfree.list
+echo '%{_firmwaredir}/ath10k/QCA99X0/hw2.0/notice_ath10k_firmware-5.txt' >> nonfree.list
+echo '%{_firmwaredir}/ath10k/WCN3990/hw1.0/notice.txt_wlanmdsp' >>nonfree.list
+echo '%{_firmwaredir}/brcm/brcmfmac4330-sdio.Prowise-PT301.txt' >> nonfree.list
+echo '%{_firmwaredir}/brcm/brcmfmac43340-sdio.meegopad-t08.txt' >> nonfree.list
+echo '%{_firmwaredir}/brcm/brcmfmac43340-sdio.predia-basic.txt' >> nonfree.list
+echo '%{_firmwaredir}/brcm/brcmfmac43362-sdio.cubietech,cubietruck.txt' >> nonfree.list
+echo '%{_firmwaredir}/brcm/brcmfmac43430a0-sdio.jumper-ezpad-mini3.txt' >> nonfree.list
+echo '"%{_firmwaredir}/brcm/brcmfmac43430a0-sdio.ONDA-V80 PLUS.txt"' >> nonfree.list
+echo '%{_firmwaredir}/brcm/brcmfmac43430a0-sdio.ilife-S806.txt' >> nonfree.list
+echo '%{_firmwaredir}/brcm/brcmfmac43430-sdio.AP6212.txt' >> nonfree.list
+echo '%{_firmwaredir}/brcm/brcmfmac43430-sdio.Hampoo-D2D3_Vi8A1.txt' >> nonfree.list
+echo '%{_firmwaredir}/brcm/brcmfmac43430-sdio.MUR1DX.txt' >> nonfree.list
+echo '%{_firmwaredir}/brcm/brcmfmac43430-sdio.raspberrypi,3-model-b.txt' >> nonfree.list
+echo '%{_firmwaredir}/brcm/brcmfmac43455-sdio.raspberrypi,3-model-b-plus.txt' >> nonfree.list
+echo '%{_firmwaredir}/brcm/brcmfmac43455-sdio.raspberrypi,4-model-b.txt' >>nonfree.list
+echo '%{_firmwaredir}/brcm/brcmfmac4356-pcie.gpd-win-pocket.txt' >> nonfree.list
+echo '%{_firmwaredir}/qca/NOTICE.txt' >> nonfree.list
 
 %install
-mkdir -p %{buildroot}/lib/firmware
-cp -avf * %{buildroot}/lib/firmware
-rm -f %{buildroot}/lib/firmware/WHENCE %{buildroot}/lib/firmware/LICEN?E.*
-rm -f %{buildroot}/lib/firmware/GPL-3
-rm -f %{buildroot}/lib/firmware/GPL-2
-rm -f %{buildroot}/lib/firmware/*.list
-rm -f %{buildroot}/lib/firmware/check_whence.py
+mkdir -p %{buildroot}%{_firmwaredir}
+cp -avf * %{buildroot}%{_firmwaredir}
+rm -f %{buildroot}%{_firmwaredir}/WHENCE %{buildroot}%{_firmwaredir}/LICEN?E.*
+rm -f %{buildroot}%{_firmwaredir}/GPL-3
+rm -f %{buildroot}%{_firmwaredir}/GPL-2
+rm -f %{buildroot}%{_firmwaredir}/*.list
+rm -f %{buildroot}%{_firmwaredir}/check_whence.py
 
 # Pine64 devices
 rm -rf tmp
@@ -231,12 +233,12 @@ rm brcm/brcmfmac43362-sdio.bin \
 rm regulatory.db regulatory.db.p7s
 rmdir rtlwifi
 for i in *.bin brcm/* rtl_bt/*; do
-	if [ -e %{buildroot}/lib/firmware/$i ]; then
+	if [ -e %{buildroot}%{_firmwaredir}/$i ]; then
 		echo "$i has been added upstream, please remove"
 		exit 1
 	fi
-	mv $i %{buildroot}/lib/firmware/$i
-	echo "/lib/firmware/$i" >>../../nonfree.list
+	mv $i %{buildroot}%{_firmwaredir}/$i
+	echo "%{_firmwaredir}/$i" >>../../nonfree.list
 done
 cd ../..
 
@@ -247,9 +249,9 @@ cd tmp
 tar xf %{SOURCE2}
 FW="$(ls)"
 for i in $FW; do
-	if ! [ -e %{buildroot}/lib/firmware/$i ] && ! [ -e %{buildroot}/lib/firmware/qcom/$i ]; then
-		mv $i %{buildroot}/lib/firmware/qcom/
-		echo "/lib/firmware/qcom/$i" >>../adreno.list
+	if ! [ -e %{buildroot}%{_firmwaredir}/$i ] && ! [ -e %{buildroot}%{_firmwaredir}/qcom/$i ]; then
+		mv $i %{buildroot}%{_firmwaredir}/qcom/
+		echo "%{_firmwaredir}/qcom/$i" >>../adreno.list
 	fi
 done
 cd ..
@@ -308,12 +310,12 @@ rm -rf	dvb-fe-xc4000-1.4.1.fw \
 	ttusb-budget/dspbootcode.bin
 
 for i in *.fw* *.bin *.inp *.mc *.mpg; do
-	if [ -e %{buildroot}/lib/firmware/$i ]; then
+	if [ -e %{buildroot}%{_firmwaredir}/$i ]; then
 		echo "******* Please remove $i from DVB firmware, it's upstream *******"
 		exit 1
 	fi
-	cp $i %{buildroot}/lib/firmware/
-	echo "/lib/firmware/$i" >>../../../nonfree.list
+	cp $i %{buildroot}%{_firmwaredir}/
+	echo "%{_firmwaredir}/$i" >>../../../nonfree.list
 done
 cd ../../..
 
@@ -322,82 +324,82 @@ rm -rf tmp
 mkdir tmp
 cd tmp
 tar xf %{SOURCE3}
-if [ -e %{buildroot}/lib/firmware/v4l-pvrusb2-160xxx-01.fw ]; then
+if [ -e %{buildroot}%{_firmwaredir}/v4l-pvrusb2-160xxx-01.fw ]; then
 	echo "pvrusb2-160xxx firmware has been merged upstream, please remove it here"
 	exit 1
 fi
-cp "Linux-Ubuntu-14-04-2/firmware/HVR 19x5/v4l-pvrusb2-160xxx-01.fw" %{buildroot}/lib/firmware/
+cp "Linux-Ubuntu-14-04-2/firmware/HVR 19x5/v4l-pvrusb2-160xxx-01.fw" %{buildroot}%{_firmwaredir}/
 cd ..
-echo '/lib/firmware/v4l-pvrusb2-160xxx-01.fw' >>nonfree.list
+echo '%{_firmwaredir}/v4l-pvrusb2-160xxx-01.fw' >>nonfree.list
 
 # Raspberry Pi (and potentially others)
-if [ -e %{buildroot}/lib/firmware/brcm/brcmfmac43456-sdio.raspberrypi,400.txt ]; then
+if [ -e %{buildroot}%{_firmwaredir}/brcm/brcmfmac43456-sdio.raspberrypi,400.txt ]; then
 	echo "Looks like Raspberry Pi 400 firmware has been merged,"
 	echo "please check if the updates (Sources 5 to 10) can be removed."
 	exit 1
 fi
-cp -f %{S:5} %{S:6} %{S:7} %{S:8} %{S:9} %{buildroot}/lib/firmware/brcm/
+cp -f %{S:5} %{S:6} %{S:7} %{S:8} %{S:9} %{buildroot}%{_firmwaredir}/brcm/
 if [ -n "$(find %{buildroot} -name BCM43430A1.hcd)" ]; then
 	echo "Broadcom bluetooth firmware has been merged upstream, please remove"
 	exit 1
 fi
-cp -f %{S:11} %{S:12} %{buildroot}/lib/firmware/
-ln -sf brcmfmac43456-sdio.clm_blob %{buildroot}/lib/firmware/brcm/brcmfmac43455-sdio.clm_blob
-ln -sf brcmfmac43456-sdio.txt %{buildroot}/lib/firmware/brcm/brcmfmac43456-sdio.raspberrypi,400.txt
-ln -sf brcmfmac43456-sdio.txt %{buildroot}/lib/firmware/brcm/brcmfmac43456-sdio.raspberrypi,4-compute-module.txt
+cp -f %{S:11} %{S:12} %{buildroot}%{_firmwaredir}/
+ln -sf brcmfmac43456-sdio.clm_blob %{buildroot}%{_firmwaredir}/brcm/brcmfmac43455-sdio.clm_blob
+ln -sf brcmfmac43456-sdio.txt %{buildroot}%{_firmwaredir}/brcm/brcmfmac43456-sdio.raspberrypi,400.txt
+ln -sf brcmfmac43456-sdio.txt %{buildroot}%{_firmwaredir}/brcm/brcmfmac43456-sdio.raspberrypi,4-compute-module.txt
 cat >>nonfree.list <<EOF
-/lib/firmware/brcm/brcmfmac43456-sdio.bin
-/lib/firmware/brcm/brcmfmac43456-sdio.clm_blob
-/lib/firmware/brcm/brcmfmac43456-sdio*.txt
-/lib/firmware/brcm/brcmfmac43455-sdio.bin
-/lib/firmware/brcm/brcmfmac43455-sdio.clm_blob
-/lib/firmware/brcm/brcmfmac43455-sdio.txt
-/lib/firmware/brcm/brcmfmac43455-sdio.acepc-t8.txt
-/lib/firmware/BCM43430A1.hcd
-/lib/firmware/BCM4345C0.hcd
+%{_firmwaredir}/brcm/brcmfmac43456-sdio.bin
+%{_firmwaredir}/brcm/brcmfmac43456-sdio.clm_blob
+%{_firmwaredir}/brcm/brcmfmac43456-sdio*.txt
+%{_firmwaredir}/brcm/brcmfmac43455-sdio.bin
+%{_firmwaredir}/brcm/brcmfmac43455-sdio.clm_blob
+%{_firmwaredir}/brcm/brcmfmac43455-sdio.txt
+%{_firmwaredir}/brcm/brcmfmac43455-sdio.acepc-t8.txt
+%{_firmwaredir}/BCM43430A1.hcd
+%{_firmwaredir}/BCM4345C0.hcd
 EOF
 
 # (tpg) fix it
-sed -i -e 's#^/lib/firmware/isci/$##' free.list
-sed -i -e 's#^/lib/firmware/cis/$##' free.list
-echo '/lib/firmware/cis/src/DP83903.cis' >>free.list
-echo '/lib/firmware/cis/src/LA-PCM.cis' >>free.list
-echo '/lib/firmware/cis/src/NE2K.cis' >>free.list
-echo '/lib/firmware/cis/src/PCMLM28.cis' >>free.list
-echo '/lib/firmware/cis/src/PE-200.cis' >>free.list
-echo '/lib/firmware/cis/src/PE520.cis' >>free.list
-echo '/lib/firmware/cis/src/tamarack.cis' >>free.list
+sed -i -e 's#^%{_firmwaredir}/isci/$##' free.list
+sed -i -e 's#^%{_firmwaredir}/cis/$##' free.list
+echo '%{_firmwaredir}/cis/src/DP83903.cis' >>free.list
+echo '%{_firmwaredir}/cis/src/LA-PCM.cis' >>free.list
+echo '%{_firmwaredir}/cis/src/NE2K.cis' >>free.list
+echo '%{_firmwaredir}/cis/src/PCMLM28.cis' >>free.list
+echo '%{_firmwaredir}/cis/src/PE-200.cis' >>free.list
+echo '%{_firmwaredir}/cis/src/PE520.cis' >>free.list
+echo '%{_firmwaredir}/cis/src/tamarack.cis' >>free.list
 
-echo '/lib/firmware/intel/ibt-20-0-3.ddc' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-20-0-3.sfi' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-20-1-3.ddc' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-20-1-3.sfi' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-19-0-0.ddc' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-19-0-0.sfi' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-19-0-1.ddc' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-19-0-1.sfi' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-19-0-4.ddc' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-19-0-4.sfi' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-19-16-4.ddc' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-19-16-4.sfi' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-19-32-0.ddc' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-19-32-0.sfi' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-19-32-1.ddc' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-19-32-1.sfi' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-19-240-1.ddc' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-19-240-1.sfi' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-19-240-4.ddc' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-19-240-4.sfi' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-20-1-4.ddc' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-20-1-4.sfi' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-0041-0041.ddc' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-0041-0041.sfi' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-0040-1020.ddc' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-0040-1020.sfi' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-1040-1020.ddc' >>iwlwifi.list
-echo '/lib/firmware/intel/ibt-1040-1020.sfi' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-20-0-3.ddc' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-20-0-3.sfi' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-20-1-3.ddc' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-20-1-3.sfi' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-19-0-0.ddc' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-19-0-0.sfi' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-19-0-1.ddc' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-19-0-1.sfi' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-19-0-4.ddc' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-19-0-4.sfi' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-19-16-4.ddc' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-19-16-4.sfi' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-19-32-0.ddc' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-19-32-0.sfi' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-19-32-1.ddc' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-19-32-1.sfi' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-19-240-1.ddc' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-19-240-1.sfi' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-19-240-4.ddc' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-19-240-4.sfi' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-20-1-4.ddc' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-20-1-4.sfi' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-0041-0041.ddc' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-0041-0041.sfi' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-0040-1020.ddc' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-0040-1020.sfi' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-1040-1020.ddc' >>iwlwifi.list
+echo '%{_firmwaredir}/intel/ibt-1040-1020.sfi' >>iwlwifi.list
 
-echo '/lib/firmware/amd-ucode/microcode_amd_fam19h.bin.asc' >>nonfree.list
+echo '%{_firmwaredir}/amd-ucode/microcode_amd_fam19h.bin.asc' >>nonfree.list
 
 # Split some not HUGE, but not common in standard hardware,
 # bits and pieces into separate packages
@@ -418,8 +420,8 @@ mv -f nonfree.list.new nonfree.list
 %doc WHENCE GPL-3 LICENCE.ene_firmware LICENCE.myri10ge_firmware
 %doc LICENCE.qla2xxx LICENCE.ueagle-atm4-firmware LICENCE.via_vt6656
 %doc LICENSE.dib0700
-/lib/firmware/brcm/brcmfmac43340-sdio.pov-tab-p1006w-data.txt
-/lib/firmware/brcm/brcmfmac43455-sdio.MINIX-NEO*
+%{_firmwaredir}/brcm/brcmfmac43340-sdio.pov-tab-p1006w-data.txt
+%{_firmwaredir}/brcm/brcmfmac43455-sdio.MINIX-NEO*
 
 %files extra -f nonfree.list
 %defattr(0644,root,root,0755)
@@ -429,14 +431,14 @@ mv -f nonfree.list.new nonfree.list
 %doc LICENCE.ralink-firmware.txt LICENCE.rtlwifi_firmware.txt
 %doc LICENCE.tda7706-firmware.txt LICENCE.ti-connectivity LICENCE.xc5000
 %doc LICENCE.siano LICENSE.amd-ucode
-/lib/firmware/silabs/LICENCE.wf200
-/lib/firmware/nvidia
-%dir /lib/firmware/qca
-/lib/firmware/qca/crbtfw21.tlv
-/lib/firmware/qca/crbtfw32.tlv
-/lib/firmware/qca/crnv21.bin
-/lib/firmware/qca/crnv32.bin
-/lib/firmware/qca/crnv32u.bin
+%{_firmwaredir}/silabs/LICENCE.wf200
+%{_firmwaredir}/nvidia
+%dir %{_firmwaredir}/qca
+%{_firmwaredir}/qca/crbtfw21.tlv
+%{_firmwaredir}/qca/crbtfw32.tlv
+%{_firmwaredir}/qca/crnv21.bin
+%{_firmwaredir}/qca/crnv32.bin
+%{_firmwaredir}/qca/crnv32u.bin
 
 %files -n radeon-firmware -f radeon.list
 %defattr(0644,root,root,0755)
@@ -444,51 +446,51 @@ mv -f nonfree.list.new nonfree.list
 
 %files -n adreno-firmware
 %defattr(0644,root,root,0755)
-/lib/firmware/qcom
+%{_firmwaredir}/qcom
 
 %files -n iwlwifi-agn-ucode -f iwlwifi.list
 %doc LICENCE.iwlwifi_firmware LICENCE.ibt_firmware
-/lib/firmware/intel/ibt-19-32-4.ddc
-/lib/firmware/intel/ibt-19-32-4.sfi
-/lib/firmware/intel/ibt-0040-0041.ddc
-/lib/firmware/intel/ibt-0040-0041.sfi
-/lib/firmware/intel/ibt-0040-2120.ddc
-/lib/firmware/intel/ibt-0040-2120.sfi
-/lib/firmware/intel/ibt-0040-4150.ddc
-/lib/firmware/intel/ibt-0040-4150.sfi
-/lib/firmware/intel/ibt-1040-0041.ddc
-/lib/firmware/intel/ibt-1040-0041.sfi
-/lib/firmware/intel/ibt-1040-2120.ddc
-/lib/firmware/intel/ibt-1040-2120.sfi
-/lib/firmware/intel/ibt-1040-4150.ddc
-/lib/firmware/intel/ibt-1040-4150.sfi
+%{_firmwaredir}/intel/ibt-19-32-4.ddc
+%{_firmwaredir}/intel/ibt-19-32-4.sfi
+%{_firmwaredir}/intel/ibt-0040-0041.ddc
+%{_firmwaredir}/intel/ibt-0040-0041.sfi
+%{_firmwaredir}/intel/ibt-0040-2120.ddc
+%{_firmwaredir}/intel/ibt-0040-2120.sfi
+%{_firmwaredir}/intel/ibt-0040-4150.ddc
+%{_firmwaredir}/intel/ibt-0040-4150.sfi
+%{_firmwaredir}/intel/ibt-1040-0041.ddc
+%{_firmwaredir}/intel/ibt-1040-0041.sfi
+%{_firmwaredir}/intel/ibt-1040-2120.ddc
+%{_firmwaredir}/intel/ibt-1040-2120.sfi
+%{_firmwaredir}/intel/ibt-1040-4150.ddc
+%{_firmwaredir}/intel/ibt-1040-4150.sfi
 
 %files mellanox
-/lib/firmware/mellanox
+%{_firmwaredir}/mellanox
 
 %files netronome
 %license LICENCE.Netronome
-/lib/firmware/netronome
+%{_firmwaredir}/netronome
 
 # This should be ifarch %{aarch64}, but since this is a noarch
 # package, that can't be detected. So let's create a superfluous
 # package on other arches rather than omitting an important
 # package for aarch64
 %files pinephone
-%dir /lib/firmware
-/lib/firmware/anx7688-fw.bin
-/lib/firmware/hm5065-af.bin
-/lib/firmware/hm5065-init.bin
-/lib/firmware/ov5640_af.bin
-%dir /lib/firmware/brcm
-/lib/firmware/brcm/BCM20702A1.hcd
-/lib/firmware/brcm/BCM4345C5.hcd
-/lib/firmware/brcm/brcmfmac43362-sdio.txt
-/lib/firmware/brcm/brcmfmac43456-sdio.bin
-/lib/firmware/brcm/brcmfmac43456-sdio.txt
-%dir /lib/firmware/rtl_bt
-/lib/firmware/rtl_bt/rtl8723bs_config-pine64.bin
-/lib/firmware/rtl_bt/rtl8723cs_xx_config.bin
-/lib/firmware/rtl_bt/rtl8723cs_xx_fw.bin
-%dir /lib/firmware/rtlwifi
-/lib/firmware/rtlwifi/rtl8188eufw.bin
+%dir %{_firmwaredir}
+%{_firmwaredir}/anx7688-fw.bin
+%{_firmwaredir}/hm5065-af.bin
+%{_firmwaredir}/hm5065-init.bin
+%{_firmwaredir}/ov5640_af.bin
+%dir %{_firmwaredir}/brcm
+%{_firmwaredir}/brcm/BCM20702A1.hcd
+%{_firmwaredir}/brcm/BCM4345C5.hcd
+%{_firmwaredir}/brcm/brcmfmac43362-sdio.txt
+%{_firmwaredir}/brcm/brcmfmac43456-sdio.bin
+%{_firmwaredir}/brcm/brcmfmac43456-sdio.txt
+%dir %{_firmwaredir}/rtl_bt
+%{_firmwaredir}/rtl_bt/rtl8723bs_config-pine64.bin
+%{_firmwaredir}/rtl_bt/rtl8723cs_xx_config.bin
+%{_firmwaredir}/rtl_bt/rtl8723cs_xx_fw.bin
+%dir %{_firmwaredir}/rtlwifi
+%{_firmwaredir}/rtlwifi/rtl8188eufw.bin

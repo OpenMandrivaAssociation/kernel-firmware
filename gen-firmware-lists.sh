@@ -44,7 +44,7 @@ cat WHENCE | while read line; do
 			LIST=nonfree
 		fi
 		for file in $files; do
-			[ -e $file ] && echo /lib/firmware/$file >>$LIST.list
+			[ -e $file ] && echo /usr/lib/firmware/$file >>$LIST.list
 		done
 		echo "$LIST: $driver ($license)"
 		driver=
