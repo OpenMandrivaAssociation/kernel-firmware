@@ -10,8 +10,8 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20220129
-Release:	3
+Version:	20220610
+Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
 URL:		http://www.kernel.org/
@@ -23,7 +23,7 @@ URL:		http://www.kernel.org/
 Source0:	kernel-firmware-%{version}.tar.zst
 # Firmware for various components of PinePhone, PineBook and Orange Pi
 # https://megous.com/git/linux-firmware
-Source1:	linux-firmware-pine64-20211223.tar.zst
+Source1:	linux-firmware-pine64-20220625.tar.zst
 # Adreno firmware, from OQ820 BSP 3.2
 Source2:	adreno-fw-820BSP3.2.tar.xz
 # Firmware for Hauppauge HVR-1975
@@ -209,6 +209,10 @@ echo '%{_firmwaredir}/brcm/brcmfmac43430-sdio.raspberrypi,3-model-b.txt' >> nonf
 echo '%{_firmwaredir}/brcm/brcmfmac43455-sdio.raspberrypi,3-model-b-plus.txt' >> nonfree.list
 echo '%{_firmwaredir}/brcm/brcmfmac43455-sdio.raspberrypi,4-model-b.txt' >>nonfree.list
 echo '%{_firmwaredir}/brcm/brcmfmac4356-pcie.gpd-win-pocket.txt' >> nonfree.list
+echo '%{_firmwaredir}/brcm/brcmfmac43455-sdio.pine64,quartz64-b.txt' >> nonfree.list
+echo '%{_firmwaredir}/brcm/brcmfmac43456-sdio.raspberrypi,4-compute-module.txt' >> nonfree.list
+echo '%{_firmwaredir}/brcm/brcmfmac43456-sdio.raspberrypi,400.txt' >> nonfree.list
+echo '%{_firmwaredir}/wfx/LICENCE.wf200' >> nonfree.list
 echo '%{_firmwaredir}/qca/NOTICE.txt' >> nonfree.list
 
 %install
@@ -228,7 +232,8 @@ tar xf %{S:1}
 cd linux-firmware-pine64
 # Already in upstream firmware
 rm brcm/brcmfmac43362-sdio.bin \
-	rtlwifi/rtl8188eufw.bin
+	rtlwifi/rtl8188eufw.bin \
+	rt2870.bin
 # Duplicate from wireless-regdb
 rm regulatory.db regulatory.db.p7s
 rmdir rtlwifi
@@ -350,7 +355,6 @@ ln -sf brcmfmac43456-sdio.txt %{buildroot}%{_firmwaredir}/brcm/brcmfmac43456-sdi
 cat >>nonfree.list <<EOF
 %{_firmwaredir}/brcm/brcmfmac43456-sdio.bin
 %{_firmwaredir}/brcm/brcmfmac43456-sdio.clm_blob
-%{_firmwaredir}/brcm/brcmfmac43456-sdio*.txt
 %{_firmwaredir}/brcm/brcmfmac43455-sdio.bin
 %{_firmwaredir}/brcm/brcmfmac43455-sdio.clm_blob
 %{_firmwaredir}/brcm/brcmfmac43455-sdio.txt
@@ -410,14 +414,16 @@ sed -i \
 	nonfree.list
 
 # rpm doesn't like dupes, but the WHENCE file contains some
+cat iwlwifi.list |sort |uniq >iwlwifi.list.new
+mv -f iwlwifi.list.new iwlwifi.list
 cat free.list |sort |uniq >free.list.new
 mv -f free.list.new free.list
-cat nonfree.list |sort |uniq >nonfree.list.new
+cat nonfree.list |sort |uniq |grep -v WHENCE >nonfree.list.new
 mv -f nonfree.list.new nonfree.list
 
 %files -f free.list
 %defattr(0644,root,root,0755)
-%doc WHENCE GPL-3 LICENCE.ene_firmware LICENCE.myri10ge_firmware
+%doc GPL-3 LICENCE.ene_firmware LICENCE.myri10ge_firmware
 %doc LICENCE.qla2xxx LICENCE.ueagle-atm4-firmware LICENCE.via_vt6656
 %doc LICENSE.dib0700
 %{_firmwaredir}/brcm/brcmfmac43340-sdio.pov-tab-p1006w-data.txt
@@ -431,8 +437,6 @@ mv -f nonfree.list.new nonfree.list
 %doc LICENCE.ralink-firmware.txt LICENCE.rtlwifi_firmware.txt
 %doc LICENCE.tda7706-firmware.txt LICENCE.ti-connectivity LICENCE.xc5000
 %doc LICENCE.siano LICENSE.amd-ucode
-%{_firmwaredir}/silabs/LICENCE.wf200
-%{_firmwaredir}/nvidia
 %dir %{_firmwaredir}/qca
 %{_firmwaredir}/qca/crbtfw21.tlv
 %{_firmwaredir}/qca/crbtfw32.tlv
@@ -488,6 +492,7 @@ mv -f nonfree.list.new nonfree.list
 %{_firmwaredir}/brcm/brcmfmac43362-sdio.txt
 %{_firmwaredir}/brcm/brcmfmac43456-sdio.bin
 %{_firmwaredir}/brcm/brcmfmac43456-sdio.txt
+%{_firmwaredir}/brcm/brcmfmac43455-sdio.pine64,quartz64-b.txt
 %dir %{_firmwaredir}/rtl_bt
 %{_firmwaredir}/rtl_bt/rtl8723bs_config-pine64.bin
 %{_firmwaredir}/rtl_bt/rtl8723cs_xx_config.bin
