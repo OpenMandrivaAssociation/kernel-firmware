@@ -9,8 +9,8 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20220610
-Release:	2
+Version:	20220829
+Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
 URL:		http://www.kernel.org/
@@ -37,7 +37,6 @@ Source100:	gen-firmware-lists.sh
 # [currently none]
 # From Fedora
 Patch100:	https://src.fedoraproject.org/rpms/linux-firmware/raw/rawhide/f/0001-Add-support-for-compressing-firmware-in-copy-firmwar.patch
-Patch101:	https://src.fedoraproject.org/rpms/linux-firmware/raw/rawhide/f/AW-CM256SM-support.patch
 Conflicts:	kernel-firmware-extra < %{version}-1
 Obsoletes:	korg1212-firmware
 Obsoletes:	maestro3-firmware
@@ -178,6 +177,7 @@ cd linux-firmware-pine64
 rm brcm/brcmfmac43362-sdio.bin \
 	brcm/brcmfmac43455-sdio.bin \
 	brcm/brcmfmac43455-sdio.clm_blob \
+	brcm/brcmfmac43455-sdio.pine64,pinephone-pro.txt \
 	rtlwifi/rtl8188eufw.bin \
 	rt2870.bin
 # Duplicate from wireless-regdb
@@ -365,15 +365,14 @@ fi
 %files extra
 %defattr(0644,root,root,0755)
 %doc LICENCE.Marvell LICENCE.agere LICENCE.atheros_firmware
-%doc LICENCE.broadcom_bcm43xx LICENCE.chelsio_firmware LICENCE.i2400m
+%doc LICENCE.broadcom_bcm43xx LICENCE.chelsio_firmware
 %doc LICENCE.OLPC LICENCE.phanfw
 %doc LICENCE.ralink-firmware.txt LICENCE.rtlwifi_firmware.txt
-%doc LICENCE.tda7706-firmware.txt LICENCE.ti-connectivity LICENCE.xc5000
+%doc LICENCE.ti-connectivity LICENCE.xc5000
 %doc LICENCE.siano LICENSE.amd-ucode
 %{_firmwaredir}/3com
 %{_firmwaredir}/NXP7164*
 %{_firmwaredir}/RTL8192E
-%{_firmwaredir}/TDA7706*.txt*
 %{_firmwaredir}/acenic
 %{_firmwaredir}/adaptec
 %{_firmwaredir}/advansys
@@ -394,9 +393,7 @@ fi
 %{_firmwaredir}/ath6k
 %{_firmwaredir}/ath9k_htc
 %{_firmwaredir}/atmel
-%{_firmwaredir}/atmsar11.fw*
 %{_firmwaredir}/bnx2
-%{_firmwaredir}/bnx2x-*.fw*
 %{_firmwaredir}/bnx2x
 %{_firmwaredir}/bootcode.bin*
 %{_firmwaredir}/brcm
@@ -404,6 +401,7 @@ fi
 %{_firmwaredir}/carl9170-1.fw*
 %{_firmwaredir}/cavium
 %{_firmwaredir}/cbfw*.bin*
+%{_firmwaredir}/cirrus
 %{_firmwaredir}/cmmb*.inp*
 %{_firmwaredir}/cnm
 %{_firmwaredir}/cpia2
@@ -434,8 +432,6 @@ fi
 %{_firmwaredir}/hm5065*.bin*
 %{_firmwaredir}/htc_7010.fw*
 %{_firmwaredir}/htc_9271.fw*
-%{_firmwaredir}/i2400m*.sbcf*
-%{_firmwaredir}/i6050*.sbcf*
 %{_firmwaredir}/i915
 %{_firmwaredir}/imx
 %{_firmwaredir}/inside-secure
@@ -445,7 +441,6 @@ fi
 %{_firmwaredir}/intel/fw_*.bin*
 %{_firmwaredir}/intel/ice
 %{_firmwaredir}/intel/irci*
-%{_firmwaredir}/intelliport2.bin*
 %{_firmwaredir}/isdbt_*.inp*
 %{_firmwaredir}/kaweth
 %{_firmwaredir}/keyspan
@@ -549,7 +544,6 @@ fi
 %{_firmwaredir}/ti_5052.fw*
 %{_firmwaredir}/tigon
 %{_firmwaredir}/tlg2300_firmware.bin*
-%{_firmwaredir}/tr_smctr.bin*
 %{_firmwaredir}/ttusb-budget
 %{_firmwaredir}/ueagle-atm
 %{_firmwaredir}/v4l-cx231xx-avcore-01.fw*

@@ -9,6 +9,6 @@ sources:
   BCM43430A1.hcd: 27a2e1d5fd5c8f29225c6b9cd3486bae7111271f
   BCM4345C0.hcd: 6adcb9aebc3a823cde6e0d1dca9032f5e6f62e81
   firmware_1900.fw: 11943054eef46dec081acff5f11b7c557fdea050
-  dvb-firmware-20220610.tar.gz: 62a371d0f5ec5c24240f1aa01ea881550a8ed0ac
-  kernel-firmware-20220610.tar.zst: 26715c03fcbb9f783c8c8fd6bd14f159bd72212c
+  dvb-firmware-20220829.tar.gz: 62a371d0f5ec5c24240f1aa01ea881550a8ed0ac
   linux-firmware-pine64-20220625.tar.zst: 2c198eba87c41faa07e44fcf43f79c01ac75bc74
+  kernel-firmware-20220829.tar.zst: 4c9a569e0c8f46eb31dc844364c12c14c9e2ec9d
