@@ -9,7 +9,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20220829
+Version:	20221014
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -656,6 +656,7 @@ fi
 %{_firmwaredir}/iwlwifi-Qu-b0-hr-b0-68.ucode.xz
 %{_firmwaredir}/iwlwifi-Qu-b0-hr-b0-71.ucode.xz
 %{_firmwaredir}/iwlwifi-Qu-b0-hr-b0-73.ucode.xz
+%{_firmwaredir}/iwlwifi-Qu-b0-hr-b0-74.ucode.xz
 %{_firmwaredir}/iwlwifi-Qu-b0-jf-b0-48.ucode.xz
 %{_firmwaredir}/iwlwifi-Qu-b0-jf-b0-50.ucode.xz
 %{_firmwaredir}/iwlwifi-Qu-b0-jf-b0-53.ucode.xz
@@ -667,6 +668,7 @@ fi
 %{_firmwaredir}/iwlwifi-Qu-b0-jf-b0-68.ucode.xz
 %{_firmwaredir}/iwlwifi-Qu-b0-jf-b0-71.ucode.xz
 %{_firmwaredir}/iwlwifi-Qu-b0-jf-b0-73.ucode.xz
+%{_firmwaredir}/iwlwifi-Qu-b0-jf-b0-74.ucode.xz
 %{_firmwaredir}/iwlwifi-Qu-c0-hr-b0-48.ucode.xz
 %{_firmwaredir}/iwlwifi-Qu-c0-hr-b0-50.ucode.xz
 %{_firmwaredir}/iwlwifi-Qu-c0-hr-b0-53.ucode.xz
@@ -678,6 +680,7 @@ fi
 %{_firmwaredir}/iwlwifi-Qu-c0-hr-b0-68.ucode.xz
 %{_firmwaredir}/iwlwifi-Qu-c0-hr-b0-71.ucode.xz
 %{_firmwaredir}/iwlwifi-Qu-c0-hr-b0-73.ucode.xz
+%{_firmwaredir}/iwlwifi-Qu-c0-hr-b0-74.ucode.xz
 %{_firmwaredir}/iwlwifi-Qu-c0-jf-b0-48.ucode.xz
 %{_firmwaredir}/iwlwifi-Qu-c0-jf-b0-50.ucode.xz
 %{_firmwaredir}/iwlwifi-Qu-c0-jf-b0-53.ucode.xz
@@ -689,6 +692,7 @@ fi
 %{_firmwaredir}/iwlwifi-Qu-c0-jf-b0-68.ucode.xz
 %{_firmwaredir}/iwlwifi-Qu-c0-jf-b0-71.ucode.xz
 %{_firmwaredir}/iwlwifi-Qu-c0-jf-b0-73.ucode.xz
+%{_firmwaredir}/iwlwifi-Qu-c0-jf-b0-74.ucode.xz
 %{_firmwaredir}/iwlwifi-QuZ-a0-hr-b0-48.ucode.xz
 %{_firmwaredir}/iwlwifi-QuZ-a0-hr-b0-50.ucode.xz
 %{_firmwaredir}/iwlwifi-QuZ-a0-hr-b0-53.ucode.xz
@@ -701,6 +705,7 @@ fi
 %{_firmwaredir}/iwlwifi-QuZ-a0-hr-b0-68.ucode.xz
 %{_firmwaredir}/iwlwifi-QuZ-a0-hr-b0-71.ucode.xz
 %{_firmwaredir}/iwlwifi-QuZ-a0-hr-b0-73.ucode.xz
+%{_firmwaredir}/iwlwifi-QuZ-a0-hr-b0-74.ucode.xz
 %{_firmwaredir}/iwlwifi-QuZ-a0-jf-b0-48.ucode.xz
 %{_firmwaredir}/iwlwifi-QuZ-a0-jf-b0-50.ucode.xz
 %{_firmwaredir}/iwlwifi-QuZ-a0-jf-b0-53.ucode.xz
@@ -712,6 +717,7 @@ fi
 %{_firmwaredir}/iwlwifi-QuZ-a0-jf-b0-68.ucode.xz
 %{_firmwaredir}/iwlwifi-QuZ-a0-jf-b0-71.ucode.xz
 %{_firmwaredir}/iwlwifi-QuZ-a0-jf-b0-73.ucode.xz
+%{_firmwaredir}/iwlwifi-QuZ-a0-jf-b0-74.ucode.xz
 %{_firmwaredir}/iwlwifi-cc-a0-46.ucode.xz
 %{_firmwaredir}/iwlwifi-cc-a0-48.ucode.xz
 %{_firmwaredir}/iwlwifi-cc-a0-50.ucode.xz
@@ -725,25 +731,30 @@ fi
 %{_firmwaredir}/iwlwifi-cc-a0-68.ucode.xz
 %{_firmwaredir}/iwlwifi-cc-a0-71.ucode.xz
 %{_firmwaredir}/iwlwifi-cc-a0-73.ucode.xz
+%{_firmwaredir}/iwlwifi-cc-a0-74.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-gf-a0-64.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-gf-a0-67.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-gf-a0-68.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-gf-a0-71.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-gf-a0-73.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-gf-a0-74.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-gf-a0.pnvm.xz
 %{_firmwaredir}/iwlwifi-so-a0-gf4-a0-67.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-gf4-a0-68.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-gf4-a0-71.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-gf4-a0-73.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-gf4-a0-74.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-gf4-a0.pnvm.xz
 %{_firmwaredir}/iwlwifi-so-a0-hr-b0-64.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-hr-b0-68.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-hr-b0-71.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-hr-b0-73.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-hr-b0-74.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-jf-b0-64.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-jf-b0-68.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-jf-b0-71.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-jf-b0-73.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-jf-b0-74.ucode.xz
 %{_firmwaredir}/iwlwifi-ty-a0-gf-a0-59.ucode.xz
 %{_firmwaredir}/iwlwifi-ty-a0-gf-a0-62.ucode.xz
 %{_firmwaredir}/iwlwifi-ty-a0-gf-a0-63.ucode.xz
@@ -752,6 +763,7 @@ fi
 %{_firmwaredir}/iwlwifi-ty-a0-gf-a0-68.ucode.xz
 %{_firmwaredir}/iwlwifi-ty-a0-gf-a0-71.ucode.xz
 %{_firmwaredir}/iwlwifi-ty-a0-gf-a0-73.ucode.xz
+%{_firmwaredir}/iwlwifi-ty-a0-gf-a0-74.ucode.xz
 %{_firmwaredir}/iwlwifi-ty-a0-gf-a0.pnvm.xz
 %{_firmwaredir}/intel/ibt-0040-0041.ddc.xz
 %{_firmwaredir}/intel/ibt-0040-0041.sfi.xz
