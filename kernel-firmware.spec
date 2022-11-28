@@ -9,7 +9,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20221014
+Version:	20221128
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -765,6 +765,30 @@ fi
 %{_firmwaredir}/iwlwifi-ty-a0-gf-a0-73.ucode.xz
 %{_firmwaredir}/iwlwifi-ty-a0-gf-a0-74.ucode.xz
 %{_firmwaredir}/iwlwifi-ty-a0-gf-a0.pnvm.xz
+%{_firmwaredir}/iwlwifi-Qu-b0-hr-b0-72.ucode.xz
+%{_firmwaredir}/iwlwifi-Qu-b0-hr-b0-77.ucode.xz
+%{_firmwaredir}/iwlwifi-Qu-b0-jf-b0-72.ucode.xz
+%{_firmwaredir}/iwlwifi-Qu-b0-jf-b0-77.ucode.xz
+%{_firmwaredir}/iwlwifi-Qu-c0-hr-b0-72.ucode.xz
+%{_firmwaredir}/iwlwifi-Qu-c0-hr-b0-77.ucode.xz
+%{_firmwaredir}/iwlwifi-Qu-c0-jf-b0-72.ucode.xz
+%{_firmwaredir}/iwlwifi-Qu-c0-jf-b0-77.ucode.xz
+%{_firmwaredir}/iwlwifi-QuZ-a0-hr-b0-72.ucode.xz
+%{_firmwaredir}/iwlwifi-QuZ-a0-hr-b0-77.ucode.xz
+%{_firmwaredir}/iwlwifi-QuZ-a0-jf-b0-72.ucode.xz
+%{_firmwaredir}/iwlwifi-QuZ-a0-jf-b0-77.ucode.xz
+%{_firmwaredir}/iwlwifi-cc-a0-72.ucode.xz
+%{_firmwaredir}/iwlwifi-cc-a0-77.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-gf-a0-72.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-gf-a0-77.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-gf4-a0-72.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-gf4-a0-77.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-hr-b0-72.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-hr-b0-77.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-jf-b0-72.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-jf-b0-77.ucode.xz
+%{_firmwaredir}/iwlwifi-ty-a0-gf-a0-72.ucode.xz
+%{_firmwaredir}/iwlwifi-ty-a0-gf-a0-77.ucode.xz
 %{_firmwaredir}/intel/ibt-0040-0041.ddc.xz
 %{_firmwaredir}/intel/ibt-0040-0041.sfi.xz
 %{_firmwaredir}/intel/ibt-0040-1020.ddc.xz
