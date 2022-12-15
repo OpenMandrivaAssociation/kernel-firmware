@@ -9,7 +9,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20221128
+Version:	20221215
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -473,6 +473,7 @@ fi
 %{_firmwaredir}/ngene_16.fw*
 %{_firmwaredir}/ngene_17.fw*
 %{_firmwaredir}/ngene_18.fw*
+%{_firmwaredir}/nxp
 %{_firmwaredir}/ositech
 %{_firmwaredir}/ov5640_af.bin*
 %{_firmwaredir}/phanfw.bin*
