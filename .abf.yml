@@ -10,5 +10,5 @@ sources:
   BCM4345C0.hcd: 6adcb9aebc3a823cde6e0d1dca9032f5e6f62e81
   firmware_1900.fw: 11943054eef46dec081acff5f11b7c557fdea050
   linux-firmware-pine64-20220625.tar.zst: 2c198eba87c41faa07e44fcf43f79c01ac75bc74
-  dvb-firmware-20221215.tar.gz: 62a371d0f5ec5c24240f1aa01ea881550a8ed0ac
-  kernel-firmware-20221215.tar.zst: eec95f2c62d0cce0933f06c79d579253450a4202
+  dvb-firmware-20230304.tar.gz: 62a371d0f5ec5c24240f1aa01ea881550a8ed0ac
+  kernel-firmware-20230304.tar.zst: c2e41cf20f51908ff0e4ad6269c2dabdbc60d00a
