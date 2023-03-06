@@ -10,7 +10,7 @@
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
 Version:	20230304
-Release:	1
+Release:	2
 License:	GPLv2
 Group:		System/Kernel and hardware
 URL:		http://www.kernel.org/
@@ -30,6 +30,9 @@ Source2:	adreno-fw-820BSP3.2.tar.xz
 Source3:	https://s3.amazonaws.com/hauppauge/linux/linux-ubuntu-14-04-2.tar.xz
 # Firmware for various DVB receivers
 Source4:	https://github.com/OpenELEC/dvb-firmware/archive/master/dvb-firmware-%{version}.tar.gz
+# ARM Mali G610 GPU, e.g. Rock 5B board
+# From ddk g15p0-01eac0, upstream commit 309268f
+Source5:	https://github.com/JeffyCN/rockchip_mirrors/raw/libmali/firmware/g610/mali_csffw.bin
 # Additional Hauppauge TV receivers
 Source13:	https://www.hauppauge.com/linux/firmware_1900.fw
 Source100:	gen-firmware-lists.sh
@@ -64,6 +67,15 @@ Provides:	ueagle-firmware = 1.1-12
 %description extra
 This package contains extra redistributable etc. firmwares for in-kernel
 drivers. It is shared for all kernels.
+
+%package -n mali-g610-firmware
+Summary:	Firmware files needed for Mali G610 graphics chips
+Group:		System/Kernel and hardware
+License:	Proprietary
+Url:		https://github.com/JeffyCN/rockchip_mirrors/tree/libmali
+
+%description -n mali-g610-firmware
+Firmware files needed for Mali G610 graphics chips
 
 %package -n radeon-firmware
 Summary:	ATI R600/R700/Evergreen/Fusion Firmware
@@ -337,6 +349,14 @@ echo '%{_firmwaredir}/v4l-pvrusb2-160xxx-01.fw.xz' >>nonfree.list
 echo '%{_firmwaredir}/v4l-pvrusb2-160xxx-01.fw' >>nonfree.list
 %endif
 
+# Mali
+if [ -e %{buildroot}%{_firmwaredir}/mali_csffw.bin ]; then
+	echo "Mali G610 firmware has been added upstream, drop it"
+	obsolete=$((obsolete+1))
+else
+	cp -f %{S:5} %{buildroot}%{_firmwaredir}
+fi
+
 if [ "$obsolete" -gt 0 ]; then
 	echo "Some files being added manually have gone upstream"
 	echo "and need to be removed."
@@ -577,6 +597,9 @@ fi
 %{_firmwaredir}/xc4000-1.4.fw*
 %{_firmwaredir}/yam
 %{_firmwaredir}/yamaha
+
+%files -n mali-g610-firmware
+%{_firmwaredir}/mali_csffw.bin
 
 %files -n radeon-firmware
 %defattr(0644,root,root,0755)
