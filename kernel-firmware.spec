@@ -10,7 +10,7 @@
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
 Version:	20230304
-Release:	2
+Release:	3
 License:	GPLv2
 Group:		System/Kernel and hardware
 URL:		http://www.kernel.org/
