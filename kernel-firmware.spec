@@ -9,8 +9,8 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20230304
-Release:	3
+Version:	20230802
+Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
 URL:		http://www.kernel.org/
@@ -22,7 +22,7 @@ URL:		http://www.kernel.org/
 Source0:	kernel-firmware-%{version}.tar.zst
 # Firmware for various components of PinePhone, PineBook and Orange Pi
 # https://megous.com/git/linux-firmware
-Source1:	linux-firmware-pine64-20220625.tar.zst
+Source1:	linux-firmware-pine64-%{version}.tar.zst
 # Adreno firmware, from OQ820 BSP 3.2
 Source2:	adreno-fw-820BSP3.2.tar.xz
 # Firmware for Hauppauge HVR-1975
@@ -31,15 +31,12 @@ Source3:	https://s3.amazonaws.com/hauppauge/linux/linux-ubuntu-14-04-2.tar.xz
 # Firmware for various DVB receivers
 Source4:	https://github.com/OpenELEC/dvb-firmware/archive/master/dvb-firmware-%{version}.tar.gz
 # ARM Mali G610 GPU, e.g. Rock 5B board
-# From ddk g15p0-01eac0, upstream commit 309268f
-Source5:	https://github.com/JeffyCN/rockchip_mirrors/raw/libmali/firmware/g610/mali_csffw.bin
+# From ddk g15p0-01eac0
+# https://gitlab.com/rk3588_linux/linux/libmali/-/tree/master/firmware/g610?ref_type=heads
+Source5:	https://gitlab.com/rk3588_linux/linux/libmali/-/raw/master/firmware/g610/mali_csffw.bin
 # Additional Hauppauge TV receivers
 Source13:	https://www.hauppauge.com/linux/firmware_1900.fw
 Source100:	gen-firmware-lists.sh
-# Our own patches
-# [currently none]
-# From Fedora
-Patch100:	https://src.fedoraproject.org/rpms/linux-firmware/raw/rawhide/f/0001-Add-support-for-compressing-firmware-in-copy-firmwar.patch
 Conflicts:	kernel-firmware-extra < %{version}-1
 Obsoletes:	korg1212-firmware
 Obsoletes:	maestro3-firmware
@@ -72,7 +69,7 @@ drivers. It is shared for all kernels.
 Summary:	Firmware files needed for Mali G610 graphics chips
 Group:		System/Kernel and hardware
 License:	Proprietary
-Url:		https://github.com/JeffyCN/rockchip_mirrors/tree/libmali
+Url:		https://gitlab.com/rk3588_linux/linux/libmali/-/tree/master/firmware/g610?ref_type=heads
 
 %description -n mali-g610-firmware
 Firmware files needed for Mali G610 graphics chips
@@ -166,13 +163,13 @@ it is, you don't need to install this package.
 %prep
 %autosetup -p1
 # Let's compress a bit more...
-sed -i -e 's,xz -C,xz -9 -C,g' copy-firmware.sh
+sed -i -e 's,xz --compress,xz --compress -9,g' copy-firmware.sh
 # And be a bit more verbose to give some progress indication
-sed -i -e 's,-C,-v -C,g' Makefile
+sed -i -e 's,--xz,-v --xz,g;s,--zstd,-v --zstd,g' Makefile
 
 %install
 %if %{with compress}
-%make_build DESTDIR=%{buildroot}/ FIRMWAREDIR=%{_firmwaredir} installcompress
+%make_build DESTDIR=%{buildroot}/ FIRMWAREDIR=%{_firmwaredir} install-xz
 %else
 %make_build DESTDIR=%{buildroot}/ FIRMWAREDIR=%{_firmwaredir} install
 %endif
@@ -503,6 +500,8 @@ fi
 %{_firmwaredir}/qat_c3xxx_mmp.bin*
 %{_firmwaredir}/qat_c62x.bin*
 %{_firmwaredir}/qat_c62x_mmp.bin*
+%{_firmwaredir}/qat_4xxx.bin.xz
+%{_firmwaredir}/qat_4xxx_mmp.bin.xz
 %{_firmwaredir}/qca
 %{_firmwaredir}/qed
 %{_firmwaredir}/ql2100_fw.bin*
@@ -730,6 +729,8 @@ fi
 %{_firmwaredir}/intel/ibt-20-1-3.sfi.xz
 %{_firmwaredir}/intel/ibt-20-1-4.ddc.xz
 %{_firmwaredir}/intel/ibt-20-1-4.sfi.xz
+%{_firmwaredir}/intel/ibt-19-0-3.ddc.xz
+%{_firmwaredir}/intel/ibt-19-0-3.sfi.xz
 %{_firmwaredir}/intel/ibt-hw-37.7.10-fw-1.0.1.2d.d.bseq.xz
 %{_firmwaredir}/intel/ibt-hw-37.7.10-fw-1.0.2.3.d.bseq.xz
 %{_firmwaredir}/intel/ibt-hw-37.7.10-fw-1.80.1.2d.d.bseq.xz
@@ -805,6 +806,13 @@ fi
 %{_firmwaredir}/iwlwifi-ty-a0-gf-a0-73.ucode.xz
 %{_firmwaredir}/iwlwifi-ty-a0-gf-a0-78.ucode.xz
 %{_firmwaredir}/iwlwifi-ty-a0-gf-a0-79.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-gf-a0-81.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-gf-a0-83.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-gf4-a0-81.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-gf4-a0-83.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-hr-b0-81.ucode.xz
+%{_firmwaredir}/iwlwifi-ty-a0-gf-a0-81.ucode.xz
+%{_firmwaredir}/iwlwifi-ty-a0-gf-a0-83.ucode.xz
 
 %files mellanox
 %{_firmwaredir}/mellanox
