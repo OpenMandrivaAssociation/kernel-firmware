@@ -9,7 +9,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20230817
+Version:	20230919
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -22,7 +22,7 @@ URL:		http://www.kernel.org/
 Source0:	kernel-firmware-%{version}.tar.zst
 # Firmware for various components of PinePhone, PineBook and Orange Pi
 # https://megous.com/git/linux-firmware
-Source1:	linux-firmware-pine64-%{version}.tar.zst
+Source1:	linux-firmware-pine64-20230817.tar.zst
 # Adreno firmware, from OQ820 BSP 3.2
 Source2:	adreno-fw-820BSP3.2.tar.xz
 # Firmware for Hauppauge HVR-1975
