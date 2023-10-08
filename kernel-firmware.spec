@@ -31,8 +31,9 @@ Source3:	https://s3.amazonaws.com/hauppauge/linux/linux-ubuntu-14-04-2.tar.xz
 # Firmware for various DVB receivers
 Source4:	https://github.com/OpenELEC/dvb-firmware/archive/master/dvb-firmware-%{version}.tar.gz
 # ARM Mali G610 GPU, e.g. Rock 5B board
-# From ddk g15p0-01eac0
+# From ddk g18p0-01eac0
 # https://gitlab.com/rk3588_linux/linux/libmali/-/tree/master/firmware/g610?ref_type=heads
+# see also https://launchpad.net/~liujianfeng1994/+archive/ubuntu/panfork-mesa/+sourcefiles/mali-g610-firmware/1.0.2/mali-g610-firmware_1.0.2.tar.gz
 Source5:	https://gitlab.com/rk3588_linux/linux/libmali/-/raw/master/firmware/g610/mali_csffw.bin
 # Additional Hauppauge TV receivers
 Source13:	https://www.hauppauge.com/linux/firmware_1900.fw

@@ -3,6 +3,6 @@ sources:
   linux-ubuntu-14-04-2.tar.xz: 6d984ef753e72dd4cd5fa85df59abe3b6a7270fe
   firmware_1900.fw: 11943054eef46dec081acff5f11b7c557fdea050
   linux-firmware-pine64-20230817.tar.zst: fc012cd49eee68e56cb414fc81953213bca3dc0a
-  mali_csffw.bin: a6c773301766a84e9e8687b5ba5fb7be8e51ad57
   dvb-firmware-20230919.tar.gz: 62a371d0f5ec5c24240f1aa01ea881550a8ed0ac
   kernel-firmware-20230919.tar.zst: 4f1c5146623ba937a13717fa0d5572805907bbf1
+  mali_csffw.bin: 2d669b1a148fe53630bf7534b3d456d5da8583d3
