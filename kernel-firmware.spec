@@ -9,7 +9,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20230919
+Version:	20231008
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -398,6 +398,7 @@ fi
 %{_firmwaredir}/agere*
 %{_firmwaredir}/amd-ucode
 %{_firmwaredir}/amd
+%{_firmwaredir}/amdtee
 %{_firmwaredir}/amphion
 %{_firmwaredir}/ar3k
 %{_firmwaredir}/ar5523.bin*
@@ -668,6 +669,17 @@ fi
 %{_firmwaredir}/iwlwifi-so-a0-hr-b0-77.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-jf-b0-77.ucode.xz
 %{_firmwaredir}/iwlwifi-ty-a0-gf-a0-77.ucode.xz
+%{_firmwaredir}/iwlwifi-gl-c0-fm-c0-83.ucode.xz
+%{_firmwaredir}/iwlwifi-gl-c0-fm-c0.pnvm.xz
+%{_firmwaredir}/iwlwifi-ma-b0-gf-a0-83.ucode.xz
+%{_firmwaredir}/iwlwifi-ma-b0-gf-a0.pnvm.xz
+%{_firmwaredir}/iwlwifi-ma-b0-gf4-a0-83.ucode.xz
+%{_firmwaredir}/iwlwifi-ma-b0-gf4-a0.pnvm.xz
+%{_firmwaredir}/iwlwifi-ma-b0-hr-b0-83.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-gf-a0-84.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-gf4-a0-84.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-hr-b0-84.ucode.xz
+%{_firmwaredir}/iwlwifi-ty-a0-gf-a0-84.ucode.xz
 %{_firmwaredir}/intel/ibt-0040-0041.ddc.xz
 %{_firmwaredir}/intel/ibt-0040-0041.sfi.xz
 %{_firmwaredir}/intel/ibt-0040-1020.ddc.xz
@@ -678,6 +690,8 @@ fi
 %{_firmwaredir}/intel/ibt-0040-4150.sfi.xz
 %{_firmwaredir}/intel/ibt-0041-0041.ddc.xz
 %{_firmwaredir}/intel/ibt-0041-0041.sfi.xz
+%{_firmwaredir}/intel/ibt-0080-0041.ddc.xz
+%{_firmwaredir}/intel/ibt-0080-0041.sfi.xz
 %{_firmwaredir}/intel/ibt-1040-0041.ddc.xz
 %{_firmwaredir}/intel/ibt-1040-0041.sfi.xz
 %{_firmwaredir}/intel/ibt-1040-1020.ddc.xz
