@@ -9,7 +9,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20231008
+Version:	20231122
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -47,6 +47,7 @@ Obsoletes:	alsa-firmware < 1.0.29-5
 Provides:	alsa-firmware = 1.0.29-5
 Suggests:	kernel-firmware-extra
 BuildArch:	noarch
+BuildRequires:	rdfind
 
 %description
 This package contains the firmware for in-kernel drivers that was previously
@@ -399,6 +400,7 @@ fi
 %{_firmwaredir}/amd-ucode
 %{_firmwaredir}/amd
 %{_firmwaredir}/amdtee
+%{_firmwaredir}/amlogic
 %{_firmwaredir}/amphion
 %{_firmwaredir}/ar3k
 %{_firmwaredir}/ar5523.bin*
@@ -461,6 +463,7 @@ fi
 %{_firmwaredir}/intel/ice
 %{_firmwaredir}/intel/irci*
 %{_firmwaredir}/isdbt_*.inp*
+%{_firmwaredir}/ixp4xx
 %{_firmwaredir}/kaweth
 %{_firmwaredir}/keyspan
 %{_firmwaredir}/korg
@@ -684,14 +687,24 @@ fi
 %{_firmwaredir}/intel/ibt-0040-0041.sfi.xz
 %{_firmwaredir}/intel/ibt-0040-1020.ddc.xz
 %{_firmwaredir}/intel/ibt-0040-1020.sfi.xz
+%{_firmwaredir}/intel/ibt-0040-1050.ddc.xz
+%{_firmwaredir}/intel/ibt-0040-1050.sfi.xz
 %{_firmwaredir}/intel/ibt-0040-2120.ddc.xz
 %{_firmwaredir}/intel/ibt-0040-2120.sfi.xz
 %{_firmwaredir}/intel/ibt-0040-4150.ddc.xz
 %{_firmwaredir}/intel/ibt-0040-4150.sfi.xz
 %{_firmwaredir}/intel/ibt-0041-0041.ddc.xz
 %{_firmwaredir}/intel/ibt-0041-0041.sfi.xz
-%{_firmwaredir}/intel/ibt-0080-0041.ddc.xz
-%{_firmwaredir}/intel/ibt-0080-0041.sfi.xz
+%{_firmwaredir}/intel/ibt-0180-0041.ddc.xz
+%{_firmwaredir}/intel/ibt-0180-0041.sfi.xz
+%{_firmwaredir}/intel/ibt-0180-1050.ddc.xz
+%{_firmwaredir}/intel/ibt-0180-1050.sfi.xz
+%{_firmwaredir}/intel/ibt-0180-4150.ddc.xz
+%{_firmwaredir}/intel/ibt-0180-4150.sfi.xz
+%{_firmwaredir}/intel/ibt-0291-0291.ddc.xz
+%{_firmwaredir}/intel/ibt-0291-0291.sfi.xz
+%{_firmwaredir}/intel/ibt-1040-1050.ddc.xz
+%{_firmwaredir}/intel/ibt-1040-1050.sfi.xz
 %{_firmwaredir}/intel/ibt-1040-0041.ddc.xz
 %{_firmwaredir}/intel/ibt-1040-0041.sfi.xz
 %{_firmwaredir}/intel/ibt-1040-1020.ddc.xz
@@ -802,14 +815,22 @@ fi
 %{_firmwaredir}/iwlwifi-cc-a0-66.ucode.xz
 %{_firmwaredir}/iwlwifi-cc-a0-72.ucode.xz
 %{_firmwaredir}/iwlwifi-cc-a0-73.ucode.xz
+%{_firmwaredir}/iwlwifi-gl-c0-fm-c0-86.ucode.xz
+%{_firmwaredir}/iwlwifi-ma-b0-gf-a0-86.ucode.xz
+%{_firmwaredir}/iwlwifi-ma-b0-gf4-a0-86.ucode.xz
+%{_firmwaredir}/iwlwifi-ma-b0-hr-b0-86.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-hr-b0-83.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-hr-b0-86.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-gf-a0-72.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-gf-a0-73.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-gf-a0-78.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-gf-a0-79.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-gf-a0-86.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-gf4-a0-72.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-gf4-a0-73.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-gf4-a0-78.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-gf4-a0-79.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-gf4-a0-86.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-hr-b0-72.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-hr-b0-73.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-hr-b0-79.ucode.xz
@@ -821,6 +842,7 @@ fi
 %{_firmwaredir}/iwlwifi-ty-a0-gf-a0-73.ucode.xz
 %{_firmwaredir}/iwlwifi-ty-a0-gf-a0-78.ucode.xz
 %{_firmwaredir}/iwlwifi-ty-a0-gf-a0-79.ucode.xz
+%{_firmwaredir}/iwlwifi-ty-a0-gf-a0-86.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-gf-a0-81.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-gf-a0-83.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-gf4-a0-81.ucode.xz
