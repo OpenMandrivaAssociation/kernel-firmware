@@ -9,7 +9,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20231122
+Version:	20231212
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -31,10 +31,14 @@ Source3:	https://s3.amazonaws.com/hauppauge/linux/linux-ubuntu-14-04-2.tar.xz
 # Firmware for various DVB receivers
 Source4:	https://github.com/OpenELEC/dvb-firmware/archive/master/dvb-firmware-%{version}.tar.gz
 # ARM Mali G610 GPU, e.g. Rock 5B board
-# From ddk g18p0-01eac0
-# https://gitlab.com/rk3588_linux/linux/libmali/-/tree/master/firmware/g610?ref_type=heads
-# see also https://launchpad.net/~liujianfeng1994/+archive/ubuntu/panfork-mesa/+sourcefiles/mali-g610-firmware/1.0.2/mali-g610-firmware_1.0.2.tar.gz
-Source5:	https://gitlab.com/rk3588_linux/linux/libmali/-/raw/master/firmware/g610/mali_csffw.bin
+# Available in a slew of versions...
+# https://gitlab.com/rk3588_linux/linux/libmali/-/raw/master/firmware/g610/mali_csffw.bin
+# https://launchpad.net/~liujianfeng1994/+archive/ubuntu/panfork-mesa/+sourcefiles/mali-g610-firmware/1.0.2/mali-g610-firmware_1.0.2.tar.gz
+# https://gitlab.com/firefly-linux/external/libmali/-/raw/firefly/firmware/g610/mali_csffw.bin
+# https://github.com/JeffyCN/mirrors/raw/libmali/firmware/g610/mali_csffw.bin
+# The JeffyCN version seems to be the latest (g21); the kernel driver announcement
+# https://lwn.net/Articles/953784/ mentiones the firefly version.
+Source5:	https://github.com/JeffyCN/mirrors/raw/libmali/firmware/g610/mali_csffw.bin
 # Additional Hauppauge TV receivers
 Source13:	https://www.hauppauge.com/linux/firmware_1900.fw
 Source100:	gen-firmware-lists.sh
@@ -71,10 +75,17 @@ drivers. It is shared for all kernels.
 Summary:	Firmware files needed for Mali G610 graphics chips
 Group:		System/Kernel and hardware
 License:	Proprietary
-Url:		https://gitlab.com/rk3588_linux/linux/libmali/-/tree/master/firmware/g610?ref_type=heads
 
 %description -n mali-g610-firmware
 Firmware files needed for Mali G610 graphics chips
+
+%package -n firmware-powervr
+Summary:	Firmware files needed for Imagination PowerVR graphics chips
+Group:		System/Kernel and hardware
+License:	Proprietary
+
+%description -n firmware-powervr
+Firmware files needed for Imagination PowerVR graphics chips
 
 %package -n radeon-firmware
 Summary:	ATI R600/R700/Evergreen/Fusion Firmware
@@ -349,11 +360,12 @@ echo '%{_firmwaredir}/v4l-pvrusb2-160xxx-01.fw' >>nonfree.list
 %endif
 
 # Mali
-if [ -e %{buildroot}%{_firmwaredir}/mali_csffw.bin ]; then
+if [ -e %{buildroot}%{_firmwaredir}/arm/mali/arch10.8/mali_csffw.bin ]; then
 	echo "Mali G610 firmware has been added upstream, drop it"
 	obsolete=$((obsolete+1))
 else
-	cp -f %{S:5} %{buildroot}%{_firmwaredir}
+	mkdir -p %{buildroot}%{_firmwaredir}/arm/mali/arch10.8
+	cp -f %{S:5} %{buildroot}%{_firmwaredir}/arm/mali/arch10.8/
 fi
 
 if [ "$obsolete" -gt 0 ]; then
@@ -397,6 +409,7 @@ fi
 %{_firmwaredir}/advansys
 %{_firmwaredir}/af9005.fw*
 %{_firmwaredir}/agere*
+%{_firmwaredir}/airoha
 %{_firmwaredir}/amd-ucode
 %{_firmwaredir}/amd
 %{_firmwaredir}/amdtee
@@ -545,6 +558,7 @@ fi
 %{_firmwaredir}/s5p-mfc-v6.fw*
 %{_firmwaredir}/s5p-mfc-v7.fw*
 %{_firmwaredir}/s5p-mfc-v8.fw*
+%{_firmwaredir}/s5p-mfc-v12.fw*
 %{_firmwaredir}/s5p-mfc.fw*
 %{_firmwaredir}/sb16
 %{_firmwaredir}/sdd_sagrad_1091_1098.bin*
@@ -603,7 +617,10 @@ fi
 %{_firmwaredir}/yamaha
 
 %files -n mali-g610-firmware
-%{_firmwaredir}/mali_csffw.bin
+%{_firmwaredir}/arm/mali/arch10.8/mali_csffw.bin
+
+%files -n firmware-powervr
+%{_firmwaredir}/powervr
 
 %files -n radeon-firmware
 %defattr(0644,root,root,0755)
