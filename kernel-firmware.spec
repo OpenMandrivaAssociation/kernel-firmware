@@ -19,6 +19,12 @@ URL:		http://www.kernel.org/
 # git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
 # and doing:
 # git archive -o kernel-firmware-`date +%Y%m%d`.tar --prefix=kernel-firmware-`date +%Y%m%d`/ origin/main ; zstd --ultra -22 --rm kernel-firmware-`date +%Y%m%d`.tar
+#
+# We can also use upstream tarball generation with links like
+# https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-main.tar.gz
+# or
+# https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-20231211.tar.gz
+# but unfortunately those tarballs are huge (zlib is not exactly efficient).
 Source0:	kernel-firmware-%{version}.tar.zst
 # Firmware for various components of PinePhone, PineBook and Orange Pi
 # https://megous.com/git/linux-firmware
@@ -38,7 +44,9 @@ Source4:	https://github.com/OpenELEC/dvb-firmware/archive/master/dvb-firmware-%{
 # https://github.com/JeffyCN/mirrors/raw/libmali/firmware/g610/mali_csffw.bin
 # The JeffyCN version seems to be the latest (g21); the kernel driver announcement
 # https://lwn.net/Articles/953784/ mentiones the firefly version.
-Source5:	https://github.com/JeffyCN/mirrors/raw/libmali/firmware/g610/mali_csffw.bin
+#Source5:	https://github.com/JeffyCN/mirrors/raw/libmali/firmware/g610/mali_csffw.bin
+# ca33693a... is the commit introducing firmware g18. g21 doesn't seem to work yet.
+Source5:	https://github.com/JeffyCN/mirrors/raw/ca33693a03b2782edc237d1d3b786f94849bed7d/firmware/g610/mali_csffw.bin
 # Additional Hauppauge TV receivers
 Source13:	https://www.hauppauge.com/linux/firmware_1900.fw
 Source100:	gen-firmware-lists.sh

@@ -5,4 +5,4 @@ sources:
   linux-firmware-pine64-20230817.tar.zst: fc012cd49eee68e56cb414fc81953213bca3dc0a
   dvb-firmware-20231212.tar.gz: 62a371d0f5ec5c24240f1aa01ea881550a8ed0ac
   kernel-firmware-20231212.tar.zst: 192bcc6f2c6c8748ce7598933f6f07ff86c80684
-  mali_csffw.bin: 19c17833b30a63a3db5cd86b31cda78163fb1d66
+  mali_csffw.bin: 2d669b1a148fe53630bf7534b3d456d5da8583d3
