@@ -2,7 +2,6 @@ sources:
   adreno-fw-820BSP3.2.tar.xz: 680dc9d27723cbcf2d63375c25bc1a36e8267448
   linux-ubuntu-14-04-2.tar.xz: 6d984ef753e72dd4cd5fa85df59abe3b6a7270fe
   firmware_1900.fw: 11943054eef46dec081acff5f11b7c557fdea050
-  linux-firmware-pine64-20230817.tar.zst: fc012cd49eee68e56cb414fc81953213bca3dc0a
-  dvb-firmware-20231212.tar.gz: 62a371d0f5ec5c24240f1aa01ea881550a8ed0ac
-  kernel-firmware-20231212.tar.zst: 192bcc6f2c6c8748ce7598933f6f07ff86c80684
-  mali_csffw.bin: 2d669b1a148fe53630bf7534b3d456d5da8583d3
+  dvb-firmware-20240312.tar.gz: 62a371d0f5ec5c24240f1aa01ea881550a8ed0ac
+  linux-firmware-20240312.tar.zst: 4550e5d5afafbcd0d6b6630467191e19048a9d99
+  linux-firmware-pine64-20240313.tar.zst: 1791da6f284aa5396ec6d75552cde05a91ed575e

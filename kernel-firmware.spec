@@ -9,7 +9,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20231212
+Version:	20240312
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -18,17 +18,17 @@ URL:		http://www.kernel.org/
 # above, by simply cloning it from
 # git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
 # and doing:
-# git archive -o kernel-firmware-`date +%Y%m%d`.tar --prefix=kernel-firmware-`date +%Y%m%d`/ origin/main ; zstd --ultra -22 --rm kernel-firmware-`date +%Y%m%d`.tar
+# git archive -o linux-firmware-`date +%Y%m%d`.tar --prefix=linux-firmware-`date +%Y%m%d`/ origin/main ; zstd --ultra -22 --rm linux-firmware-`date +%Y%m%d`.tar
 #
 # We can also use upstream tarball generation with links like
 # https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-main.tar.gz
 # or
 # https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-20231211.tar.gz
 # but unfortunately those tarballs are huge (zlib is not exactly efficient).
-Source0:	kernel-firmware-%{version}.tar.zst
+Source0:	linux-firmware-%{version}.tar.zst
 # Firmware for various components of PinePhone, PineBook and Orange Pi
 # https://megous.com/git/linux-firmware
-Source1:	linux-firmware-pine64-20230817.tar.zst
+Source1:	linux-firmware-pine64-20240313.tar.zst
 # Adreno firmware, from OQ820 BSP 3.2
 Source2:	adreno-fw-820BSP3.2.tar.xz
 # Firmware for Hauppauge HVR-1975
@@ -36,17 +36,6 @@ Source2:	adreno-fw-820BSP3.2.tar.xz
 Source3:	https://s3.amazonaws.com/hauppauge/linux/linux-ubuntu-14-04-2.tar.xz
 # Firmware for various DVB receivers
 Source4:	https://github.com/OpenELEC/dvb-firmware/archive/master/dvb-firmware-%{version}.tar.gz
-# ARM Mali G610 GPU, e.g. Rock 5B board
-# Available in a slew of versions...
-# https://gitlab.com/rk3588_linux/linux/libmali/-/raw/master/firmware/g610/mali_csffw.bin
-# https://launchpad.net/~liujianfeng1994/+archive/ubuntu/panfork-mesa/+sourcefiles/mali-g610-firmware/1.0.2/mali-g610-firmware_1.0.2.tar.gz
-# https://gitlab.com/firefly-linux/external/libmali/-/raw/firefly/firmware/g610/mali_csffw.bin
-# https://github.com/JeffyCN/mirrors/raw/libmali/firmware/g610/mali_csffw.bin
-# The JeffyCN version seems to be the latest (g21); the kernel driver announcement
-# https://lwn.net/Articles/953784/ mentiones the firefly version.
-#Source5:	https://github.com/JeffyCN/mirrors/raw/libmali/firmware/g610/mali_csffw.bin
-# ca33693a... is the commit introducing firmware g18. g21 doesn't seem to work yet.
-Source5:	https://github.com/JeffyCN/mirrors/raw/ca33693a03b2782edc237d1d3b786f94849bed7d/firmware/g610/mali_csffw.bin
 # Additional Hauppauge TV receivers
 Source13:	https://www.hauppauge.com/linux/firmware_1900.fw
 Source100:	gen-firmware-lists.sh
@@ -182,7 +171,7 @@ to show up in consumer grade hardware. If you don't know what
 it is, you don't need to install this package.
 
 %prep
-%autosetup -p1
+%autosetup -p1 -n linux-firmware-%{version}
 # Let's compress a bit more...
 sed -i -e 's,xz --compress,xz --compress -9,g' copy-firmware.sh
 # And be a bit more verbose to give some progress indication
@@ -208,12 +197,34 @@ rm brcm/brcmfmac43362-sdio.bin \
 	brcm/brcmfmac43455-sdio.bin \
 	brcm/brcmfmac43455-sdio.clm_blob \
 	brcm/brcmfmac43455-sdio.pine64,pinephone-pro.txt \
+	brcm/brcmfmac43455-sdio.pine64,pinebook-pro.txt \
 	rtlwifi/rtl8188eufw.bin \
-	rt2870.bin
+	rtl_bt/rtl8821c_config.bin \
+	rtl_bt/rtl8821c_fw.bin \
+	rtl_bt/rtl8822b_config.bin \
+	rtl_bt/rtl8822b_fw.bin \
+	rtl_nic/rtl8125a-3.fw \
+	rtl_nic/rtl8125b-1.fw \
+	rtl_nic/rtl8125b-2.fw \
+	rtl_nic/rtl8153a-4.fw \
+	rtl_nic/rtl8168h-2.fw \
+	rt2870.bin \
+	rtw88/rtw8821c_fw.bin \
+	rtw88/rtw8822b_fw.bin \
+	rtw88/rtw8822c_fw.bin \
+	rtw88/rtw8822c_wow_fw.bin \
+	rtw89/rtw8852a_fw.bin \
+	rockchip/dptx.bin
 # Duplicate from wireless-regdb
 rm regulatory.db regulatory.db.p7s
-rmdir rtlwifi
-for i in *.bin brcm/* rtl_bt/*; do
+rmdir rtlwifi rtl_nic rockchip rtw89
+if [ -d %{buildroot}%{_firmwaredir}/ap6275p ]; then
+	echo "===== ap6275p has been added upstream, remove from pine64 ====="
+	obsolete=$((obsolete+1))
+fi
+mv ap6275p %{buildroot}%{_firmwaredir}/
+mkdir -p %{buildroot}%{_firmwaredir}/brcm/2020-02-12
+for i in *.bin brcm/*.* brcm/2020-02-12/* rtl_bt/*.bin rtw88/*; do
 	if [ -e %{buildroot}%{_firmwaredir}/$i -o -e %{buildroot}%{_firmwaredir}/$i.xz ]; then
 		echo "===== $i from pine64 has been added upstream, please remove ====="
 		obsolete=$((obsolete+1))
@@ -367,15 +378,6 @@ echo '%{_firmwaredir}/v4l-pvrusb2-160xxx-01.fw.xz' >>nonfree.list
 echo '%{_firmwaredir}/v4l-pvrusb2-160xxx-01.fw' >>nonfree.list
 %endif
 
-# Mali
-if [ -e %{buildroot}%{_firmwaredir}/arm/mali/arch10.8/mali_csffw.bin ]; then
-	echo "Mali G610 firmware has been added upstream, drop it"
-	obsolete=$((obsolete+1))
-else
-	mkdir -p %{buildroot}%{_firmwaredir}/arm/mali/arch10.8
-	cp -f %{S:5} %{buildroot}%{_firmwaredir}/arm/mali/arch10.8/
-fi
-
 if [ "$obsolete" -gt 0 ]; then
 	echo "Some files being added manually have gone upstream"
 	echo "and need to be removed."
@@ -411,7 +413,6 @@ fi
 %doc LICENCE.siano LICENSE.amd-ucode
 %{_firmwaredir}/3com
 %{_firmwaredir}/NXP7164*
-%{_firmwaredir}/RTL8192E
 %{_firmwaredir}/acenic
 %{_firmwaredir}/adaptec
 %{_firmwaredir}/advansys
@@ -623,16 +624,95 @@ fi
 %{_firmwaredir}/xc4000-1.4.fw*
 %{_firmwaredir}/yam
 %{_firmwaredir}/yamaha
+%{_firmwaredir}/INT8866RCA2.bin.xz
+%{_firmwaredir}/TAS2XXX3870.bin.xz
+%{_firmwaredir}/TAS2XXX387D.bin.xz
+%{_firmwaredir}/TAS2XXX387E.bin.xz
+%{_firmwaredir}/TAS2XXX387F.bin.xz
+%{_firmwaredir}/TAS2XXX3880.bin.xz
+%{_firmwaredir}/TAS2XXX3881.bin.xz
+%{_firmwaredir}/TAS2XXX3882.bin.xz
+%{_firmwaredir}/TAS2XXX3884.bin.xz
+%{_firmwaredir}/TAS2XXX3886.bin.xz
+%{_firmwaredir}/TAS2XXX38A5.bin.xz
+%{_firmwaredir}/TAS2XXX38A7.bin.xz
+%{_firmwaredir}/TAS2XXX38A8.bin.xz
+%{_firmwaredir}/TAS2XXX38B8.bin.xz
+%{_firmwaredir}/TAS2XXX38B9.bin.xz
+%{_firmwaredir}/TAS2XXX38BA.bin.xz
+%{_firmwaredir}/TAS2XXX38BB.bin.xz
+%{_firmwaredir}/TAS2XXX38BE.bin.xz
+%{_firmwaredir}/TAS2XXX38BF.bin.xz
+%{_firmwaredir}/TAS2XXX38C3.bin.xz
+%{_firmwaredir}/TAS2XXX38CB.bin.xz
+%{_firmwaredir}/TAS2XXX38CD.bin.xz
+%{_firmwaredir}/TAS2XXX38D3.bin.xz
+%{_firmwaredir}/TAS2XXX38D4.bin.xz
+%{_firmwaredir}/TAS2XXX38D5.bin.xz
+%{_firmwaredir}/TAS2XXX38D6.bin.xz
+%{_firmwaredir}/TAS2XXX38DF.bin.xz
+%{_firmwaredir}/TAS2XXX38E0.bin.xz
+%{_firmwaredir}/TIAS2781RCA2.bin.xz
+%{_firmwaredir}/TIAS2781RCA4.bin.xz
+%{_firmwaredir}/ap6275p
+%dir %{_firmwaredir}/ath12k
+%dir %{_firmwaredir}/ath12k/WCN7850
+%dir %{_firmwaredir}/ath12k/WCN7850/hw2.0
+%{_firmwaredir}/ath12k/WCN7850/hw2.0/Notice.txt.xz
+%{_firmwaredir}/ath12k/WCN7850/hw2.0/amss.bin.xz
+%{_firmwaredir}/ath12k/WCN7850/hw2.0/board-2.bin.xz
+%{_firmwaredir}/ath12k/WCN7850/hw2.0/m3.bin.xz
+%{_firmwaredir}/cs42l43.bin.xz
+%dir %{_firmwaredir}/intel/ipu
+%{_firmwaredir}/intel/ipu/ipu6_fw.bin.xz
+%{_firmwaredir}/intel/ipu/ipu6ep_fw.bin.xz
+%{_firmwaredir}/intel/ipu/ipu6epadln_fw.bin.xz
+%{_firmwaredir}/intel/ipu/ipu6epmtl_fw.bin.xz
+%{_firmwaredir}/intel/ipu/ipu6se_fw.bin.xz
+%{_firmwaredir}/intel/ipu/irci_irci_ecr-master_20161208_0213_20170112_1500.bin.xz
+%{_firmwaredir}/intel/ipu/shisp_2400b0_v21.bin.xz
+%{_firmwaredir}/intel/ipu/shisp_2401a0_v21.bin.xz
+%dir %{_firmwaredir}/intel/vsc
+%{_firmwaredir}/intel/vsc/ivsc_fw.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_pkg_hi556_0.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_pkg_himx11b1_0.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_pkg_himx2170_0.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_pkg_himx2172_0.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_pkg_int3537_0.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_pkg_ovti01a0_0.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_pkg_ovti01af_0.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_pkg_ovti01as_0.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_pkg_ovti02c1_0.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_pkg_ovti02e1_0.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_pkg_ovti2740_0.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_pkg_ovti5678_0.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_pkg_ovti9734_0.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_pkg_ovti9738_0.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_skucfg_hi556_0_1.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_skucfg_himx11b1_0_1.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_skucfg_himx2170_0_1.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_skucfg_himx2172_0_1.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_skucfg_int3537_0_1.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_skucfg_ovti01a0_0_1.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_skucfg_ovti01af_0_1.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_skucfg_ovti01as_0_1.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_skucfg_ovti02c1_0_1.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_skucfg_ovti02e1_0_1.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_skucfg_ovti2740_0_1.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_skucfg_ovti5678_0_1.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_skucfg_ovti9734_0_1.bin.xz
+%{_firmwaredir}/intel/vsc/ivsc_skucfg_ovti9738_0_1.bin.xz
+%{_firmwaredir}/xe/lnl_guc_70.bin.xz
+%{_firmwaredir}/tsse_firmware.bin.xz
 
 %files -n mali-g610-firmware
-%{_firmwaredir}/arm/mali/arch10.8/mali_csffw.bin
+%{_firmwaredir}/arm/mali/arch10.8/mali_csffw.bin.xz
 
 %files -n firmware-powervr
 %{_firmwaredir}/powervr
 
 %files -n radeon-firmware
 %defattr(0644,root,root,0755)
-%license LICENSE.radeon
 %{_firmwaredir}/amdgpu
 %{_firmwaredir}/radeon
 
@@ -646,7 +726,6 @@ fi
 %{_firmwaredir}/qcom
 
 %files -n iwlwifi-agn-ucode
-%doc LICENCE.iwlwifi_firmware LICENCE.ibt_firmware
 %{_firmwaredir}/iwlwifi-100-5.ucode.xz
 %{_firmwaredir}/iwlwifi-1000-5.ucode.xz
 %{_firmwaredir}/iwlwifi-105-6.ucode.xz
@@ -880,7 +959,6 @@ fi
 %{_firmwaredir}/mellanox
 
 %files netronome
-%license LICENCE.Netronome
 %{_firmwaredir}/netronome
 
 # This should be ifarch %{aarch64}, but since this is a noarch
