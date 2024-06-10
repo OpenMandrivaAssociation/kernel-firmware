@@ -9,7 +9,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20240312
+Version:	20240610
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -193,38 +193,30 @@ cd tmp
 tar xf %{S:1}
 cd linux-firmware-pine64
 # Already in upstream firmware
-rm brcm/brcmfmac43362-sdio.bin \
+rm -rf brcm/brcmfmac43362-sdio.bin \
 	brcm/brcmfmac43455-sdio.bin \
 	brcm/brcmfmac43455-sdio.clm_blob \
 	brcm/brcmfmac43455-sdio.pine64,pinephone-pro.txt \
 	brcm/brcmfmac43455-sdio.pine64,pinebook-pro.txt \
-	rtlwifi/rtl8188eufw.bin \
+	rtlwifi \
 	rtl_bt/rtl8821c_config.bin \
 	rtl_bt/rtl8821c_fw.bin \
 	rtl_bt/rtl8822b_config.bin \
 	rtl_bt/rtl8822b_fw.bin \
-	rtl_nic/rtl8125a-3.fw \
-	rtl_nic/rtl8125b-1.fw \
-	rtl_nic/rtl8125b-2.fw \
-	rtl_nic/rtl8153a-4.fw \
-	rtl_nic/rtl8168h-2.fw \
+	rtl_nic \
 	rt2870.bin \
-	rtw88/rtw8821c_fw.bin \
-	rtw88/rtw8822b_fw.bin \
-	rtw88/rtw8822c_fw.bin \
-	rtw88/rtw8822c_wow_fw.bin \
-	rtw89/rtw8852a_fw.bin \
-	rockchip/dptx.bin
+	rtw88 \
+	rtw89 \
+	rockchip
 # Duplicate from wireless-regdb
 rm regulatory.db regulatory.db.p7s
-rmdir rtlwifi rtl_nic rockchip rtw89
 if [ -d %{buildroot}%{_firmwaredir}/ap6275p ]; then
 	echo "===== ap6275p has been added upstream, remove from pine64 ====="
 	obsolete=$((obsolete+1))
 fi
 mv ap6275p %{buildroot}%{_firmwaredir}/
 mkdir -p %{buildroot}%{_firmwaredir}/brcm/2020-02-12
-for i in *.bin brcm/*.* brcm/2020-02-12/* rtl_bt/*.bin rtw88/*; do
+for i in *.bin brcm/*.* brcm/2020-02-12/* rtl_bt/*.bin; do
 	if [ -e %{buildroot}%{_firmwaredir}/$i -o -e %{buildroot}%{_firmwaredir}/$i.xz ]; then
 		echo "===== $i from pine64 has been added upstream, please remove ====="
 		obsolete=$((obsolete+1))
@@ -625,6 +617,7 @@ fi
 %{_firmwaredir}/yam
 %{_firmwaredir}/yamaha
 %{_firmwaredir}/INT8866RCA2.bin.xz
+%{_firmwaredir}/TAS2XXX2234.bin.xz
 %{_firmwaredir}/TAS2XXX3870.bin.xz
 %{_firmwaredir}/TAS2XXX387D.bin.xz
 %{_firmwaredir}/TAS2XXX387E.bin.xz
@@ -787,6 +780,13 @@ fi
 %{_firmwaredir}/iwlwifi-so-a0-gf4-a0-84.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-hr-b0-84.ucode.xz
 %{_firmwaredir}/iwlwifi-ty-a0-gf-a0-84.ucode.xz
+%{_firmwaredir}/iwlwifi-gl-c0-fm-c0-90.ucode.xz
+%{_firmwaredir}/iwlwifi-ma-b0-gf-a0-89.ucode.xz
+%{_firmwaredir}/iwlwifi-ma-b0-gf4-a0-89.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-gf-a0-89.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-gf4-a0-89.ucode.xz
+%{_firmwaredir}/iwlwifi-so-a0-hr-b0-89.ucode.xz
+%{_firmwaredir}/iwlwifi-ty-a0-gf-a0-89.ucode.xz
 %{_firmwaredir}/intel/ibt-0040-0041.ddc.xz
 %{_firmwaredir}/intel/ibt-0040-0041.sfi.xz
 %{_firmwaredir}/intel/ibt-0040-1020.ddc.xz
