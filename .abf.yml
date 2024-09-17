@@ -3,5 +3,5 @@ sources:
   linux-ubuntu-14-04-2.tar.xz: 6d984ef753e72dd4cd5fa85df59abe3b6a7270fe
   firmware_1900.fw: 11943054eef46dec081acff5f11b7c557fdea050
   linux-firmware-pine64-20240313.tar.zst: 1791da6f284aa5396ec6d75552cde05a91ed575e
-  dvb-firmware-20240610.tar.gz: 62a371d0f5ec5c24240f1aa01ea881550a8ed0ac
-  linux-firmware-20240610.tar.zst: 365a66e2087f684974c9938a3829ca31d8bc2fee
+  dvb-firmware-20240909.tar.gz: 62a371d0f5ec5c24240f1aa01ea881550a8ed0ac
+  linux-firmware-20240909.tar.zst: 46965f704f26d916c362264c1b35a467cc29af28

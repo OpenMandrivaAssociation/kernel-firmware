@@ -9,7 +9,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20240610
+Version:	20240909
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -216,6 +216,8 @@ if [ -d %{buildroot}%{_firmwaredir}/ap6275p ]; then
 fi
 mv ap6275p %{buildroot}%{_firmwaredir}/
 mkdir -p %{buildroot}%{_firmwaredir}/brcm/2020-02-12
+rm rtl_bt/rtl8723cs_xx_config.bin
+rm rtl_bt/rtl8723cs_xx_fw.bin
 for i in *.bin brcm/*.* brcm/2020-02-12/* rtl_bt/*.bin; do
 	if [ -e %{buildroot}%{_firmwaredir}/$i -o -e %{buildroot}%{_firmwaredir}/$i.xz ]; then
 		echo "===== $i from pine64 has been added upstream, please remove ====="
@@ -521,6 +523,8 @@ fi
 %{_firmwaredir}/qat_c62x_mmp.bin*
 %{_firmwaredir}/qat_4xxx.bin.xz
 %{_firmwaredir}/qat_4xxx_mmp.bin.xz
+%{_firmwaredir}/qat_402xx.bin.xz
+%{_firmwaredir}/qat_402xx_mmp.bin.xz
 %{_firmwaredir}/qca
 %{_firmwaredir}/qed
 %{_firmwaredir}/ql2100_fw.bin*
@@ -614,6 +618,10 @@ fi
 %{_firmwaredir}/xc3028-v27.fw*
 %{_firmwaredir}/xc3028L-v36.fw*
 %{_firmwaredir}/xc4000-1.4.fw*
+%{_firmwaredir}/xe/bmg_guc_70.bin*
+%{_firmwaredir}/xe/bmg_huc.bin*
+%{_firmwaredir}/xe/lnl_gsc_1.bin*
+%{_firmwaredir}/xe/lnl_huc.bin*
 %{_firmwaredir}/yam
 %{_firmwaredir}/yamaha
 %{_firmwaredir}/INT8866RCA2.bin.xz
@@ -873,10 +881,6 @@ fi
 %{_firmwaredir}/intel/ibt-hw-37.8.10-fw-22.50.19.14.f.bseq.xz
 %{_firmwaredir}/intel/ibt-hw-37.8.bseq.xz
 %{_firmwaredir}/intel/ipu3-fw.bin.xz
-%{_firmwaredir}/intel/avs/apl/dsp_basefw.bin.xz
-%{_firmwaredir}/intel/avs/cnl/dsp_basefw.bin.xz
-%{_firmwaredir}/intel/avs/skl/dsp_basefw.bin.xz
-%{_firmwaredir}/intel/avs/skl/dsp_mod_7CAD0808-AB10-CD23-EF45-12AB34CD56EF.bin.xz
 %{_firmwaredir}/intel/catpt/bdw/dsp_basefw.bin.xz
 %{_firmwaredir}/iwlwifi-8000C-34.ucode.xz
 %{_firmwaredir}/iwlwifi-8265-34.ucode.xz
@@ -954,6 +958,12 @@ fi
 %{_firmwaredir}/iwlwifi-so-a0-hr-b0-81.ucode.xz
 %{_firmwaredir}/iwlwifi-ty-a0-gf-a0-81.ucode.xz
 %{_firmwaredir}/iwlwifi-ty-a0-gf-a0-83.ucode.xz
+%{_firmwaredir}/intel/avs
+%{_firmwaredir}/intel/ish
+%{_firmwaredir}/iwlwifi-bz-b0-fm-c0-92.ucode.xz
+%{_firmwaredir}/iwlwifi-bz-b0-fm-c0.pnvm.xz
+%{_firmwaredir}/iwlwifi-gl-c0-fm-c0-92.ucode.xz
+%{_firmwaredir}/iwlwifi-ma-b0-hr-b0-89.ucode.xz
 
 %files mellanox
 %{_firmwaredir}/mellanox
