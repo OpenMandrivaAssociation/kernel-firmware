@@ -13,7 +13,7 @@ Version:	20240909
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
-URL:		http://www.kernel.org/
+URL:		https://www.kernel.org/
 # kernel-firmware tarball is generated from the git tree mentioned
 # above, by simply cloning it from
 # git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
@@ -58,7 +58,7 @@ included in the kernel. It is shared by all kernels >= 2.6.27-rc1.
 Summary:	Extra linux kernel firmware files
 Group:		System/Kernel and hardware
 License:	Proprietary
-URL:		http://www.kernel.org/
+URL:		https://www.kernel.org/
 Conflicts:	kernel-firmware < 20120218
 Obsoletes:	rt61-firmware
 Obsoletes:	ueagle-firmware < 1.1-12
@@ -88,7 +88,7 @@ Firmware files needed for Imagination PowerVR graphics chips
 Summary:	ATI R600/R700/Evergreen/Fusion Firmware
 Group:		System/Kernel and hardware
 License:	Proprietary
-Url:		http://ati.amd.com/
+Url:		https://ati.amd.com/
 Obsoletes:	radeon-rlc-firmware
 Obsoletes:	radeon-firmware <= 20110310-5
 Conflicts:	radeon-firmware <= 20110310-5
@@ -103,7 +103,7 @@ beginning with 2.6.33 series kernels.
 Summary:	NVIDIA Firmware
 Group:		System/Kernel and hardware
 License:	Proprietary
-Url:		http://nvidia.com/
+Url:		https://nvidia.com/
 
 %description -n nvidia-firmware
 Firmware files needed to use NVIDIA GPUs, even when using the Open
