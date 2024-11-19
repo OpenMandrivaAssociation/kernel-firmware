@@ -9,7 +9,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20240909
+Version:	20241110
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -537,6 +537,10 @@ fi
 %{_firmwaredir}/r8a779x_usb3_v1.dlmem*
 %{_firmwaredir}/r8a779x_usb3_v2.dlmem*
 %{_firmwaredir}/r8a779x_usb3_v3.dlmem*
+%dir %{_firmwaredir}/realtek
+%dir %{_firmwaredir}/realtek/rt1320
+%{_firmwaredir}/realtek/rt1320/rt1320-patch-code-vab.bin.xz
+%{_firmwaredir}/realtek/rt1320/rt1320-patch-code-vc.bin.xz
 %{_firmwaredir}/rockchip
 %{_firmwaredir}/rp2.fw*
 %{_firmwaredir}/rsi
@@ -625,6 +629,9 @@ fi
 %{_firmwaredir}/yam
 %{_firmwaredir}/yamaha
 %{_firmwaredir}/INT8866RCA2.bin.xz
+%{_firmwaredir}/TAS2XXX1EB3.bin.xz
+%{_firmwaredir}/TAS2XXX1EB30.bin.xz
+%{_firmwaredir}/TAS2XXX1EB31.bin.xz
 %{_firmwaredir}/TAS2XXX2234.bin.xz
 %{_firmwaredir}/TAS2XXX3870.bin.xz
 %{_firmwaredir}/TAS2XXX387D.bin.xz
@@ -657,6 +664,11 @@ fi
 %{_firmwaredir}/TIAS2781RCA4.bin.xz
 %{_firmwaredir}/ap6275p
 %dir %{_firmwaredir}/ath12k
+%dir %{_firmwaredir}/ath12k/QCN9274
+%dir %{_firmwaredir}/ath12k/QCN9274/hw2.0
+%{_firmwaredir}/ath12k/QCN9274/hw2.0/Notice.txt.xz
+%{_firmwaredir}/ath12k/QCN9274/hw2.0/board-2.bin.xz
+%{_firmwaredir}/ath12k/QCN9274/hw2.0/firmware-2.bin.xz
 %dir %{_firmwaredir}/ath12k/WCN7850
 %dir %{_firmwaredir}/ath12k/WCN7850/hw2.0
 %{_firmwaredir}/ath12k/WCN7850/hw2.0/Notice.txt.xz
@@ -756,7 +768,9 @@ fi
 %{_firmwaredir}/iwlwifi-Qu-c0-jf-b0-74.ucode.xz
 %{_firmwaredir}/iwlwifi-QuZ-a0-hr-b0-74.ucode.xz
 %{_firmwaredir}/iwlwifi-QuZ-a0-jf-b0-74.ucode.xz
+%{_firmwaredir}/iwlwifi-bz-b0-fm-c0-94.ucode.xz
 %{_firmwaredir}/iwlwifi-cc-a0-74.ucode.xz
+%{_firmwaredir}/iwlwifi-gl-c0-fm-c0-94.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-gf-a0-74.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-gf-a0.pnvm.xz
 %{_firmwaredir}/iwlwifi-so-a0-gf4-a0-74.ucode.xz
@@ -807,12 +821,22 @@ fi
 %{_firmwaredir}/intel/ibt-0040-4150.sfi.xz
 %{_firmwaredir}/intel/ibt-0041-0041.ddc.xz
 %{_firmwaredir}/intel/ibt-0041-0041.sfi.xz
+%{_firmwaredir}/intel/ibt-0093-0041.ddc.xz
+%{_firmwaredir}/intel/ibt-0093-0041.sfi.xz
+%{_firmwaredir}/intel/ibt-0093-0291.ddc.xz
+%{_firmwaredir}/intel/ibt-0093-0291.sfi.xz
 %{_firmwaredir}/intel/ibt-0180-0041.ddc.xz
 %{_firmwaredir}/intel/ibt-0180-0041.sfi.xz
 %{_firmwaredir}/intel/ibt-0180-1050.ddc.xz
 %{_firmwaredir}/intel/ibt-0180-1050.sfi.xz
 %{_firmwaredir}/intel/ibt-0180-4150.ddc.xz
 %{_firmwaredir}/intel/ibt-0180-4150.sfi.xz
+%{_firmwaredir}/intel/ibt-0190-0041-iml.sfi.xz
+%{_firmwaredir}/intel/ibt-0190-0041.ddc.xz
+%{_firmwaredir}/intel/ibt-0190-0041.sfi.xz
+%{_firmwaredir}/intel/ibt-0190-0291-iml.sfi.xz
+%{_firmwaredir}/intel/ibt-0190-0291.ddc.xz
+%{_firmwaredir}/intel/ibt-0190-0291.sfi.xz
 %{_firmwaredir}/intel/ibt-0291-0291.ddc.xz
 %{_firmwaredir}/intel/ibt-0291-0291.sfi.xz
 %{_firmwaredir}/intel/ibt-1040-1050.ddc.xz
