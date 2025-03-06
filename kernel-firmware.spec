@@ -9,7 +9,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20241110
+Version:	20250306
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -49,6 +49,7 @@ Provides:	alsa-firmware = 1.0.29-5
 Suggests:	kernel-firmware-extra
 BuildArch:	noarch
 BuildRequires:	rdfind
+BuildRequires:	parallel
 
 %description
 This package contains the firmware for in-kernel drivers that was previously
@@ -244,7 +245,9 @@ mkdir tmp
 cd tmp
 tar xf %{SOURCE2}
 # Already upstream
-rm a300_pfp.fw \
+rm a225_pfp.fw \
+	a225_pm4.fw \
+	a300_pfp.fw \
 	a300_pm4.fw \
 	a330_pfp.fw \
 	a330_pm4.fw \
@@ -660,6 +663,54 @@ fi
 %{_firmwaredir}/TAS2XXX38D6.bin.xz
 %{_firmwaredir}/TAS2XXX38DF.bin.xz
 %{_firmwaredir}/TAS2XXX38E0.bin.xz
+%{_firmwaredir}/TAS2XXX0C94.bin.xz
+%{_firmwaredir}/TAS2XXX0C95.bin.xz
+%{_firmwaredir}/TAS2XXX0C96.bin.xz
+%{_firmwaredir}/TAS2XXX0C97.bin.xz
+%{_firmwaredir}/TAS2XXX103C8DE8-0.bin.xz
+%{_firmwaredir}/TAS2XXX103C8DE8-1.bin.xz
+%{_firmwaredir}/TAS2XXX103C8DE80.bin.xz
+%{_firmwaredir}/TAS2XXX103C8DE81.bin.xz
+%{_firmwaredir}/TAS2XXX103C8DE9-0.bin.xz
+%{_firmwaredir}/TAS2XXX103C8DE9-1.bin.xz
+%{_firmwaredir}/TAS2XXX103C8DE90.bin.xz
+%{_firmwaredir}/TAS2XXX103C8DE91.bin.xz
+%{_firmwaredir}/TAS2XXX10A40.bin.xz
+%{_firmwaredir}/TAS2XXX10A41.bin.xz
+%{_firmwaredir}/TAS2XXX11540.bin.xz
+%{_firmwaredir}/TAS2XXX11541.bin.xz
+%{_firmwaredir}/TAS2XXX12040.bin.xz
+%{_firmwaredir}/TAS2XXX12041.bin.xz
+%{_firmwaredir}/TAS2XXX12140.bin.xz
+%{_firmwaredir}/TAS2XXX12141.bin.xz
+%{_firmwaredir}/TAS2XXX2326.bin.xz
+%{_firmwaredir}/TAS2XXX38FD.bin.xz
+%{_firmwaredir}/TAS2XXX391F.bin.xz
+%{_firmwaredir}/TAS2XXX3920.bin.xz
+%{_firmwaredir}/TAS2XXX3E300.bin.xz
+%{_firmwaredir}/TAS2XXX3E301.bin.xz
+%{_firmwaredir}/TAS2XXX3EE00.bin.xz
+%{_firmwaredir}/TAS2XXX3EE01.bin.xz
+%{_firmwaredir}/TAS2XXX3EF00.bin.xz
+%{_firmwaredir}/TAS2XXX3EF01.bin.xz
+%{_firmwaredir}/TAS2XXX3F000.bin.xz
+%{_firmwaredir}/TAS2XXX3F001.bin.xz
+%{_firmwaredir}/TAS2XXX3F100.bin.xz
+%{_firmwaredir}/TAS2XXX3F101.bin.xz
+%{_firmwaredir}/TAS2XXX3F200.bin.xz
+%{_firmwaredir}/TAS2XXX3F201.bin.xz
+%{_firmwaredir}/TAS2XXX3F300.bin.xz
+%{_firmwaredir}/TAS2XXX3F301.bin.xz
+%{_firmwaredir}/TAS2XXX8DE8.bin.xz
+%{_firmwaredir}/TAS2XXX8DE80.bin.xz
+%{_firmwaredir}/TAS2XXX8DE81.bin.xz
+%{_firmwaredir}/TAS2XXX8DE9.bin.xz
+%{_firmwaredir}/TAS2XXX8DE90.bin.xz
+%{_firmwaredir}/TAS2XXX8DE91.bin.xz
+%{_firmwaredir}/TXNW2781RCA0.bin.xz
+%{_firmwaredir}/TXNW2781RCA1.bin.xz
+%{_firmwaredir}/TXNW2781RCA2.bin.xz
+%{_firmwaredir}/TXNW2781RCA4.bin.xz
 %{_firmwaredir}/TIAS2781RCA2.bin.xz
 %{_firmwaredir}/TIAS2781RCA4.bin.xz
 %{_firmwaredir}/ap6275p
@@ -727,6 +778,7 @@ fi
 %files -n radeon-firmware
 %defattr(0644,root,root,0755)
 %{_firmwaredir}/amdgpu
+%{_firmwaredir}/amdnpu
 %{_firmwaredir}/radeon
 
 %files -n nvidia-firmware
@@ -809,6 +861,17 @@ fi
 %{_firmwaredir}/iwlwifi-so-a0-gf4-a0-89.ucode.xz
 %{_firmwaredir}/iwlwifi-so-a0-hr-b0-89.ucode.xz
 %{_firmwaredir}/iwlwifi-ty-a0-gf-a0-89.ucode.xz
+%{_firmwaredir}/iwlwifi-bz-b0-fm-c0-93.ucode.xz
+%{_firmwaredir}/iwlwifi-bz-b0-fm-c0-96.ucode.xz
+%{_firmwaredir}/iwlwifi-bz-b0-gf-a0-92.ucode.xz
+%{_firmwaredir}/iwlwifi-bz-b0-gf-a0-94.ucode.xz
+%{_firmwaredir}/iwlwifi-bz-b0-gf-a0-96.ucode.xz
+%{_firmwaredir}/iwlwifi-bz-b0-gf-a0.pnvm.xz
+%{_firmwaredir}/iwlwifi-gl-c0-fm-c0-96.ucode.xz
+%{_firmwaredir}/intel/ibt-0093-1050.ddc.xz
+%{_firmwaredir}/intel/ibt-0093-1050.sfi.xz
+%{_firmwaredir}/intel/ibt-0093-4150.ddc.xz
+%{_firmwaredir}/intel/ibt-0093-4150.sfi.xz
 %{_firmwaredir}/intel/ibt-0040-0041.ddc.xz
 %{_firmwaredir}/intel/ibt-0040-0041.sfi.xz
 %{_firmwaredir}/intel/ibt-0040-1020.ddc.xz
