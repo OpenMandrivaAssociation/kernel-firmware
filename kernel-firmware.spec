@@ -9,7 +9,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20250306
+Version:	20250315
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -481,6 +481,7 @@ fi
 %{_firmwaredir}/intel/fw_*.bin*
 %{_firmwaredir}/intel/ice
 %{_firmwaredir}/intel/irci*
+%{_firmwaredir}/intel/vpu
 %{_firmwaredir}/isdbt_*.inp*
 %{_firmwaredir}/ixp4xx
 %{_firmwaredir}/kaweth
@@ -528,6 +529,8 @@ fi
 %{_firmwaredir}/qat_4xxx_mmp.bin.xz
 %{_firmwaredir}/qat_402xx.bin.xz
 %{_firmwaredir}/qat_402xx_mmp.bin.xz
+%{_firmwaredir}/qat_420xx.bin.xz
+%{_firmwaredir}/qat_420xx_mmp.bin.xz
 %{_firmwaredir}/qca
 %{_firmwaredir}/qed
 %{_firmwaredir}/ql2100_fw.bin*
@@ -868,6 +871,9 @@ fi
 %{_firmwaredir}/iwlwifi-bz-b0-gf-a0-96.ucode.xz
 %{_firmwaredir}/iwlwifi-bz-b0-gf-a0.pnvm.xz
 %{_firmwaredir}/iwlwifi-gl-c0-fm-c0-96.ucode.xz
+%{_firmwaredir}/iwlwifi-bz-b0-fm-c0-97.ucode.xz
+%{_firmwaredir}/iwlwifi-bz-b0-gf-a0-97.ucode.xz
+%{_firmwaredir}/iwlwifi-gl-c0-fm-c0-97.ucode.xz
 %{_firmwaredir}/intel/ibt-0093-1050.ddc.xz
 %{_firmwaredir}/intel/ibt-0093-1050.sfi.xz
 %{_firmwaredir}/intel/ibt-0093-4150.ddc.xz
