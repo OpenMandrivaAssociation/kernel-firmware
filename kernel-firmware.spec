@@ -9,7 +9,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20250315
+Version:	20250324
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -918,6 +918,14 @@ fi
 %{_firmwaredir}/intel/ibt-1040-2120.sfi.xz
 %{_firmwaredir}/intel/ibt-1040-4150.ddc.xz
 %{_firmwaredir}/intel/ibt-1040-4150.sfi.xz
+%{_firmwaredir}/intel/ibt-0190-0041-pci.ddc.xz
+%{_firmwaredir}/intel/ibt-0190-0041-pci.sfi.xz
+%{_firmwaredir}/intel/ibt-0190-0041-usb.ddc.xz
+%{_firmwaredir}/intel/ibt-0190-0041-usb.sfi.xz
+%{_firmwaredir}/intel/ibt-0190-0291-pci.ddc.xz
+%{_firmwaredir}/intel/ibt-0190-0291-pci.sfi.xz
+%{_firmwaredir}/intel/ibt-0190-0291-usb.ddc.xz
+%{_firmwaredir}/intel/ibt-0190-0291-usb.sfi.xz
 %{_firmwaredir}/intel/ibt-11-5.ddc.xz
 %{_firmwaredir}/intel/ibt-11-5.sfi.xz
 %{_firmwaredir}/intel/ibt-12-16.ddc.xz
