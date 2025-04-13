@@ -9,7 +9,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20250324
+Version:	20250413
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -415,6 +415,7 @@ fi
 %{_firmwaredir}/advansys
 %{_firmwaredir}/af9005.fw*
 %{_firmwaredir}/agere*
+%{_firmwaredir}/aeonsemi
 %{_firmwaredir}/airoha
 %{_firmwaredir}/amd-ucode
 %{_firmwaredir}/amd
