@@ -9,7 +9,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20250413
+Version:	20250627
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -1061,11 +1061,19 @@ fi
 %{_firmwaredir}/iwlwifi-ty-a0-gf-a0-81.ucode.xz
 %{_firmwaredir}/iwlwifi-ty-a0-gf-a0-83.ucode.xz
 %{_firmwaredir}/intel/avs
+%{_firmwaredir}/intel/ipu
 %{_firmwaredir}/intel/ish
 %{_firmwaredir}/iwlwifi-bz-b0-fm-c0-92.ucode.xz
 %{_firmwaredir}/iwlwifi-bz-b0-fm-c0.pnvm.xz
 %{_firmwaredir}/iwlwifi-gl-c0-fm-c0-92.ucode.xz
 %{_firmwaredir}/iwlwifi-ma-b0-hr-b0-89.ucode.xz
+%{_firmwaredir}/bmi260-init-data.fw.xz
+%{_firmwaredir}/iwlwifi-bz-b0-fm-c0-98.ucode.xz
+%{_firmwaredir}/iwlwifi-bz-b0-gf-a0-98.ucode.xz
+%{_firmwaredir}/iwlwifi-bz-b0-hr-b0-96.ucode.xz
+%{_firmwaredir}/iwlwifi-bz-b0-hr-b0-98.ucode.xz
+%{_firmwaredir}/iwlwifi-bz-b0-hr-b0.pnvm.xz
+%{_firmwaredir}/iwlwifi-gl-c0-fm-c0-98.ucode.xz
 
 %files mellanox
 %{_firmwaredir}/mellanox
