@@ -9,7 +9,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20250627
+Version:	20250720
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -109,6 +109,25 @@ Url:		https://nvidia.com/
 %description -n nvidia-firmware
 Firmware files needed to use NVIDIA GPUs, even when using the Open
 Source Nouveau driver
+
+# Directories replaced with symlinks
+%pretrans -p <lua> -n nvidia-firmware
+paths = {"%{_firmwaredir}/nvidia/ad103", "%{_firmwaredir}/nvidia/ad104", "%{_firmwaredir}/nvidia/ad106", "%{_firmwaredir}/nvidia/ad107"}
+for i = 1, 4 do
+	path = paths[i]
+	st = posix.stat(path)
+	if st and st.type == "directory" then
+		status = os.rename(path, path .. ".rpmmoved")
+		if not status then
+			suffix = 0
+			while not status do
+				suffix = suffix + 1
+				status = os.rename(path .. ".rpmmoved", path .. ".rpmmoved." .. suffix)
+			end
+			os.rename(path, path .. ".rpmmoved")
+		end
+	end
+end
 
 %package -n adreno-firmware
 Summary:	Adreno firmware
@@ -399,6 +418,7 @@ fi
 %{_firmwaredir}/usbdux_firmware.bin*
 %{_firmwaredir}/usbduxfast_firmware.bin*
 %{_firmwaredir}/usbduxsigma_firmware.bin*
+%{_firmwaredir}/xe
 
 %files extra
 %defattr(0644,root,root,0755)
