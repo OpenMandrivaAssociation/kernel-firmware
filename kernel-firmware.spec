@@ -9,7 +9,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20250720
+Version:	20251021
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -428,6 +428,8 @@ fi
 %doc LICENCE.ralink-firmware.txt LICENCE.rtlwifi_firmware.txt
 %doc LICENCE.ti-connectivity LICENCE.xc5000
 %doc LICENCE.siano LICENSE.amd-ucode
+%{_firmwaredir}/HP
+%{_firmwaredir}/LENOVO
 %{_firmwaredir}/3com
 %{_firmwaredir}/NXP7164*
 %{_firmwaredir}/acenic
@@ -450,6 +452,7 @@ fi
 %{_firmwaredir}/as102_data*_st.hex*
 %{_firmwaredir}/ath10k
 %{_firmwaredir}/ath11k
+%{_firmwaredir}/ath12k
 %{_firmwaredir}/ath3k-1.fw*
 %{_firmwaredir}/ath6k
 %{_firmwaredir}/ath9k_htc
@@ -473,6 +476,7 @@ fi
 %{_firmwaredir}/cxgb3
 %{_firmwaredir}/cxgb4
 %{_firmwaredir}/dabusb
+%{_firmwaredir}/dell
 %{_firmwaredir}/dpaa2
 %{_firmwaredir}/drxd-*.fw*
 %{_firmwaredir}/drxk_a3.mc*
@@ -568,6 +572,7 @@ fi
 %dir %{_firmwaredir}/realtek/rt1320
 %{_firmwaredir}/realtek/rt1320/rt1320-patch-code-vab.bin.xz
 %{_firmwaredir}/realtek/rt1320/rt1320-patch-code-vc.bin.xz
+%{_firmwaredir}/realtek/rt1320/rt1321-patch-code-va.bin.xz
 %{_firmwaredir}/rockchip
 %{_firmwaredir}/rp2.fw*
 %{_firmwaredir}/rsi
@@ -738,18 +743,6 @@ fi
 %{_firmwaredir}/TIAS2781RCA2.bin.xz
 %{_firmwaredir}/TIAS2781RCA4.bin.xz
 %{_firmwaredir}/ap6275p
-%dir %{_firmwaredir}/ath12k
-%dir %{_firmwaredir}/ath12k/QCN9274
-%dir %{_firmwaredir}/ath12k/QCN9274/hw2.0
-%{_firmwaredir}/ath12k/QCN9274/hw2.0/Notice.txt.xz
-%{_firmwaredir}/ath12k/QCN9274/hw2.0/board-2.bin.xz
-%{_firmwaredir}/ath12k/QCN9274/hw2.0/firmware-2.bin.xz
-%dir %{_firmwaredir}/ath12k/WCN7850
-%dir %{_firmwaredir}/ath12k/WCN7850/hw2.0
-%{_firmwaredir}/ath12k/WCN7850/hw2.0/Notice.txt.xz
-%{_firmwaredir}/ath12k/WCN7850/hw2.0/amss.bin.xz
-%{_firmwaredir}/ath12k/WCN7850/hw2.0/board-2.bin.xz
-%{_firmwaredir}/ath12k/WCN7850/hw2.0/m3.bin.xz
 %{_firmwaredir}/cs42l43.bin.xz
 %dir %{_firmwaredir}/intel/ipu
 %{_firmwaredir}/intel/ipu/ipu6_fw.bin.xz
@@ -794,7 +787,12 @@ fi
 %{_firmwaredir}/tsse_firmware.bin.xz
 
 %files -n mali-g610-firmware
-%{_firmwaredir}/arm/mali/arch10.8/mali_csffw.bin.xz
+%{_firmwaredir}/arm/mali/arch10.8
+%{_firmwaredir}/arm/mali/arch10.10
+%{_firmwaredir}/arm/mali/arch10.12
+%{_firmwaredir}/arm/mali/arch11.8
+%{_firmwaredir}/arm/mali/arch12.8
+%{_firmwaredir}/arm/mali/arch13.8
 
 %files -n firmware-powervr
 %{_firmwaredir}/powervr
@@ -895,6 +893,199 @@ fi
 %{_firmwaredir}/iwlwifi-bz-b0-fm-c0-97.ucode.xz
 %{_firmwaredir}/iwlwifi-bz-b0-gf-a0-97.ucode.xz
 %{_firmwaredir}/iwlwifi-gl-c0-fm-c0-97.ucode.xz
+%{_firmwaredir}/iwlwifi-bz-b0-fm-c0-100.ucode.xz
+%{_firmwaredir}/iwlwifi-bz-b0-fm-c0-101.ucode.xz
+%{_firmwaredir}/iwlwifi-bz-b0-gf-a0-100.ucode.xz
+%{_firmwaredir}/iwlwifi-bz-b0-hr-b0-100.ucode.xz
+%{_firmwaredir}/iwlwifi-bz-b0-hr-b0-93.ucode.xz
+%{_firmwaredir}/iwlwifi-gl-c0-fm-c0-100.ucode.xz
+%{_firmwaredir}/iwlwifi-gl-c0-fm-c0-101.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-100-5.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-1000-5.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-105-6.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-135-6.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-2000-6.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-2030-6.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-3160-17.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-3168-29.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-3945-2.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-4965-2.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-5000-5.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-5150-2.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-6000-4.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-6000g2a-6.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-6000g2b-6.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-6050-5.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-7260-17.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-7265-17.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-7265D-29.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-8000C-34.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-8000C-36.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-8265-34.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-8265-36.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-9000-pu-b0-jf-b0-34.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-9000-pu-b0-jf-b0-38.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-9000-pu-b0-jf-b0-46.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-9260-th-b0-jf-b0-34.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-9260-th-b0-jf-b0-38.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-9260-th-b0-jf-b0-46.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-b0-hr-b0-50.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-b0-hr-b0-59.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-b0-hr-b0-66.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-b0-hr-b0-72.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-b0-hr-b0-73.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-b0-hr-b0-74.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-b0-hr-b0-77.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-b0-jf-b0-50.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-b0-jf-b0-59.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-b0-jf-b0-66.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-b0-jf-b0-72.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-b0-jf-b0-73.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-b0-jf-b0-74.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-b0-jf-b0-77.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-c0-hr-b0-50.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-c0-hr-b0-59.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-c0-hr-b0-66.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-c0-hr-b0-72.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-c0-hr-b0-73.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-c0-hr-b0-74.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-c0-hr-b0-77.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-c0-jf-b0-50.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-c0-jf-b0-59.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-c0-jf-b0-66.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-c0-jf-b0-72.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-c0-jf-b0-73.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-c0-jf-b0-74.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-Qu-c0-jf-b0-77.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-QuZ-a0-hr-b0-50.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-QuZ-a0-hr-b0-59.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-QuZ-a0-hr-b0-66.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-QuZ-a0-hr-b0-72.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-QuZ-a0-hr-b0-73.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-QuZ-a0-hr-b0-74.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-QuZ-a0-hr-b0-77.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-QuZ-a0-jf-b0-50.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-QuZ-a0-jf-b0-59.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-QuZ-a0-jf-b0-66.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-QuZ-a0-jf-b0-72.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-QuZ-a0-jf-b0-73.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-QuZ-a0-jf-b0-74.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-QuZ-a0-jf-b0-77.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-bz-b0-fm-c0-100.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-bz-b0-fm-c0-101.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-bz-b0-fm-c0-92.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-bz-b0-fm-c0-93.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-bz-b0-fm-c0-94.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-bz-b0-fm-c0-96.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-bz-b0-fm-c0-97.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-bz-b0-fm-c0-98.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-bz-b0-fm-c0.pnvm.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-bz-b0-gf-a0-100.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-bz-b0-gf-a0-92.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-bz-b0-gf-a0-94.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-bz-b0-gf-a0-96.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-bz-b0-gf-a0-97.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-bz-b0-gf-a0-98.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-bz-b0-gf-a0.pnvm.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-bz-b0-hr-b0-100.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-bz-b0-hr-b0-93.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-bz-b0-hr-b0-96.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-bz-b0-hr-b0-98.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-bz-b0-hr-b0.pnvm.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-cc-a0-50.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-cc-a0-59.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-cc-a0-66.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-cc-a0-72.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-cc-a0-73.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-cc-a0-74.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-cc-a0-77.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-gl-c0-fm-c0-100.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-gl-c0-fm-c0-101.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-gl-c0-fm-c0-83.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-gl-c0-fm-c0-86.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-gl-c0-fm-c0-90.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-gl-c0-fm-c0-92.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-gl-c0-fm-c0-94.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-gl-c0-fm-c0-96.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-gl-c0-fm-c0-97.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-gl-c0-fm-c0-98.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-gl-c0-fm-c0.pnvm.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-ma-b0-gf-a0-83.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-ma-b0-gf-a0-86.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-ma-b0-gf-a0-89.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-ma-b0-gf-a0.pnvm.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-ma-b0-gf4-a0-83.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-ma-b0-gf4-a0-86.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-ma-b0-gf4-a0-89.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-ma-b0-gf4-a0.pnvm.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-ma-b0-hr-b0-83.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-ma-b0-hr-b0-86.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-ma-b0-hr-b0-89.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-gf-a0-72.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-gf-a0-73.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-gf-a0-74.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-gf-a0-77.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-gf-a0-78.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-gf-a0-79.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-gf-a0-81.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-gf-a0-83.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-gf-a0-84.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-gf-a0-86.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-gf-a0-89.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-gf-a0.pnvm.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-gf4-a0-72.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-gf4-a0-73.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-gf4-a0-74.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-gf4-a0-77.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-gf4-a0-78.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-gf4-a0-79.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-gf4-a0-81.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-gf4-a0-83.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-gf4-a0-84.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-gf4-a0-86.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-gf4-a0-89.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-gf4-a0.pnvm.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-hr-b0-72.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-hr-b0-73.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-hr-b0-74.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-hr-b0-77.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-hr-b0-79.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-hr-b0-81.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-hr-b0-83.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-hr-b0-84.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-hr-b0-86.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-hr-b0-89.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-jf-b0-72.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-jf-b0-73.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-jf-b0-74.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-so-a0-jf-b0-77.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-ty-a0-gf-a0-59.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-ty-a0-gf-a0-66.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-ty-a0-gf-a0-72.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-ty-a0-gf-a0-73.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-ty-a0-gf-a0-74.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-ty-a0-gf-a0-77.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-ty-a0-gf-a0-78.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-ty-a0-gf-a0-79.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-ty-a0-gf-a0-81.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-ty-a0-gf-a0-83.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-ty-a0-gf-a0-84.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-ty-a0-gf-a0-86.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-ty-a0-gf-a0-89.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-ty-a0-gf-a0.pnvm.xz
+%{_firmwaredir}/intel/qat/qat_402xx.bin.xz
+%{_firmwaredir}/intel/qat/qat_402xx_mmp.bin.xz
+%{_firmwaredir}/intel/qat/qat_420xx.bin.xz
+%{_firmwaredir}/intel/qat/qat_420xx_mmp.bin.xz
+%{_firmwaredir}/intel/qat/qat_4xxx.bin.xz
+%{_firmwaredir}/intel/qat/qat_4xxx_mmp.bin.xz
+%{_firmwaredir}/intel/qat/qat_895xcc.bin.xz
+%{_firmwaredir}/intel/qat/qat_895xcc_mmp.bin.xz
+%{_firmwaredir}/intel/qat/qat_c3xxx.bin.xz
+%{_firmwaredir}/intel/qat/qat_c3xxx_mmp.bin.xz
+%{_firmwaredir}/intel/qat/qat_c62x.bin.xz
+%{_firmwaredir}/intel/qat/qat_c62x_mmp.bin.xz
+%{_firmwaredir}/intel/qat/qat_mmp.bin.xz
 %{_firmwaredir}/intel/ibt-0093-1050.ddc.xz
 %{_firmwaredir}/intel/ibt-0093-1050.sfi.xz
 %{_firmwaredir}/intel/ibt-0093-4150.ddc.xz
