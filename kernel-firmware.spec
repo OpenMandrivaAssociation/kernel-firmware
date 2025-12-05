@@ -9,7 +9,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20251021
+Version:	20251125
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -602,6 +602,7 @@ fi
 %{_firmwaredir}/s5p-mfc-v12.fw*
 %{_firmwaredir}/s5p-mfc.fw*
 %{_firmwaredir}/sb16
+%{_firmwaredir}/sdca
 %{_firmwaredir}/sdd_sagrad_1091_1098.bin*
 %{_firmwaredir}/slicoss
 %{_firmwaredir}/sms1xxx-hcw-114xxx-cmmb-01.fw*
@@ -736,6 +737,47 @@ fi
 %{_firmwaredir}/TAS2XXX8DE9.bin.xz
 %{_firmwaredir}/TAS2XXX8DE90.bin.xz
 %{_firmwaredir}/TAS2XXX8DE91.bin.xz
+%{_firmwaredir}/TAS2XXX13840.bin.xz
+%{_firmwaredir}/TAS2XXX13841.bin.xz
+%{_firmwaredir}/TAS2XXX13940.bin.xz
+%{_firmwaredir}/TAS2XXX13941.bin.xz
+%{_firmwaredir}/TAS2XXX13A40.bin.xz
+%{_firmwaredir}/TAS2XXX13A41.bin.xz
+%{_firmwaredir}/TAS2XXX8C70.bin.xz
+%{_firmwaredir}/TAS2XXX8C71.bin.xz
+%{_firmwaredir}/TAS2XXX8C72.bin.xz
+%{_firmwaredir}/TAS2XXX8D8E.bin.xz
+%{_firmwaredir}/TAS2XXX8DAA.bin.xz
+%{_firmwaredir}/TAS2XXX8DE8-0.bin.xz
+%{_firmwaredir}/TAS2XXX8DE8-1.bin.xz
+%{_firmwaredir}/TAS2XXX8DE9-0.bin.xz
+%{_firmwaredir}/TAS2XXX8DE9-1.bin.xz
+%{_firmwaredir}/TAS2XXX8E17.bin.xz
+%{_firmwaredir}/TAS2XXX8E19.bin.xz
+%{_firmwaredir}/TAS2XXX8E1C.bin.xz
+%{_firmwaredir}/TAS2XXX8E8A.bin.xz
+%{_firmwaredir}/TAS2XXX8ED5-0.bin.xz
+%{_firmwaredir}/TAS2XXX8ED5-1.bin.xz
+%{_firmwaredir}/TAS2XXX8ED5.bin.xz
+%{_firmwaredir}/TAS2XXX8ED6-0.bin.xz
+%{_firmwaredir}/TAS2XXX8ED6-1.bin.xz
+%{_firmwaredir}/TAS2XXX8ED6.bin.xz
+%{_firmwaredir}/TAS2XXX8ED7-0.bin.xz
+%{_firmwaredir}/TAS2XXX8ED7-1.bin.xz
+%{_firmwaredir}/TAS2XXX8ED7.bin.xz
+%{_firmwaredir}/TAS2XXX8ED8-0.bin.xz
+%{_firmwaredir}/TAS2XXX8ED8-1.bin.xz
+%{_firmwaredir}/TAS2XXX8ED8.bin.xz
+%{_firmwaredir}/TAS2XXX8ED9-0.bin.xz
+%{_firmwaredir}/TAS2XXX8ED9-1.bin.xz
+%{_firmwaredir}/TAS2XXX8ED9.bin.xz
+%{_firmwaredir}/TAS2XXX8EDA-0.bin.xz
+%{_firmwaredir}/TAS2XXX8EDA-1.bin.xz
+%{_firmwaredir}/TAS2XXX8EDA.bin.xz
+%{_firmwaredir}/TAS2XXX8F40.bin.xz
+%{_firmwaredir}/TAS2XXX8F41.bin.xz
+%{_firmwaredir}/TAS2XXX8F42.bin.xz
+%{_firmwaredir}/TAS2XXX8F62.bin.xz
 %{_firmwaredir}/TXNW2781RCA0.bin.xz
 %{_firmwaredir}/TXNW2781RCA1.bin.xz
 %{_firmwaredir}/TXNW2781RCA2.bin.xz
@@ -1285,6 +1327,8 @@ fi
 %{_firmwaredir}/iwlwifi-bz-b0-hr-b0-98.ucode.xz
 %{_firmwaredir}/iwlwifi-bz-b0-hr-b0.pnvm.xz
 %{_firmwaredir}/iwlwifi-gl-c0-fm-c0-98.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-sc-a0-wh-b0-101.ucode.xz
+%{_firmwaredir}/iwlwifi-sc-a0-wh-b0-101.ucode.xz
 
 %files mellanox
 %{_firmwaredir}/mellanox
