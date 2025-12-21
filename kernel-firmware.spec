@@ -48,6 +48,7 @@ Obsoletes:	alsa-firmware < 1.0.29-5
 Provides:	alsa-firmware = 1.0.29-5
 Suggests:	kernel-firmware-extra
 BuildArch:	noarch
+BuildRequires:	make
 BuildRequires:	rdfind
 BuildRequires:	parallel
 
