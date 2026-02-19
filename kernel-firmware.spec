@@ -9,7 +9,7 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20251125
+Version:	20260110
 Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -569,6 +569,7 @@ fi
 %{_firmwaredir}/r8a779x_usb3_v1.dlmem*
 %{_firmwaredir}/r8a779x_usb3_v2.dlmem*
 %{_firmwaredir}/r8a779x_usb3_v3.dlmem*
+%{_firmwaredir}/rcar_gen4_pcie.bin.xz
 %dir %{_firmwaredir}/realtek
 %dir %{_firmwaredir}/realtek/rt1320
 %{_firmwaredir}/realtek/rt1320/rt1320-patch-code-vab.bin.xz
@@ -943,6 +944,29 @@ fi
 %{_firmwaredir}/iwlwifi-bz-b0-hr-b0-93.ucode.xz
 %{_firmwaredir}/iwlwifi-gl-c0-fm-c0-100.ucode.xz
 %{_firmwaredir}/iwlwifi-gl-c0-fm-c0-101.ucode.xz
+%{_firmwaredir}/intel/ibt-00a0-0041-iml.sfi.xz
+%{_firmwaredir}/intel/ibt-00a0-0041-pci.ddc.xz
+%{_firmwaredir}/intel/ibt-00a0-0041-pci.sfi.xz
+%{_firmwaredir}/intel/ibt-00a0-01a1-iml.sfi.xz
+%{_firmwaredir}/intel/ibt-00a0-01a1-pci.ddc.xz
+%{_firmwaredir}/intel/ibt-00a0-01a1-pci.sfi.xz
+%{_firmwaredir}/intel/ibt-00a0-01a1-usb.ddc.xz
+%{_firmwaredir}/intel/ibt-00a0-01a1-usb.sfi.xz
+%{_firmwaredir}/intel/ibt-00a0-0291-iml.sfi.xz
+%{_firmwaredir}/intel/ibt-00a0-0291-pci.ddc.xz
+%{_firmwaredir}/intel/ibt-00a0-0291-pci.sfi.xz
+%{_firmwaredir}/intel/ibt-00a0-0291-usb.ddc.xz
+%{_firmwaredir}/intel/ibt-00a0-0291-usb.sfi.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-bz-b0-fm-c0-c101.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-gl-c0-fm-c0-c101.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-sc-a0-fm-c0-c101.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-sc-a0-gf-a0-100.ucode.xz
+%{_firmwaredir}/intel/iwlwifi/iwlwifi-sc-a0-wh-b0-c101.ucode.xz
+%{_firmwaredir}/iwlwifi-bz-b0-fm-c0-c101.ucode.xz
+%{_firmwaredir}/iwlwifi-gl-c0-fm-c0-c101.ucode.xz
+%{_firmwaredir}/iwlwifi-sc-a0-fm-c0-c101.ucode.xz
+%{_firmwaredir}/iwlwifi-sc-a0-gf-a0-100.ucode.xz
+%{_firmwaredir}/iwlwifi-sc-a0-wh-b0-c101.ucode.xz
 %{_firmwaredir}/intel/iwlwifi/iwlwifi-100-5.ucode.xz
 %{_firmwaredir}/intel/iwlwifi/iwlwifi-1000-5.ucode.xz
 %{_firmwaredir}/intel/iwlwifi/iwlwifi-105-6.ucode.xz
