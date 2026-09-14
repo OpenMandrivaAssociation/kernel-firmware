@@ -10,7 +10,7 @@
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
 Version:	20260910
-Release:	1
+Release:	2
 License:	GPLv2
 Group:		System/Kernel and hardware
 URL:		https://www.kernel.org/
@@ -38,6 +38,10 @@ Source3:	https://s3.amazonaws.com/hauppauge/linux/linux-ubuntu-14-04-2.tar.xz
 Source4:	https://github.com/OpenELEC/dvb-firmware/archive/master/dvb-firmware-%{version}.tar.gz
 # Additional Hauppauge TV receivers
 Source13:	https://www.hauppauge.com/linux/firmware_1900.fw
+# SI2157 tuner (TurboSight 6281/6285 on saa716x-budget, Hauppauge dualHD, …)
+# Same blob as dvb_driver_si2157_rom50.fw; not in OpenELEC/linux-firmware.
+# https://github.com/LibreELEC/dvb-firmware
+Source14:	https://raw.githubusercontent.com/LibreELEC/dvb-firmware/master/firmware/dvb-tuner-si2157-a30-01.fw
 Source100:	assign-firmware-lists.sh
 Conflicts:	kernel-firmware-extra < %{version}-1
 Obsoletes:	korg1212-firmware
@@ -461,6 +465,24 @@ for i in *.fw* *.bin *.inp *.mc *.mpg; do
 %endif
 done
 cd ../../..
+
+# SI2157 tuner firmware (saa716x TurboSight 6281/6285 and other Si2157 cards).
+# Optional for ROM 0x50 A30 parts, but the driver requests both names.
+if [ -e %{buildroot}%{_firmwaredir}/dvb-tuner-si2157-a30-01.fw -o \
+     -e %{buildroot}%{_firmwaredir}/dvb-tuner-si2157-a30-01.fw.xz ]; then
+	echo "===== si2157-a30 firmware has been added upstream, please remove Source14 ====="
+	obsolete=$((obsolete+1))
+else
+	cp %{S:14} %{buildroot}%{_firmwaredir}/dvb-tuner-si2157-a30-01.fw
+%if %{with compress}
+	xz -9 -C crc32 %{buildroot}%{_firmwaredir}/dvb-tuner-si2157-a30-01.fw
+	ln -s dvb-tuner-si2157-a30-01.fw.xz \
+		%{buildroot}%{_firmwaredir}/dvb_driver_si2157_rom50.fw.xz
+%else
+	ln -s dvb-tuner-si2157-a30-01.fw \
+		%{buildroot}%{_firmwaredir}/dvb_driver_si2157_rom50.fw
+%endif
+fi
 
 # Hauppauge
 rm -rf tmp

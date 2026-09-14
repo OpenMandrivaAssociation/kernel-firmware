@@ -5,3 +5,4 @@ sources:
   linux-ubuntu-14-04-2.tar.xz: 6d984ef753e72dd4cd5fa85df59abe3b6a7270fe
   dvb-firmware-20260910.tar.gz: 62a371d0f5ec5c24240f1aa01ea881550a8ed0ac
   linux-firmware-20260910.tar.zst: d3de5a6b1450c745fe21148de8457ac976aa37f9
+  dvb-tuner-si2157-a30-01.fw: 88a8dc66b903f38c5a3d2dafc0bca601533d124e

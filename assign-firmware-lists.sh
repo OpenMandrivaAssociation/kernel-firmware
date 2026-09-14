@@ -41,6 +41,7 @@ RULES = [
 	("ov5640_af.bin*", "pinephone"),
 	# Matches kernel-*-modules-dvb-* / tuners / radio
 	("dvb-*", "dvb"),
+	("dvb_driver_*", "dvb"),
 	("v4l-*", "dvb"),
 	("sms1xxx*", "dvb"),
 	("xc3028*", "dvb"),
