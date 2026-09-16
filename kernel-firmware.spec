@@ -9,8 +9,8 @@
 
 Summary:	Linux kernel firmware files
 Name:		kernel-firmware
-Version:	20260910
-Release:	2
+Version:	20260916
+Release:	1
 License:	GPLv2
 Group:		System/Kernel and hardware
 URL:		https://www.kernel.org/
@@ -34,8 +34,9 @@ Source2:	adreno-fw-820BSP3.2.tar.xz
 # Firmware for Hauppauge HVR-1975
 # see http://www.hauppauge.com/site/support/linux.html
 Source3:	https://s3.amazonaws.com/hauppauge/linux/linux-ubuntu-14-04-2.tar.xz
-# Firmware for various DVB receivers
-Source4:	https://github.com/OpenELEC/dvb-firmware/archive/master/dvb-firmware-%{version}.tar.gz
+# Firmware for various DVB receivers (OpenELEC snapshot; name is not
+# tied to the linux-firmware version).
+Source4:	https://github.com/OpenELEC/dvb-firmware/archive/master/dvb-firmware-20260910.tar.gz
 # Additional Hauppauge TV receivers
 Source13:	https://www.hauppauge.com/linux/firmware_1900.fw
 # SI2157 tuner (TurboSight 6281/6285 on saa716x-budget, Hauppauge dualHD, …)
